@@ -1,6 +1,5 @@
 <!doctype html>
-<html lang="ko">
-<head>
+<html lang="ko"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -115,11 +114,3542 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
     <button onclick="saveEdits()">💾 저장</button>
     <button onclick="exportBackup()">⬇️ 백업</button>
     <button onclick="exportHTML()">📄 HTML 내보내기</button>
-    <label>⬆️ 불러오기<input type="file" accept=".json" hidden onchange="importBackup(event)"></label>
+    <label>⬆️ 불러오기<input type="file" accept=".json" hidden="" onchange="importBackup(event)"></label>
     <button onclick="resetEdits()">↩️ 초기화</button>
   </div>
 
-  <div id="days"></div>
+  <div id="days">
+    <section class="day active" data-day="0">
+      <div class="day-head">
+        <b data-editable="1" contenteditable="false">1일차</b><span>9/26</span>
+        <p data-editable="1" contenteditable="false">간사이공항 → 숙소 → 덴노지 → 아베노 큐즈몰 → MEGA 돈키호테 → 숙소</p>
+      </div>
+
+      <div class="foldbar">
+        <button onclick="openAll(0)">모두 펼치기</button>
+        <button onclick="closeAll(0)">모두 접기</button>
+      </div>
+
+      
+        <details class="segment">
+          <summary>
+            <span data-editable="1" contenteditable="false">간사이공항 T2 → 제1터미널 철도역</span>
+            <span class="arrow">›</span>
+          </summary>
+          <div class="modebar">
+            
+              <button class="mode-choice active" onclick="selectMode(this)">🚌 무료 셔틀</button>
+            
+          </div>
+
+          
+            <div class="modepanel active">
+              <div class="meta" data-editable="1" contenteditable="false">약 7~10분 · 무료 · 추천</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">제주항공에서 내려 입국심사와 수하물 수취를 마친다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「無料連絡バス / Free Shuttle Bus」(무료 렌라쿠 바스 / 무료 연락버스) 표지판을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">Terminal 1 / Aeroplaza 방향 무료 셔틀버스 승강장으로 간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">T1행 무료 셔틀버스인지 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">캐리어 4개를 싣고 탑승한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">약 7~10분 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">제1터미널·Aeroplaza 쪽에서 내린다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「鉄道 / Railway」(테츠도 / 철도) 표지판을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「関西空港駅」(칸사이 쿠코 에키 / 간사이공항역) 방향으로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">에스컬레이터 또는 엘리베이터를 이용한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">JR과 「南海 / NANKAI」(난카이) 표지판이 보이면 맞다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">다음 단계는 난카이 공항급행이다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              </ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+          <div class="segment-edit-tools">
+            <button type="button" onclick="addMode(this,event)">➕ 이동수단 추가</button>
+            <button type="button" class="danger-btn" onclick="deleteSegment(this,event)">🗑 큰 경로 삭제</button>
+          </div>
+        </details>
+      
+        <details class="segment" open="">
+          <summary>
+            <span data-editable="1" contenteditable="false">간사이공항역 → 난카이 난바역</span>
+            <span class="arrow">›</span>
+          </summary>
+          <div class="modebar">
+            
+              <button class="mode-choice active" onclick="selectMode(this)">🚆 난카이 공항급행</button>
+            
+          </div>
+
+          
+            <div class="modepanel active">
+              <div class="meta" data-editable="1" contenteditable="false">약 45~50분 · 환승 없음 · 기본 추천</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「南海 / NANKAI」(난카이) 개찰구로 간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">전광판에서 「なんば / NAMBA」(난바)를 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「空港急行 / Airport Express」(쿠코 큐코 / 공항급행)를 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「ラピート / Rapi:t」(라피토)와 헷갈리지 않는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">ICOCA를 찍고 들어간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">난바행 공항급행 승강장으로 간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">열차 전광판에서 「なんば」(난바)를 다시 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">열차를 탄다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">난바는 종점이므로 중간에 내리지 않는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">약 45~50분 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「なんば」(난바)에서 내린다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「中央改札口」(츄오 카이사츠구치 / 중앙 개찰구)를 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              <li><span data-editable="1" contenteditable="false"><a href="https://maps.app.goo.gl/Qe427ZWgRxXLPgdT6?g_st=ic">https://maps.app.goo.gl/Qe427ZWgRxXLPgdT6?g_st=ic</a></span><button type="button" class="step-delete">삭제</button></li></ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+          <div class="segment-edit-tools">
+            <button type="button" onclick="addMode(this,event)">➕ 이동수단 추가</button>
+            <button type="button" class="danger-btn" onclick="deleteSegment(this,event)">🗑 큰 경로 삭제</button>
+          </div>
+        </details>
+      
+        <details class="segment" open="">
+          <summary>
+            <span data-editable="1" contenteditable="false">난카이 난바역 → 숙소</span>
+            <span class="arrow">›</span>
+          </summary>
+          <div class="modebar">
+            
+              <button class="mode-choice active" onclick="selectMode(this)">🚇 지하철</button>
+            
+              <button class="mode-choice " onclick="selectMode(this)">🚕 택시</button>
+            
+          </div>
+
+          
+            <div class="modepanel active">
+              <div class="meta" data-editable="1" contenteditable="false">1정거장 · 저렴 · 캐리어 있어도 기본 추천</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">난카이 난바역에서 「中央改札口」(츄오 카이사츠구치 / 중앙 개찰구)로 나온다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「地下鉄 / Osaka Metro」(치카테츠 / 지하철) 표지판을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">빨간색 「御堂筋線」(미도스지센 / 미도스지선)을 따라간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「なんば M20」(난바 M20)을 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">ICOCA를 찍고 개찰구로 들어간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「天王寺・なかもず方面」(텐노지·나카모즈 호멘)으로 간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">열차를 탄다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">딱 1정거장 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「大国町 M21」(다이코쿠초 M21)에서 내린다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「5番出口」(고반 데구치 / 5번 출구) 방향으로 간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">지상에서 「大国2丁目」(다이코쿠 니초메) 방향을 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">숙소 「エスリードホテル難波大国町アネックス」로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              <li><span data-editable="1" contenteditable="false"><a href="https://maps.app.goo.gl/edSTTa3gMB5P8Mhv8?g_st=ic">https://maps.app.goo.gl/edSTTa3gMB5P8Mhv8?g_st=ic</a></span><button type="button" class="step-delete">삭제</button></li></ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+            <div class="modepanel ">
+              <div class="meta" data-editable="1" contenteditable="false">짐 때문에 2대 필요 · 예상 택시비 약 800~1,100엔/대 · 2대 총 약 1,600~2,200엔 · 비상 대안</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">난카이 난바역에서 지상 택시승강장 표지판을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">캐리어 4개 때문에 일반 택시 1대로는 어렵다고 보고 2대를 이용한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">두 기사에게 동일한 숙소 화면을 보여준다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">숙소명: 「エスリードホテル難波大国町アネックス」(에스리도 호텔 난바 다이코쿠초 아넥쿠스).</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">주소: 「大阪市浪速区大国2丁目1-7」(오사카시 나니와쿠 다이코쿠 니초메 1-7).</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">가족을 2명씩 나누고 각 차에 짐을 분산한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">두 차량이 같은 목적지인지 다시 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">택시 번호 또는 차량 색을 서로 기억한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">출발한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">도착하면 숙소 간판을 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">각 택시 요금을 따로 결제한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">가족 4명이 모두 도착했는지 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              </ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+          <div class="segment-edit-tools">
+            <button type="button" onclick="addMode(this,event)">➕ 이동수단 추가</button>
+            <button type="button" class="danger-btn" onclick="deleteSegment(this,event)">🗑 큰 경로 삭제</button>
+          </div>
+        </details>
+      
+        <details class="segment">
+          <summary>
+            <span data-editable="1" contenteditable="false">숙소 → 덴노지공원</span>
+            <span class="arrow">›</span>
+          </summary>
+          <div class="modebar">
+            
+              <button class="mode-choice active" onclick="selectMode(this)">🚇 지하철</button>
+            
+              <button class="mode-choice " onclick="selectMode(this)">🚕 택시</button>
+            
+          </div>
+
+          
+            <div class="modepanel active">
+              <div class="meta" data-editable="1" contenteditable="false">2정거장 · 기본 추천</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">숙소에서 「大国町駅 M21」(다이코쿠초 에키 M21)로 간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">빨간색 「御堂筋線」(미도스지센)을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「天王寺・なかもず方面」(텐노지·나카모즈 호멘)으로 간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">열차를 탄다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「動物園前 M22」(도부츠엔마에 M22)를 지난다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">다음 「天王寺 M23」(텐노지 M23)에서 내린다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「てんしば」(텐시바) 표지판을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「天王寺公園」(텐노지 코엔 / 덴노지공원) 표지도 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">출구 방향을 따라간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">지상으로 나온다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">텐시바 잔디광장을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">덴노지공원 일정 시작.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              <li><span data-editable="1" contenteditable="false">숙소에서 덴노지역 -&nbsp;<a href="https://maps.app.goo.gl/y7v341heF1pFQLLw8?g_st=ic">https://maps.app.goo.gl/y7v341heF1pFQLLw8?g_st=ic</a></span><button type="button" class="step-delete">삭제</button></li><li><span data-editable="1" contenteditable="false">덴노지 역에서 공원 -&nbsp;<a href="https://maps.app.goo.gl/P5geV2iemZJbCxUv7?g_st=ic">https://maps.app.goo.gl/P5geV2iemZJbCxUv7?g_st=ic</a>.</span><button type="button" class="step-delete">삭제</button></li></ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+            <div class="modepanel ">
+              <div class="meta" data-editable="1" contenteditable="false">예상 택시비 약 1,000~1,300엔/대 · 피곤하거나 비가 심할 때만</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">숙소 앞에서 택시를 잡는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">목적지로 「てんしば / 天王寺公園」(텐시바 / 텐노지 코엔)을 보여준다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">기사에게 덴노지공원 텐시바 쪽 하차를 요청한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">가족 4명이 한 차량에 탈 수 있는지 짐 없이 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">탑승한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">도로 정체 여부를 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">텐시바 가까운 하차 지점을 요청한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">도착하면 요금을 결제한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">차에서 내린 뒤 가족이 모두 내렸는지 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">소지품을 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「てんしば」 표지판을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">공원 일정 시작.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              </ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+          <div class="segment-edit-tools">
+            <button type="button" onclick="addMode(this,event)">➕ 이동수단 추가</button>
+            <button type="button" class="danger-btn" onclick="deleteSegment(this,event)">🗑 큰 경로 삭제</button>
+          </div>
+        </details>
+      
+        <details class="segment">
+          <summary>
+            <span data-editable="1" contenteditable="false">덴노지공원 → 아베노 큐즈몰</span>
+            <span class="arrow">›</span>
+          </summary>
+          <div class="modebar">
+            
+              <button class="mode-choice active" onclick="selectMode(this)">🚶 도보</button>
+            
+              <button class="mode-choice " onclick="selectMode(this)">🚕 택시</button>
+            
+          </div>
+
+          
+            <div class="modepanel active">
+              <div class="meta" data-editable="1" contenteditable="false">약 8~12분 · 가까운 거리 · 기본 추천</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">덴노지공원 「てんしば」(텐시바)에서 아베노 하루카스가 보이는 방향으로 나온다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「天王寺駅」(텐노지 에키) 남쪽·아베노 방면 표지판을 따라간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">큰 도로와 횡단보도에서는 「あべの」(아베노) 또는 「あべのキューズモール」 표지판을 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「あべのハルカス」(아베노 하루카스)를 지나거나 맞은편으로 보면서 남서쪽 방향으로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">보행자 통로 또는 횡단보도를 이용해 「阿倍野筋」(아베노스지) 방향으로 간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「あべのキューズモール」(아베노 큐즈모루 / 아베노 큐즈몰) 간판을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">주소 「大阪市阿倍野区阿倍野筋1丁目6-1」(오사카시 아베노쿠 아베노스지 잇초메 6-1)을 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">큐즈몰 안으로 들어가 저녁식사와 다이소·라신반·가샤폰/#C-pla 일정을 진행한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              <li><span data-editable="1" contenteditable="false"><a href="https://maps.app.goo.gl/LBxBrzmPvGHJMReSA?g_st=ic">https://maps.app.goo.gl/LBxBrzmPvGHJMReSA?g_st=ic</a></span><button type="button" class="step-delete">삭제</button></li></ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+            <div class="modepanel ">
+              <div class="meta" data-editable="1" contenteditable="false">아주 짧은 거리 · 비가 매우 심하거나 걷기 힘들 때만</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">덴노지공원·텐시바 가까운 큰길의 택시 탑승 지점으로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">기사에게 「あべのキューズモール」(아베노 큐즈모루)을 보여준다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">주소 「大阪市阿倍野区阿倍野筋1丁目6-1」을 함께 보여준다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">거리가 매우 짧으므로 도로 상황에 따라 도보보다 오래 걸릴 수 있다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">가족 4명이 함께 탑승한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">큐즈몰 가까운 하차 지점에서 내린다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">요금을 결제하고 소지품을 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">큐즈몰 입구를 찾아 들어간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              </ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+          <div class="segment-edit-tools">
+            <button type="button" onclick="addMode(this,event)">➕ 이동수단 추가</button>
+            <button type="button" class="danger-btn" onclick="deleteSegment(this,event)">🗑 큰 경로 삭제</button>
+          </div>
+        </details>
+      
+        <details class="segment" open="">
+          <summary>
+            <span data-editable="1" contenteditable="false">아베노 큐즈몰 → MEGA 돈키호테 신세카이점</span>
+            <span class="arrow">›</span>
+          </summary>
+          <div class="modebar">
+            
+              <button class="mode-choice active" onclick="selectMode(this)">🚶 도보</button>
+            
+              <button class="mode-choice " onclick="selectMode(this)">🚕 택시</button>
+            
+          </div>
+
+          
+            <div class="modepanel active">
+              <div class="meta" data-editable="1" contenteditable="false">약 15분 전후 · 쇼핑 동선 유지</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">큐즈몰에서 쇼핑을 마친다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">건물 밖으로 나온다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「新世界」(신세카이) 방향을 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">멀리 「通天閣」(츠텐카쿠)이 보이면 방향이 맞다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">텐노지공원 북쪽 방향으로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「動物園前」(도부츠엔마에) 표지판도 참고한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">큰길에서는 횡단보도를 이용한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">신세카이 상점가 쪽으로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「MEGAドン・キホーテ新世界店」(메가 돈키호테 신세카이텐) 표지판을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">건물 입구를 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">가족이 함께 입장한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">쇼핑을 시작한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              <li><span data-editable="1" contenteditable="false"><a href="https://maps.app.goo.gl/6aNpuawRTXEsHvrS9?g_st=ic">https://maps.app.goo.gl/6aNpuawRTXEsHvrS9?g_st=ic</a></span><button type="button" class="step-delete">삭제</button></li></ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+            <div class="modepanel ">
+              <div class="meta" data-editable="1" contenteditable="false">예상 택시비 약 700~1,000엔/대 · 피곤하거나 비가 심할 때</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">아베노 큐즈몰 택시 승강장 또는 큰길 택시 정차 지점으로 간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">목적지 「MEGAドン・キホーテ新世界店」을 기사에게 보여준다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">필요하면 「新世界」(신세카이)라고 함께 보여준다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">가족 4명이 함께 탑승한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">출발한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">신세카이 방향으로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">돈키호테 건물이 보이는지 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">가까운 하차 지점에서 내린다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">요금을 결제한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">소지품을 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">건물 입구를 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">쇼핑을 시작한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              </ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+          <div class="segment-edit-tools">
+            <button type="button" onclick="addMode(this,event)">➕ 이동수단 추가</button>
+            <button type="button" class="danger-btn" onclick="deleteSegment(this,event)">🗑 큰 경로 삭제</button>
+          </div>
+        </details>
+      
+        <details class="segment">
+          <summary>
+            <span data-editable="1" contenteditable="false">MEGA 돈키호테 → 숙소</span>
+            <span class="arrow">›</span>
+          </summary>
+          <div class="modebar">
+            
+              <button class="mode-choice active" onclick="selectMode(this)">🚇 지하철</button>
+            
+              <button class="mode-choice " onclick="selectMode(this)">🚕 택시</button>
+            
+          </div>
+
+          
+            <div class="modepanel active">
+              <div class="meta" data-editable="1" contenteditable="false">1정거장 · 기본 추천</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">돈키호테에서 나온다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「動物園前駅」(도부츠엔마에 에키) 표지판을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">빨간색 「御堂筋線」(미도스지센)을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">역번호 M22를 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">개찰구로 들어간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「なんば・梅田方面」(난바·우메다 호멘)으로 간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">열차를 탄다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">1정거장 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「大国町 M21」(다이코쿠초 M21)에서 내린다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">5번 출구로 나온다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「大国2丁目1-7」 방향으로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">숙소에 도착한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              <li><span data-editable="1" contenteditable="false"><a href="https://maps.app.goo.gl/YDWvfrR3h2PEKX4Z9?g_st=ic">https://maps.app.goo.gl/YDWvfrR3h2PEKX4Z9?g_st=ic</a></span><button type="button" class="step-delete">삭제</button></li></ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+            <div class="modepanel ">
+              <div class="meta" data-editable="1" contenteditable="false">예상 택시비 약 800~1,100엔/대 · 쇼핑짐 많거나 가족이 매우 피곤할 때</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">돈키호테 쇼핑 후 짐 양을 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">짐이 많고 가족이 피곤하면 택시를 선택한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">택시 승강장 또는 호출 가능한 지점으로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">숙소명 「エスリードホテル難波大国町アネックス」를 보여준다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">주소 「大阪市浪速区大国2丁目1-7」를 함께 보여준다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">짐이 한 차량에 들어가는지 기사에게 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">안 들어가면 2대를 이용한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">탑승한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">숙소로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">도착 후 요금을 결제한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">쇼핑짐을 모두 내렸는지 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">숙소로 들어간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              </ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+          <div class="segment-edit-tools">
+            <button type="button" onclick="addMode(this,event)">➕ 이동수단 추가</button>
+            <button type="button" class="danger-btn" onclick="deleteSegment(this,event)">🗑 큰 경로 삭제</button>
+          </div>
+        </details>
+      
+
+      <div class="day-route-tools">
+        <button type="button" onclick="addSegment(this,event)">➕ 큰 경로 추가</button>
+      </div>
+
+      <div class="pager">
+        <button onclick="goPrevDay()">‹ 이전 일자</button>
+        <button onclick="scrollTopNow()">맨 위로 ↑</button>
+        <button onclick="goNextDay()">다음 일자 ›</button>
+      </div>
+    </section>
+  
+    <section class="day " data-day="1">
+      <div class="day-head">
+        <b data-editable="1" contenteditable="false">2일차</b><span>9/27</span>
+        <p data-editable="1" contenteditable="false">성당 → 오사카성 → 리커 마운틴 → HEP FIVE → 숙소</p>
+      </div>
+
+      <div class="foldbar">
+        <button onclick="openAll(1)">모두 펼치기</button>
+        <button onclick="closeAll(1)">모두 접기</button>
+      </div>
+
+      
+        <details class="segment">
+          <summary>
+            <span data-editable="1" contenteditable="false">숙소 → 오사카 주교좌성당</span>
+            <span class="arrow">›</span>
+          </summary>
+          <div class="modebar">
+            
+              <button class="mode-choice active" onclick="selectMode(this)">🚇 전철</button>
+            
+              <button class="mode-choice " onclick="selectMode(this)">🚕 택시</button>
+            
+          </div>
+
+          
+            <div class="modepanel active">
+              <div class="meta" data-editable="1" contenteditable="false">택시비 절약 · 기본 추천</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">숙소에서 「大国町駅 M21」(다이코쿠초 에키 M21)로 간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">빨간색 「御堂筋線」(미도스지센)을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「なんば・梅田方面」(난바·우메다 호멘) 열차를 탄다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">2정거장 이동해 「心斎橋 M19」(신사이바시 M19)에서 내린다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「長堀鶴見緑地線 N15」(나가호리 츠루미료쿠치센 N15) 환승 표지판을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「門真南方面」(카도마미나미 호멘) 승강장으로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">열차를 타고 「玉造 N19」(타마츠쿠리 N19)까지 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">타마츠쿠리역에서 내려 「1番出口」(이치반 데구치 / 1번 출구)를 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">1번 출구로 나온다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「長堀通」(나가호리도리)을 기준으로 성당 방향으로 걷는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">약 10~13분 걸어 「カトリック玉造教会」(카토릭쿠 타마츠쿠리 쿄카이)를 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">주소 「大阪市中央区玉造2丁目24-22」(오사카시 츄오쿠 타마츠쿠리 니초메 24-22)를 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              </ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+            <div class="modepanel ">
+              <div class="meta" data-editable="1" contenteditable="false">약 25~35분 예상 · 예상 택시비 약 2,300~3,000엔/대 · 비용 높음 · 컨디션 나쁠 때 대안</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">숙소 앞에서 택시를 잡는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">목적지 「カトリック玉造教会」(카토릭쿠 타마츠쿠리 쿄카이)를 보여준다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">또는 「大阪高松カテドラル 聖マリア大聖堂」(오사카 타카마츠 카테도라루 세이 마리아 다이세이도)를 보여준다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">주소 「大阪市中央区玉造2丁目24-22」를 보여준다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">기사에게 목적지를 다시 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">가족 4명이 탑승한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">차량 이동을 시작한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">도로 정체가 있으면 시간이 늘어날 수 있음을 감안한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">딸의 멀미 상태를 계속 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">성당 가까운 곳에서 하차한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">요금을 결제한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">성당 입구를 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              </ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+          <div class="segment-edit-tools">
+            <button type="button" onclick="addMode(this,event)">➕ 이동수단 추가</button>
+            <button type="button" class="danger-btn" onclick="deleteSegment(this,event)">🗑 큰 경로 삭제</button>
+          </div>
+        </details>
+      
+        <details class="segment">
+          <summary>
+            <span data-editable="1" contenteditable="false">성당 → sumigg's</span>
+            <span class="arrow">›</span>
+          </summary>
+          <div class="modebar">
+            
+              <button class="mode-choice active" onclick="selectMode(this)">🚶 도보</button>
+            
+              <button class="mode-choice " onclick="selectMode(this)">🚕 택시</button>
+            
+          </div>
+
+          
+            <div class="modepanel active">
+              <div class="meta" data-editable="1" contenteditable="false">약 15분 · 차량 멀미 회피</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">성당에서 나온다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">목적지는 「スミッグス / sumigg's」(스미그스)이다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">주소 「大阪市中央区森ノ宮中央2-10-7」(오사카시 츄오쿠 모리노미야츄오 2-10-7)를 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「森ノ宮」(모리노미야) 방향으로 걷는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「中央大通」(츄오 오도리)을 기준으로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「もりのみやキューズモール」(모리노미야 큐즈모루) 방향도 참고한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「森ノ宮中央2丁目」(모리노미야츄오 니초메)를 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">2-10-7 번지를 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">スミッグス 간판을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">길을 모르겠으면 주소를 보여준다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">가족이 함께 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">도착한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              </ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+            <div class="modepanel ">
+              <div class="meta" data-editable="1" contenteditable="false">예상 택시비 약 600~900엔/대 · 걷기 힘들 때만 · 짧은 거리</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">성당 앞 또는 큰길에서 택시를 잡는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「スミッグス / sumigg's」를 보여준다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">주소 「大阪市中央区森ノ宮中央2-10-7」를 기사에게 보여준다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">짧은 거리임을 감안한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">가족 4명이 탑승한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">출발한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">모리노미야 방향으로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">주소 근처에서 하차한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">요금을 결제한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">간판을 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">소지품을 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">식당으로 들어간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              </ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+          <div class="segment-edit-tools">
+            <button type="button" onclick="addMode(this,event)">➕ 이동수단 추가</button>
+            <button type="button" class="danger-btn" onclick="deleteSegment(this,event)">🗑 큰 경로 삭제</button>
+          </div>
+        </details>
+      
+        <details class="segment">
+          <summary>
+            <span data-editable="1" contenteditable="false">sumigg's → 오사카성 내 구 육군 위수형무소터</span>
+            <span class="arrow">›</span>
+          </summary>
+          <div class="modebar">
+            
+              <button class="mode-choice active" onclick="selectMode(this)">🚶 도보</button>
+            
+          </div>
+
+          
+            <div class="modepanel active">
+              <div class="meta" data-editable="1" contenteditable="false">공원 안 이동 · 기본 추천</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">식사를 마친다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「大阪城公園」(오사카조 코엔 / 오사카성공원) 방향으로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">모리노미야 쪽 공원 입구를 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">공원 안으로 들어간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">목적지 표기 「陸軍刑務所跡」(리쿠군 케이무쇼 아토)를 참고한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">또는 「衛戍監獄跡」(에이주 칸고쿠 아토) 표기도 참고한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">공원 안내판을 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">표지석이 작을 수 있으므로 천천히 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">천수각 쪽으로 너무 깊이 들어가지 않는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">가족이 흩어지지 않게 함께 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">표지석을 찾으면 주변 설명도 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">관람 후 모리노미야역 방향으로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              </ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+          <div class="segment-edit-tools">
+            <button type="button" onclick="addMode(this,event)">➕ 이동수단 추가</button>
+            <button type="button" class="danger-btn" onclick="deleteSegment(this,event)">🗑 큰 경로 삭제</button>
+          </div>
+        </details>
+      
+        <details class="segment">
+          <summary>
+            <span data-editable="1" contenteditable="false">오사카성 → 리커 마운틴 우메다점</span>
+            <span class="arrow">›</span>
+          </summary>
+          <div class="modebar">
+            
+              <button class="mode-choice active" onclick="selectMode(this)">🚇 전철</button>
+            
+              <button class="mode-choice " onclick="selectMode(this)">🚕 택시</button>
+            
+          </div>
+
+          
+            <div class="modepanel active">
+              <div class="meta" data-editable="1" contenteditable="false">환승 1회 · 기본 추천</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">공원 남쪽으로 나와 「森ノ宮駅 C19」(모리노미야 에키 C19)로 간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「中央線」(츄오센 / 주오선)을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「夢洲方面」(유메시마 호멘) 열차를 탄다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「本町 C16」(혼마치 C16)에서 내린다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「四つ橋線」(요츠바시센) 환승 표지판을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">요츠바시선 「本町 Y13」(혼마치 Y13)으로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「西梅田方面」(니시우메다 호멘) 열차를 탄다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「西梅田 Y11」(니시우메다 Y11)에서 내린다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">개찰구를 나온다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「北新地」(키타신치) 방향 표지판을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">주소 「大阪市北区曽根崎新地1丁目10-1」(오사카시 키타쿠 소네자키신치 잇초메 10-1)을 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「リカーマウンテン梅田店」(리카 마운텐 우메다텐)에 도착한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              </ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+            <div class="modepanel ">
+              <div class="meta" data-editable="1" contenteditable="false">예상 택시비 약 2,400~3,000엔/대 · 걷기·환승 줄이기 · 비용 증가</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">오사카성 공원 밖 큰길 쪽으로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">택시를 잡는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">목적지 「リカーマウンテン梅田店」을 보여준다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">주소 「大阪市北区曽根崎新地1丁目10-1」를 보여준다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">기사에게 우메다점임을 다시 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">가족 4명이 탑승한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">출발한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">우메다·키타신치 방면으로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">딸의 멀미 상태를 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">매장 근처에서 하차한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">요금을 결제한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">매장 간판을 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              </ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+          <div class="segment-edit-tools">
+            <button type="button" onclick="addMode(this,event)">➕ 이동수단 추가</button>
+            <button type="button" class="danger-btn" onclick="deleteSegment(this,event)">🗑 큰 경로 삭제</button>
+          </div>
+        </details>
+      
+        <details class="segment">
+          <summary>
+            <span data-editable="1" contenteditable="false">리커 마운틴 우메다점 → HEP FIVE</span>
+            <span class="arrow">›</span>
+          </summary>
+          <div class="modebar">
+            
+              <button class="mode-choice active" onclick="selectMode(this)">🚶 도보</button>
+            
+              <button class="mode-choice " onclick="selectMode(this)">🚕 택시</button>
+            
+          </div>
+
+          
+            <div class="modepanel active">
+              <div class="meta" data-editable="1" contenteditable="false">약 20분 · 기본 추천</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">술 구입을 마친다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">매장에서 나온다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「大阪駅」(오사카 에키) 또는 「梅田」(우메다) 방향을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">북쪽 방향으로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">지하에서는 「阪急」(한큐) 또는 「東梅田」(히가시우메다) 표지를 참고한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">HEP FIVE 표지판이 보이면 따라간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">표지판이 없으면 「阪急大阪梅田駅」(한큐 오사카우메다 에키) 방향을 기준으로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">지상에서 빨간 대관람차를 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">빨간 대관람차가 보이면 방향이 맞다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">주소 「大阪市北区角田町5-15」(오사카시 키타쿠 카쿠다초 5-15)를 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">HEP FIVE 간판을 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">건물 안으로 들어간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              </ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+            <div class="modepanel ">
+              <div class="meta" data-editable="1" contenteditable="false">예상 택시비 약 800~1,100엔/대 · 술이 무겁거나 비가 심할 때</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">매장 앞 또는 큰길에서 택시를 잡는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">목적지 HEP FIVE를 보여준다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">주소 「大阪市北区角田町5-15」를 보여준다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">가족 4명과 구입한 술이 한 차량에 실리는지 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">탑승한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">우메다 방향으로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">도로 정체가 있으면 시간이 늘어날 수 있다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">빨간 대관람차가 보이는지 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">HEP FIVE 근처에서 내린다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">요금을 결제한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">짐을 모두 내렸는지 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">건물로 들어간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              </ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+          <div class="segment-edit-tools">
+            <button type="button" onclick="addMode(this,event)">➕ 이동수단 추가</button>
+            <button type="button" class="danger-btn" onclick="deleteSegment(this,event)">🗑 큰 경로 삭제</button>
+          </div>
+        </details>
+      
+        <details class="segment">
+          <summary>
+            <span data-editable="1" contenteditable="false">HEP FIVE → 숙소</span>
+            <span class="arrow">›</span>
+          </summary>
+          <div class="modebar">
+            
+              <button class="mode-choice active" onclick="selectMode(this)">🚇 지하철</button>
+            
+              <button class="mode-choice " onclick="selectMode(this)">🚕 택시</button>
+            
+          </div>
+
+          
+            <div class="modepanel active">
+              <div class="meta" data-editable="1" contenteditable="false">환승 없음 · 기본 추천</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">HEP FIVE에서 나온다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「御堂筋線」(미도스지센) 표지판을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「梅田 M16」(우메다 M16)으로 간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">ICOCA를 찍고 들어간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「なんば・天王寺方面」(난바·텐노지 호멘) 열차를 탄다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「淀屋橋 M17」(요도야바시)를 지난다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「本町 M18」(혼마치)을 지난다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「心斎橋 M19」(신사이바시)를 지난다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「なんば M20」(난바)를 지난다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">다음 「大国町 M21」(다이코쿠초)에서 내린다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">5번 출구로 나온다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">숙소로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              </ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+            <div class="modepanel ">
+              <div class="meta" data-editable="1" contenteditable="false">예상 택시비 약 2,700~3,200엔/대 · 매우 피곤하거나 쇼핑짐 많을 때</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">HEP FIVE 택시 승강장 또는 큰길로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">숙소명 「エスリードホテル難波大国町アネックス」를 보여준다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">주소 「大阪市浪速区大国2丁目1-7」를 보여준다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">짐이 한 차량에 들어가는지 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">필요하면 2대를 이용한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">가족을 나누어 탑승한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">숙소로 출발한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">딸의 멀미 상태를 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">숙소 근처에서 내린다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">요금을 결제한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">쇼핑짐을 모두 챙긴다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">숙소로 들어간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              </ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+          <div class="segment-edit-tools">
+            <button type="button" onclick="addMode(this,event)">➕ 이동수단 추가</button>
+            <button type="button" class="danger-btn" onclick="deleteSegment(this,event)">🗑 큰 경로 삭제</button>
+          </div>
+        </details>
+      
+
+      <div class="day-route-tools">
+        <button type="button" onclick="addSegment(this,event)">➕ 큰 경로 추가</button>
+      </div>
+
+      <div class="pager">
+        <button onclick="goPrevDay()">‹ 이전 일자</button>
+        <button onclick="scrollTopNow()">맨 위로 ↑</button>
+        <button onclick="goNextDay()">다음 일자 ›</button>
+      </div>
+    </section>
+  
+    <section class="day " data-day="2">
+      <div class="day-head">
+        <b data-editable="1" contenteditable="false">3일차</b><span>9/28</span>
+        <p data-editable="1" contenteditable="false">교토대 → 우토로 평화기념관 → 나니와 닛폰바시 식당 → 숙소</p>
+      </div>
+
+      <div class="foldbar">
+        <button onclick="openAll(2)">모두 펼치기</button>
+        <button onclick="closeAll(2)">모두 접기</button>
+      </div>
+
+      
+        <details class="segment">
+          <summary>
+            <span data-editable="1" contenteditable="false">숙소 → JR 오사카역</span>
+            <span class="arrow">›</span>
+          </summary>
+          <div class="modebar">
+            
+              <button class="mode-choice active" onclick="selectMode(this)">🚇 지하철</button>
+            
+          </div>
+
+          
+            <div class="modepanel active">
+              <div class="meta" data-editable="1" contenteditable="false">직행 · 기본 추천</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">숙소에서 「大国町 M21」(다이코쿠초 M21)로 간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">빨간색 「御堂筋線」(미도스지센)을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「梅田・新大阪方面」(우메다·신오사카 호멘)으로 간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">열차를 탄다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「なんば M20」(난바)를 지난다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「心斎橋 M19」(신사이바시)를 지난다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「本町 M18」(혼마치)을 지난다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「淀屋橋 M17」(요도야바시)을 지난다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「梅田 M16」(우메다 M16)에서 내린다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「JR大阪駅」(JR 오사카 에키) 표지판을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">표지판을 따라 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">JR 오사카역에 도착한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              </ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+          <div class="segment-edit-tools">
+            <button type="button" onclick="addMode(this,event)">➕ 이동수단 추가</button>
+            <button type="button" class="danger-btn" onclick="deleteSegment(this,event)">🗑 큰 경로 삭제</button>
+          </div>
+        </details>
+      
+        <details class="segment">
+          <summary>
+            <span data-editable="1" contenteditable="false">JR 오사카역 → JR 교토역</span>
+            <span class="arrow">›</span>
+          </summary>
+          <div class="modebar">
+            
+              <button class="mode-choice active" onclick="selectMode(this)">🚆 JR 신쾌속</button>
+            
+          </div>
+
+          
+            <div class="modepanel active">
+              <div class="meta" data-editable="1" contenteditable="false">약 30~35분 · 기본 추천</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">JR 오사카역에 들어간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">전광판에서 「京都」(교토)를 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「JR京都線」(JR 교토센)을 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">가능하면 「新快速」(신카이소쿠 / 신쾌속)을 선택한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">교토 방면 승강장으로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">열차 전광판에 京都가 포함되어 있는지 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">열차를 탄다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">약 30분 정도 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「京都」(교토) 안내방송이 나오면 준비한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">JR 교토역에서 내린다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「烏丸口」(카라스마구치) 방향으로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">개찰구 밖으로 나온다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              </ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+          <div class="segment-edit-tools">
+            <button type="button" onclick="addMode(this,event)">➕ 이동수단 추가</button>
+            <button type="button" class="danger-btn" onclick="deleteSegment(this,event)">🗑 큰 경로 삭제</button>
+          </div>
+        </details>
+      
+        <details class="segment">
+          <summary>
+            <span data-editable="1" contenteditable="false">교토역 → 교토대 정문</span>
+            <span class="arrow">›</span>
+          </summary>
+          <div class="modebar">
+            
+              <button class="mode-choice active" onclick="selectMode(this)">🚌 206번 버스</button>
+            
+              <button class="mode-choice " onclick="selectMode(this)">🚕 택시</button>
+            
+          </div>
+
+          
+            <div class="modepanel active">
+              <div class="meta" data-editable="1" contenteditable="false">약 40분 · 비용 저렴 · 멀미 시 주의</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">교토역에서 「烏丸口」(카라스마구치)로 나온다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">교토타워가 보이면 북쪽이 맞다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">버스터미널의 D2 승강장을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「206」 버스를 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「北大路バスターミナル」(키타오지 바스 타미나루) 방면인지 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「清水寺・祇園・百万遍」(키요미즈데라·기온·햐쿠만벤) 경유 표기도 참고한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">ICOCA를 준비한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">206번 버스에 탄다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">딸의 상태를 보고 가능한 한 흔들림이 덜한 자리에 앉는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「京大正門前」(쿄다이 세이몬마에) 안내방송을 기다린다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">정류장 벨을 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「京大正門前」에서 내린다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              </ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+            <div class="modepanel ">
+              <div class="meta" data-editable="1" contenteditable="false">예상 택시비 약 2,600~3,200엔/대 · 버스가 힘들 때 · 도로 이동은 멀미 반응 확인</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">교토역 「烏丸口」(카라스마구치) 쪽 택시승강장으로 간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">기사에게 「京都大学 正門」(쿄토 다이가쿠 세이몬 / 교토대 정문)을 보여준다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">가능하면 「京大正門前」(쿄다이 세이몬마에)라고도 보여준다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">목적지를 다시 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">가족 4명이 탑승한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">출발한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">딸의 멀미 상태를 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">차량 멀미가 심해지면 창문 환기 가능 여부를 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">교토대 정문 근처에서 내릴 준비를 한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">요금을 결제한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">소지품을 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">교토대 정문으로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              </ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+          <div class="segment-edit-tools">
+            <button type="button" onclick="addMode(this,event)">➕ 이동수단 추가</button>
+            <button type="button" class="danger-btn" onclick="deleteSegment(this,event)">🗑 큰 경로 삭제</button>
+          </div>
+        </details>
+      
+        <details class="segment">
+          <summary>
+            <span data-editable="1" contenteditable="false">교토대 → 교토역</span>
+            <span class="arrow">›</span>
+          </summary>
+          <div class="modebar">
+            
+              <button class="mode-choice active" onclick="selectMode(this)">🚌 206번 버스</button>
+            
+              <button class="mode-choice " onclick="selectMode(this)">🚕 택시</button>
+            
+          </div>
+
+          
+            <div class="modepanel active">
+              <div class="meta" data-editable="1" contenteditable="false">약 45분 · 기본안 · 멀미 시 주의</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「京大正門前」(쿄다이 세이몬마에) 정류장으로 간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">버스 번호 206을 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">이번에는 「京都駅」(교토 에키) 방향인지 반드시 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">버스 앞 전광판에 京都駅이 있는지 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">ICOCA를 준비한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">206번 버스를 탄다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">딸의 멀미 상태를 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">교토역까지 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「京都駅前」(교토 에키마에) 안내를 기다린다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">교토역 앞에서 내린다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">역 건물로 들어간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「近鉄」(킨테츠) 표지판을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              </ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+            <div class="modepanel ">
+              <div class="meta" data-editable="1" contenteditable="false">예상 택시비 약 2,600~3,200엔/대 · 버스가 힘들 때 대안</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">교토대 정문 근처에서 택시를 잡는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">목적지 「近鉄京都駅」(킨테츠 교토 에키)을 보여준다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">또는 「京都駅」(교토 에키)이라고 보여준다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">가족 4명이 탑승한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">출발한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">딸의 상태를 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">교토역 방향으로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">교토역 근처 정체를 감안한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">긴테쓰 교토역과 가까운 하차 지점을 요청한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">요금을 결제한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">역 안으로 들어간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「近鉄」 표지판을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              </ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+          <div class="segment-edit-tools">
+            <button type="button" onclick="addMode(this,event)">➕ 이동수단 추가</button>
+            <button type="button" class="danger-btn" onclick="deleteSegment(this,event)">🗑 큰 경로 삭제</button>
+          </div>
+        </details>
+      
+        <details class="segment">
+          <summary>
+            <span data-editable="1" contenteditable="false">긴테쓰 교토역 → 이세다역</span>
+            <span class="arrow">›</span>
+          </summary>
+          <div class="modebar">
+            
+              <button class="mode-choice active" onclick="selectMode(this)">🚆 긴테쓰</button>
+            
+          </div>
+
+          
+            <div class="modepanel active">
+              <div class="meta" data-editable="1" contenteditable="false">전철 · 멀미 부담 적은 편 · 기본 추천</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「近鉄京都駅」(킨테츠 교토 에키) 개찰구로 간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">목적지는 「伊勢田」(이세다)이다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">전광판에서 伊勢田 정차 여부를 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">잘 모르겠으면 「伊勢田駅に行きたいです。」(이세다 에키니 이키타이데스)를 보여준다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">ICOCA를 찍고 들어간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">해당 승강장으로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">열차를 탄다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">역 이름을 계속 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「伊勢田」(이세다) 안내방송이 나오면 내릴 준비를 한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">이세다역에서 내린다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">개찰구로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「出口2」(데구치 니 / 2번 출구)를 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              </ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+          <div class="segment-edit-tools">
+            <button type="button" onclick="addMode(this,event)">➕ 이동수단 추가</button>
+            <button type="button" class="danger-btn" onclick="deleteSegment(this,event)">🗑 큰 경로 삭제</button>
+          </div>
+        </details>
+      
+        <details class="segment">
+          <summary>
+            <span data-editable="1" contenteditable="false">이세다역 → 우토로 평화기념관</span>
+            <span class="arrow">›</span>
+          </summary>
+          <div class="modebar">
+            
+              <button class="mode-choice active" onclick="selectMode(this)">🚶 도보</button>
+            
+              <button class="mode-choice " onclick="selectMode(this)">🚕 택시</button>
+            
+          </div>
+
+          
+            <div class="modepanel active">
+              <div class="meta" data-editable="1" contenteditable="false">약 8~15분 · 차량 멀미 없음 · 기본 추천</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">이세다역 「2番出口」(니반 데구치 / 2번 출구)로 나온다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">출구에서 오른쪽, 서쪽으로 간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">완만한 내리막길을 내려간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「のせ園」(노세엔)에 도착하기 전에 왼쪽으로 돈다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">그대로 직진한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">작은 수로가 나올 때까지 간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">수로를 건너 남쪽 편으로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「西宇治中学校」(니시우지 츄갓코)를 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">학교 앞에서 오른쪽으로 돈다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">그대로 직진한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「ウトロ平和祈念館」(우토로 헤이와 키넨칸)을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">주소 「京都府宇治市伊勢田町ウトロ51-43」을 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              </ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+            <div class="modepanel ">
+              <div class="meta" data-editable="1" contenteditable="false">예상 택시비 약 500~800엔/대 · 비가 심하거나 걷기 힘들 때</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">이세다역 밖에서 택시를 잡는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">목적지 「ウトロ平和祈念館」(우토로 헤이와 키넨칸)을 보여준다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">주소 「京都府宇治市伊勢田町ウトロ51-43」를 보여준다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">짧은 거리임을 감안한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">가족 4명이 탑승한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">출발한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">딸의 상태를 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">기념관 근처에서 내린다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">요금을 결제한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">소지품을 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">기념관 간판을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">관람을 시작한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              </ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+          <div class="segment-edit-tools">
+            <button type="button" onclick="addMode(this,event)">➕ 이동수단 추가</button>
+            <button type="button" class="danger-btn" onclick="deleteSegment(this,event)">🗑 큰 경로 삭제</button>
+          </div>
+        </details>
+      
+        <details class="segment">
+          <summary>
+            <span data-editable="1" contenteditable="false">우토로 → 긴테쓰닛폰바시</span>
+            <span class="arrow">›</span>
+          </summary>
+          <div class="modebar">
+            
+              <button class="mode-choice active" onclick="selectMode(this)">🚆 긴테쓰</button>
+            
+          </div>
+
+          
+            <div class="modepanel active">
+              <div class="meta" data-editable="1" contenteditable="false">전철 중심 · 기본 추천</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">우토로에서 왔던 길을 따라 「伊勢田駅」(이세다 에키)로 돌아간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">이세다역에서 「大和西大寺」(야마토사이다이지) 방향 열차를 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">전광판에서 정차역을 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">열차를 탄다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「大和西大寺」(야마토사이다이지)에서 내린다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「大阪難波方面」(오사카난바 호멘) 표지판을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「近鉄奈良線」(킨테츠 나라센)으로 환승한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">오사카난바 방향 열차를 탄다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「近鉄日本橋」(킨테츠 닛폰바시) 안내를 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">긴테쓰닛폰바시역에서 내린다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「10番出口」(쥬반 데구치 / 10번 출구) 방향으로 간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">나니와 닛폰바시 식당으로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              </ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+          <div class="segment-edit-tools">
+            <button type="button" onclick="addMode(this,event)">➕ 이동수단 추가</button>
+            <button type="button" class="danger-btn" onclick="deleteSegment(this,event)">🗑 큰 경로 삭제</button>
+          </div>
+        </details>
+      
+        <details class="segment">
+          <summary>
+            <span data-editable="1" contenteditable="false">나니와 닛폰바시 식당 → 숙소</span>
+            <span class="arrow">›</span>
+          </summary>
+          <div class="modebar">
+            
+              <button class="mode-choice active" onclick="selectMode(this)">🚇 지하철</button>
+            
+              <button class="mode-choice " onclick="selectMode(this)">🚕 택시</button>
+            
+          </div>
+
+          
+            <div class="modepanel active">
+              <div class="meta" data-editable="1" contenteditable="false">환승 1회 · 기본 추천</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">식당에서 나온다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「日本橋駅」(닛폰바시 에키) 표지판을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「千日前線」(센니치마에센)을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「なんば方面」(난바 호멘)으로 간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">ICOCA를 찍고 들어간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「なんば S16」(난바 S16)에서 내린다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「御堂筋線」(미도스지센) 환승 표지판을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「なんば M20」으로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「天王寺・なかもず方面」(텐노지·나카모즈 호멘) 열차를 탄다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">1정거장 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「大国町 M21」(다이코쿠초 M21)에서 내려 5번 출구로 나온다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">숙소로 걸어간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              </ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+            <div class="modepanel ">
+              <div class="meta" data-editable="1" contenteditable="false">예상 택시비 약 1,000~1,300엔/대 · 저녁에 매우 피곤할 때</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">식당에서 나온다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">큰길에서 택시를 잡는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">숙소명 「エスリードホテル難波大国町アネックス」를 보여준다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">주소 「大阪市浪速区大国2丁目1-7」를 보여준다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">가족 4명이 탑승한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">출발한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">딸의 멀미 상태를 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">숙소 방향으로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">숙소 근처에서 내린다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">요금을 결제한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">소지품을 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">숙소로 들어간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              </ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+          <div class="segment-edit-tools">
+            <button type="button" onclick="addMode(this,event)">➕ 이동수단 추가</button>
+            <button type="button" class="danger-btn" onclick="deleteSegment(this,event)">🗑 큰 경로 삭제</button>
+          </div>
+        </details>
+      
+
+      <div class="day-route-tools">
+        <button type="button" onclick="addSegment(this,event)">➕ 큰 경로 추가</button>
+      </div>
+
+      <div class="pager">
+        <button onclick="goPrevDay()">‹ 이전 일자</button>
+        <button onclick="scrollTopNow()">맨 위로 ↑</button>
+        <button onclick="goNextDay()">다음 일자 ›</button>
+      </div>
+    </section>
+  
+    <section class="day " data-day="3">
+      <div class="day-head">
+        <b data-editable="1" contenteditable="false">4일차</b><span>9/29</span>
+        <p data-editable="1" contenteditable="false">다카시마야 → 도톤보리 → 짐 찾기 → 간사이공항 T2</p>
+      </div>
+
+      <div class="foldbar">
+        <button onclick="openAll(3)">모두 펼치기</button>
+        <button onclick="closeAll(3)">모두 접기</button>
+      </div>
+
+      
+        <details class="segment">
+          <summary>
+            <span data-editable="1" contenteditable="false">숙소 → 다카시마야 오사카점</span>
+            <span class="arrow">›</span>
+          </summary>
+          <div class="modebar">
+            
+              <button class="mode-choice active" onclick="selectMode(this)">🚇 지하철</button>
+            
+              <button class="mode-choice " onclick="selectMode(this)">🚕 택시 2대</button>
+            
+          </div>
+
+          
+            <div class="modepanel active">
+              <div class="meta" data-editable="1" contenteditable="false">1정거장 · 캐리어 4개라도 비용 절약</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">체크아웃하고 캐리어 4개를 챙긴다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">숙소에서 「大国町 M21」(다이코쿠초 M21)로 간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「御堂筋線」(미도스지센)을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「なんば・梅田方面」(난바·우메다 호멘)으로 간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">열차를 탄다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">1정거장 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「なんば M20」(난바 M20)에서 내린다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「4番出口」(욘반 데구치 / 4번 출구) 방향을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「高島屋」(타카시마야) 표지판을 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「南海電車」(난카이 덴샤) 표지도 함께 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">다카시마야 오사카점으로 들어간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">7층 짐 보관 장소로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              </ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+            <div class="modepanel ">
+              <div class="meta" data-editable="1" contenteditable="false">캐리어 4개라 2대 예상 · 예상 택시비 약 800~1,100엔/대 · 2대 총 약 1,600~2,200엔 · 비용 증가</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">숙소에서 체크아웃한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">캐리어 4개를 모두 챙긴다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">숙소 앞에서 택시를 잡는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">일반 택시 1대에 캐리어 4개가 어렵다고 보고 2대를 이용한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">목적지 「高島屋大阪店」(타카시마야 오사카텐)을 보여준다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">가족을 2명씩 나누고 짐도 분산한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">두 기사에게 같은 목적지를 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">두 차량이 출발한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">난바 다카시마야 쪽으로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">도착하면 각 차량 요금을 결제한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">짐 4개를 모두 내렸는지 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">다카시마야로 들어간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              </ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+          <div class="segment-edit-tools">
+            <button type="button" onclick="addMode(this,event)">➕ 이동수단 추가</button>
+            <button type="button" class="danger-btn" onclick="deleteSegment(this,event)">🗑 큰 경로 삭제</button>
+          </div>
+        </details>
+      
+        <details class="segment">
+          <summary>
+            <span data-editable="1" contenteditable="false">다카시마야 → 도톤보리 리버크루즈</span>
+            <span class="arrow">›</span>
+          </summary>
+          <div class="modebar">
+            
+              <button class="mode-choice active" onclick="selectMode(this)">🚶 도보</button>
+            
+              <button class="mode-choice " onclick="selectMode(this)">🚕 택시</button>
+            
+          </div>
+
+          
+            <div class="modepanel active">
+              <div class="meta" data-editable="1" contenteditable="false">관광 동선 · 기본 추천</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">다카시마야에서 나온다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「戎橋筋」(에비스바시스지) 상점가 방향을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">북쪽으로 계속 걷는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">상점가를 따라 직진한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「道頓堀」(도톤보리) 표지판을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">강이 나오면 도톤보리강이다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「戎橋」(에비스바시)와 글리코 사인을 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">강변 「とんぼりリバーウォーク」(톤보리 리바 워쿠)로 내려간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「ドン・キホーテ道頓堀店」(돈키호테 도톤보리텐)을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">노란 타원형 관람차가 있는 건물인지 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">강변 승선 접수처를 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「太左衛門橋船着場」(타자에몬바시 후나츠키바)에서 탑승한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              </ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+            <div class="modepanel ">
+              <div class="meta" data-editable="1" contenteditable="false">예상 택시비 약 600~800엔/대 · 걷기 힘들 때만 · 짧은 거리</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">다카시마야 앞에서 택시를 잡는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">목적지 「道頓堀」(도톤보리)를 보여준다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">가능하면 「ドン・キホーテ道頓堀店」을 함께 보여준다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">가족 4명이 탑승한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">출발한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">도톤보리 쪽으로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">가까운 하차 지점을 요청한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">요금을 결제한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">도톤보리강을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">돈키호테 건물을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">강변 승선 접수처를 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">리버크루즈 승선 준비를 한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              </ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+          <div class="segment-edit-tools">
+            <button type="button" onclick="addMode(this,event)">➕ 이동수단 추가</button>
+            <button type="button" class="danger-btn" onclick="deleteSegment(this,event)">🗑 큰 경로 삭제</button>
+          </div>
+        </details>
+      
+        <details class="segment">
+          <summary>
+            <span data-editable="1" contenteditable="false">난카이 난바역 → 간사이공항역</span>
+            <span class="arrow">›</span>
+          </summary>
+          <div class="modebar">
+            
+              <button class="mode-choice active" onclick="selectMode(this)">🚆 난카이 공항급행</button>
+            
+          </div>
+
+          
+            <div class="modepanel active">
+              <div class="meta" data-editable="1" contenteditable="false">약 45~50분 · 환승 없음 · 기본 추천</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">다카시마야에서 짐을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「南海なんば駅」(난카이 난바 에키) 표지판을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">난카이 개찰구로 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">목적지 「関西空港」(칸사이 쿠코)를 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">전광판에서 「空港急行」(쿠코 큐코 / 공항급행)을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「関西空港行き」(칸사이 쿠코 유키 / 간사이공항행)인지 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">ICOCA를 찍고 들어간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">공항급행 승강장으로 간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">열차를 탄다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">약 45~50분 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「関西空港」(칸사이 쿠코)에서 내린다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">개찰구로 나온다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              </ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+          <div class="segment-edit-tools">
+            <button type="button" onclick="addMode(this,event)">➕ 이동수단 추가</button>
+            <button type="button" class="danger-btn" onclick="deleteSegment(this,event)">🗑 큰 경로 삭제</button>
+          </div>
+        </details>
+      
+        <details class="segment">
+          <summary>
+            <span data-editable="1" contenteditable="false">간사이공항역 → 제2터미널</span>
+            <span class="arrow">›</span>
+          </summary>
+          <div class="modebar">
+            
+              <button class="mode-choice active" onclick="selectMode(this)">🚌 무료 셔틀</button>
+            
+          </div>
+
+          
+            <div class="modepanel active">
+              <div class="meta" data-editable="1" contenteditable="false">약 7~10분 · 필수 이동</div>
+              <ol>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">간사이공항역 개찰구를 나온다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「Aeroplaza / エアロプラザ」(에아로 프라자) 방향을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「第2ターミナル」(다이니 타미나루 / 제2터미널) 표시를 따라간다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「無料連絡バス」(무료 렌라쿠 바스) 승강장을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">T2행 무료 셔틀인지 확인한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">캐리어 4개를 싣고 탑승한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">약 7~10분 이동한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">제2터미널에서 내린다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">「出発 / Departures」(슛파츠 / 출발) 표지판을 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">제주항공 체크인 카운터를 찾는다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">여권·예약번호·수하물을 준비한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+                  <li>
+                    <span data-editable="1" contenteditable="false">체크인을 진행한다.</span>
+                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
+                  </li>
+                
+              </ol>
+              <div class="step-edit-tools">
+                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
+              </div>
+              <div class="mode-delete-wrap">
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
+              </div>
+            </div>
+          
+          <div class="segment-edit-tools">
+            <button type="button" onclick="addMode(this,event)">➕ 이동수단 추가</button>
+            <button type="button" class="danger-btn" onclick="deleteSegment(this,event)">🗑 큰 경로 삭제</button>
+          </div>
+        </details>
+      
+
+      <div class="day-route-tools">
+        <button type="button" onclick="addSegment(this,event)">➕ 큰 경로 추가</button>
+      </div>
+
+      <div class="pager">
+        <button onclick="goPrevDay()">‹ 이전 일자</button>
+        <button onclick="scrollTopNow()">맨 위로 ↑</button>
+        <button onclick="goNextDay()">다음 일자 ›</button>
+      </div>
+    </section>
+  </div>
 
   <section id="emergency" class="emergency">
     <div class="day-head">
@@ -128,45 +3658,45 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
     </div>
     <div class="emcard">
       <h3>숙소</h3>
-      <div class="jp" data-editable="1">エスリードホテル難波大国町アネックス</div>
-      <div class="kr" data-editable="1">에스리도 호텔 난바 다이코쿠초 아넥쿠스</div>
-      <div class="addr" data-editable="1">大阪市浪速区大国2丁目1-7</div>
-      <div class="kr" data-editable="1">오사카시 나니와쿠 다이코쿠 니초메 1-7</div>
+      <div class="jp" data-editable="1" contenteditable="false">エスリードホテル難波大国町アネックス</div>
+      <div class="kr" data-editable="1" contenteditable="false">에스리도 호텔 난바 다이코쿠초 아넥쿠스</div>
+      <div class="addr" data-editable="1" contenteditable="false">大阪市浪速区大国2丁目1-7</div>
+      <div class="kr" data-editable="1" contenteditable="false">오사카시 나니와쿠 다이코쿠 니초메 1-7</div>
     </div>
 <div class="emcard">
       <h3>오사카 주교좌성당</h3>
-      <div class="jp" data-editable="1">大阪高松カテドラル 聖マリア大聖堂 / カトリック玉造教会</div>
-      <div class="kr" data-editable="1">오사카 타카마츠 카테도라루 세이 마리아 다이세이도 / 카토릭쿠 타마츠쿠리 쿄카이</div>
-      <div class="addr" data-editable="1">大阪市中央区玉造2丁目24-22</div>
-      <div class="kr" data-editable="1">오사카시 츄오쿠 타마츠쿠리 니초메 24-22</div>
+      <div class="jp" data-editable="1" contenteditable="false">大阪高松カテドラル 聖マリア大聖堂 / カトリック玉造教会</div>
+      <div class="kr" data-editable="1" contenteditable="false">오사카 타카마츠 카테도라루 세이 마리아 다이세이도 / 카토릭쿠 타마츠쿠리 쿄카이</div>
+      <div class="addr" data-editable="1" contenteditable="false">大阪市中央区玉造2丁目24-22</div>
+      <div class="kr" data-editable="1" contenteditable="false">오사카시 츄오쿠 타마츠쿠리 니초메 24-22</div>
     </div>
 <div class="emcard">
       <h3>리커 마운틴 우메다점</h3>
-      <div class="jp" data-editable="1">リカーマウンテン梅田店</div>
-      <div class="kr" data-editable="1">리카 마운텐 우메다텐</div>
-      <div class="addr" data-editable="1">大阪市北区曽根崎新地1丁目10-1</div>
-      <div class="kr" data-editable="1">오사카시 키타쿠 소네자키신치 잇초메 10-1</div>
+      <div class="jp" data-editable="1" contenteditable="false">リカーマウンテン梅田店</div>
+      <div class="kr" data-editable="1" contenteditable="false">리카 마운텐 우메다텐</div>
+      <div class="addr" data-editable="1" contenteditable="false">大阪市北区曽根崎新地1丁目10-1</div>
+      <div class="kr" data-editable="1" contenteditable="false">오사카시 키타쿠 소네자키신치 잇초메 10-1</div>
     </div>
 <div class="emcard">
       <h3>HEP FIVE</h3>
-      <div class="jp" data-editable="1">HEP FIVE</div>
-      <div class="kr" data-editable="1">헵 파이브</div>
-      <div class="addr" data-editable="1">大阪市北区角田町5-15</div>
-      <div class="kr" data-editable="1">오사카시 키타쿠 카쿠다초 5-15</div>
+      <div class="jp" data-editable="1" contenteditable="false">HEP FIVE</div>
+      <div class="kr" data-editable="1" contenteditable="false">헵 파이브</div>
+      <div class="addr" data-editable="1" contenteditable="false">大阪市北区角田町5-15</div>
+      <div class="kr" data-editable="1" contenteditable="false">오사카시 키타쿠 카쿠다초 5-15</div>
     </div>
 <div class="emcard">
       <h3>우토로 평화기념관</h3>
-      <div class="jp" data-editable="1">ウトロ平和祈念館</div>
-      <div class="kr" data-editable="1">우토로 헤이와 키넨칸 / 우토로 평화기념관</div>
-      <div class="addr" data-editable="1">京都府宇治市伊勢田町ウトロ51-43</div>
-      <div class="kr" data-editable="1">쿄토후 우지시 이세다초 우토로 51-43</div>
+      <div class="jp" data-editable="1" contenteditable="false">ウトロ平和祈念館</div>
+      <div class="kr" data-editable="1" contenteditable="false">우토로 헤이와 키넨칸 / 우토로 평화기념관</div>
+      <div class="addr" data-editable="1" contenteditable="false">京都府宇治市伊勢田町ウトロ51-43</div>
+      <div class="kr" data-editable="1" contenteditable="false">쿄토후 우지시 이세다초 우토로 51-43</div>
     </div>
 <div class="emcard">
       <h3>나니와 닛폰바시 식당</h3>
-      <div class="jp" data-editable="1">なにわ日本橋食堂</div>
-      <div class="kr" data-editable="1">나니와 닛폰바시 쇼쿠도</div>
-      <div class="addr" data-editable="1">大阪府大阪市中央区日本橋1丁目17-20</div>
-      <div class="kr" data-editable="1">오사카후 오사카시 츄오쿠 닛폰바시 잇초메 17-20</div>
+      <div class="jp" data-editable="1" contenteditable="false">なにわ日本橋食堂</div>
+      <div class="kr" data-editable="1" contenteditable="false">나니와 닛폰바시 쇼쿠도</div>
+      <div class="addr" data-editable="1" contenteditable="false">大阪府大阪市中央区日本橋1丁目17-20</div>
+      <div class="kr" data-editable="1" contenteditable="false">오사카후 오사카시 츄오쿠 닛폰바시 잇초메 17-20</div>
     </div>
     <div class="pager">
       <button onclick="showDayByIndex(3)">‹ 4일차</button>
@@ -589,7 +4119,7 @@ function resetEdits(){
   location.reload();
 }
 
-render();
+loadEdits();
 </script>
 </body>
 </html>
