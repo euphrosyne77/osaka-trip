@@ -37,8 +37,6 @@ body.editing .editbar .cancel{display:inline-block}
 .segment{background:var(--card);border:1px solid var(--line);border-radius:16px;margin:10px 0;overflow:hidden;box-shadow:0 2px 6px #00000008}
 .segment>summary{list-style:none;padding:14px;display:flex;align-items:center;justify-content:space-between;gap:8px;font-weight:850;cursor:pointer}
 .segment>summary::-webkit-details-marker{display:none}
-.segment-title-wrap{display:flex;flex-direction:column;align-items:flex-start;gap:3px;min-width:0}
-.segment-desc{display:block;font-size:11px;line-height:1.45;color:var(--muted);font-weight:600;word-break:keep-all}
 .segment[open]>summary{border-bottom:1px solid var(--line);background:#fbfdfd}
 .arrow{font-size:22px;color:#789;transition:.2s}
 .segment[open] .arrow{transform:rotate(90deg)}
@@ -483,10 +481,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
       
         <details class="segment">
           <summary>
-            <span class="segment-title-wrap">
-              <span data-editable="1" contenteditable="false">숙소 → 덴노지공원</span>
-              <small class="segment-desc">1919년 3월 19일 염상섭 등이 3·1운동에 호응해 조선인들에게 이곳 덴노지공원에 모일 것을 알렸던 역사 현장입니다. 경찰의 사전 검거로 집회는 성사되지 못했습니다.</small>
-            </span>
+            <span data-editable="1" contenteditable="false">숙소 → 덴노지공원</span>
             <span class="arrow">›</span>
           </summary>
           <div class="modebar">
@@ -1466,12 +1461,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
       
         <details class="segment">
           <summary>
-            <span class="segment-title-wrap">
-              <span data-editable="1" contenteditable="false">sumigg's → 오사카성 내 구 육군 위수형무소터</span>
-              <small class="segment-desc">1932년 상하이 훙커우공원 의거 후 윤봉길 의사가 일본 오사카로 호송되어 수감되었던 위수형무소와 관련된 역사 현장입니다. 이후 가나자와로 이송되어 1932년 12월 19일 순국했습니다.
-                <br>현장에는 윤 의사와 관련된 별도의 표지석이 없으나, 같은 형무소에 투옥되었던 일본의 반전 시인 '츠루 아키라(鶴彬)'의 시비가 세워져 있어 이곳이 과거 형무소 터였음을 증명하는 지표가 되고 있습니다.
-              </small>
-            </span>
+            <span data-editable="1" contenteditable="false">sumigg's → 오사카성 내 구 육군 위수형무소터</span>
             <span class="arrow">›</span>
           </summary>
           <div class="modebar">
@@ -2689,12 +2679,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
       
         <details class="segment">
           <summary>
-            <span class="segment-title-wrap">
-              <span data-editable="1" contenteditable="false">이세다역 → 우토로 평화기념관</span>
-              <small class="segment-desc">우토로는 1940년부터 교토비행장 건설에 동원된 조선인 노동자들의 숙소 터에서 형성된 마을입니다. 평화기념관은 그 역사와 주민들의 삶, 인권·평화의 의미를 전하는 공간입니다.
-              <br>이 곳은 무한도전을 통해 알려지기 시작했습니다.
-              </small>
-            </span>
+            <span data-editable="1" contenteditable="false">이세다역 → 우토로 평화기념관</span>
             <span class="arrow">›</span>
           </summary>
           <div class="modebar">
@@ -4137,5 +4122,28 @@ function resetEdits(){
 loadEdits();
 </script>
 
+
+
+<script>
+/* PWA 서비스워커 등록: 온라인에서는 최신 GitHub 파일 우선, 오프라인에서는 캐시 사용 */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./service-worker.js')
+      .then(reg => {
+        // 페이지를 열 때마다 새 서비스워커가 있는지 확인
+        reg.update().catch(() => {});
+      })
+      .catch(() => {});
+  });
+
+  // 새 서비스워커가 활성화되어 제어권을 가져오면 한 번만 새로고침
+  let swRefreshing = false;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (swRefreshing) return;
+    swRefreshing = true;
+    window.location.reload();
+  });
+}
+</script>
 
 </body></html>
