@@ -1138,87 +1138,47 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
             <span class="arrow">›</span>
           </summary>
           <div class="modebar">
-            
-              <button class="mode-choice active" onclick="selectMode(this)">🚇 전철</button>
-            
+              <button class="mode-choice active" onclick="selectMode(this)">🚆 JR 오사카 순환선</button>
+              <button class="mode-choice " onclick="selectMode(this)">🚇 지하철</button>
               <button class="mode-choice " onclick="selectMode(this)">🚕 택시</button>
-            
           </div>
 
-          
             <div class="modepanel active">
-              <div class="meta" data-editable="1" contenteditable="false">택시비 절약 · 기본 추천</div>
+              <div class="meta" data-editable="1" contenteditable="false">약 40분 · 200엔 전후 · 환승 없이 이동 · 기본 추천</div>
               <ol>
-                
-                  <li>
-                    <span data-editable="1" contenteditable="false">숙소에서 「大国町駅 M21」(다이코쿠초 에키 M21)로 간다.</span>
-                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
-                  </li>
-                
-                  <li>
-                    <span data-editable="1" contenteditable="false">빨간색 「御堂筋線」(미도스지센)을 찾는다.</span>
-                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
-                  </li>
-                
-                  <li>
-                    <span data-editable="1" contenteditable="false">「なんば・梅田方面」(난바·우메다 호멘) 열차를 탄다.</span>
-                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
-                  </li>
-                
-                  <li>
-                    <span data-editable="1" contenteditable="false">2정거장 이동해 「心斎橋 M19」(신사이바시 M19)에서 내린다.</span>
-                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
-                  </li>
-                
-                  <li>
-                    <span data-editable="1" contenteditable="false">「長堀鶴見緑地線 N15」(나가호리 츠루미료쿠치센 N15) 환승 표지판을 찾는다.</span>
-                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
-                  </li>
-                
-                  <li>
-                    <span data-editable="1" contenteditable="false">「門真南方面」(카도마미나미 호멘) 승강장으로 이동한다.</span>
-                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
-                  </li>
-                
-                  <li>
-                    <span data-editable="1" contenteditable="false">열차를 타고 「玉造 N19」(타마츠쿠리 N19)까지 이동한다.</span>
-                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
-                  </li>
-                
-                  <li>
-                    <span data-editable="1" contenteditable="false">타마츠쿠리역에서 내려 「1番出口」(이치반 데구치 / 1번 출구)를 찾는다.</span>
-                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
-                  </li>
-                
-                  <li>
-                    <span data-editable="1" contenteditable="false">1번 출구로 나온다.</span>
-                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
-                  </li>
-                
-                  <li>
-                    <span data-editable="1" contenteditable="false">「長堀通」(나가호리도리)을 기준으로 성당 방향으로 걷는다.</span>
-                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
-                  </li>
-                
-                  <li>
-                    <span data-editable="1" contenteditable="false">약 10~13분 걸어 「カトリック玉造教会」(카토릭쿠 타마츠쿠리 쿄카이)를 찾는다.</span>
-                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
-                  </li>
-                
-                  <li>
-                    <span data-editable="1" contenteditable="false">주소 「大阪市中央区玉造2丁目24-22」(오사카시 츄오쿠 타마츠쿠리 니초메 24-22)를 확인한다.</span>
-                    <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
-                  </li>
-                
+                <li><span data-editable="1" contenteditable="false">숙소에서 JR 「今宮駅」(이마미야 에키 / 이마미야역)까지 약 7분 걷는다.</span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li>
+                <li><span data-editable="1" contenteditable="false">「East Exit」(이스트 엑시트 / 동쪽 출입구) 방향으로 들어간다.</span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li>
+                <li><span data-editable="1" contenteditable="false">JR 「大阪環状線」(오사카 칸조센 / 오사카 순환선) 「内回り」(우치마와리 / 내선순환)를 확인한다.</span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li>
+                <li><span data-editable="1" contenteditable="false">타마츠쿠리 방면으로 가는 열차인지 전광판에서 확인하고 탑승한다.</span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li>
+                <li><span data-editable="1" contenteditable="false">「天王寺」(텐노지)에서 구글맵에 「탑승한 채로 이동(자동 환승)」이라고 표시되면 내리지 않고 그대로 탄다.</span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li>
+                <li><span data-editable="1" contenteditable="false">「寺田町」(테라다초) → 「桃谷」(모모다니) → 「鶴橋」(츠루하시)를 지나간다.</span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li>
+                <li><span data-editable="1" contenteditable="false">「玉造駅」(타마츠쿠리 에키 / 타마츠쿠리역)에서 내린다.</span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li>
+                <li><span data-editable="1" contenteditable="false">「1番出口」(이치반 데구치 / 1번 출구)를 찾아 나온다.</span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li>
+                <li><span data-editable="1" contenteditable="false">성당까지 약 13분(약 950m) 걷는다.</span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li>
+                <li><span data-editable="1" contenteditable="false">「カトリック玉造教会」(카토릭쿠 타마츠쿠리 쿄카이)를 찾는다.</span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li>
+                <li><span data-editable="1" contenteditable="false">주소 「大阪市中央区玉造2丁目24-22」(오사카시 츄오쿠 타마츠쿠리 니초메 24-22)를 확인한다.</span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li>
               </ol>
-              <div class="step-edit-tools">
-                <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
-              </div>
-              <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
-              </div>
+              <div class="step-edit-tools"><button type="button" onclick="addStep(this,event)">➕ 줄 추가</button></div>
+              <div class="mode-delete-wrap"><button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button></div>
             </div>
-          
+            <div class="modepanel ">
+              <div class="meta" data-editable="1" contenteditable="false">환승 1회 · 약 40분 전후 · JR 이용이 어려울 때 대안</div>
+              <ol>
+                <li><span data-editable="1" contenteditable="false">숙소에서 「大国町駅 M21」(다이코쿠초 에키 M21)로 간다.</span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li>
+                <li><span data-editable="1" contenteditable="false">빨간색 「御堂筋線」(미도스지센)을 찾는다.</span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li>
+                <li><span data-editable="1" contenteditable="false">「なんば・梅田方面」(난바·우메다 호멘) 열차를 탄다.</span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li>
+                <li><span data-editable="1" contenteditable="false">2정거장 이동해 「心斎橋 M19」(신사이바시 M19)에서 내린다.</span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li>
+                <li><span data-editable="1" contenteditable="false">「長堀鶴見緑地線 N15」(나가호리 츠루미료쿠치센 N15) 환승 표지판을 찾는다.</span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li>
+                <li><span data-editable="1" contenteditable="false">「門真南方面」(카도마미나미 호멘) 승강장으로 이동한다.</span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li>
+                <li><span data-editable="1" contenteditable="false">열차를 타고 「玉造 N19」(타마츠쿠리 N19)까지 이동한다.</span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li>
+                <li><span data-editable="1" contenteditable="false">타마츠쿠리역에서 내려 「1番出口」(이치반 데구치 / 1번 출구)를 찾는다.</span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li>
+                <li><span data-editable="1" contenteditable="false">1번 출구로 나온 뒤 성당까지 약 10~13분 걷는다.</span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li>
+                <li><span data-editable="1" contenteditable="false">「カトリック玉造教会」(카토릭쿠 타마츠쿠리 쿄카이)를 찾는다.</span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li>
+                <li><span data-editable="1" contenteditable="false">주소 「大阪市中央区玉造2丁目24-22」(오사카시 츄오쿠 타마츠쿠리 니초메 24-22)를 확인한다.</span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li>
+              </ol>
+              <div class="step-edit-tools"><button type="button" onclick="addStep(this,event)">➕ 줄 추가</button></div>
+              <div class="mode-delete-wrap"><button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button></div>
+            </div>
             <div class="modepanel ">
               <div class="meta" data-editable="1" contenteditable="false">약 25~35분 예상 · 예상 택시비 약 2,300~3,000엔/대 · 비용 높음 · 컨디션 나쁠 때 대안</div>
               <ol>
@@ -1291,7 +1251,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
-          
+
           <div class="segment-edit-tools">
             <button type="button" onclick="addMode(this,event)">➕ 이동수단 추가</button>
             <button type="button" class="danger-btn" onclick="deleteSegment(this,event)">🗑 큰 경로 삭제</button>
@@ -1468,9 +1428,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
           <summary>
             <span class="segment-title-wrap">
               <span data-editable="1" contenteditable="false">sumigg's → 오사카성 내 구 육군 위수형무소터</span>
-              <small class="segment-desc">1932년 상하이 훙커우공원 의거 후 윤봉길 의사가 일본 오사카로 호송되어 수감되었던 위수형무소와 관련된 역사 현장입니다. 이후 가나자와로 이송되어 1932년 12월 19일 순국했습니다.
-              <br>현장에는 윤 의사와 관련된 별도의 표지석이 없으나, 같은 형무소에 투옥되었던 일본의 반전 시인 '츠루 아키라(鶴彬)'의 시비가 세워져 있어 이곳이 과거 형무소 터였음을 증명하는 지표가 되고 있습니다.
-              </small>
+              <small class="segment-desc">1932년 상하이 훙커우공원 의거 후 윤봉길 의사가 일본 오사카로 호송되어 수감되었던 위수형무소와 관련된 역사 현장입니다. 이후 가나자와로 이송되어 1932년 12월 19일 순국했습니다.</small>
             </span>
             <span class="arrow">›</span>
           </summary>
