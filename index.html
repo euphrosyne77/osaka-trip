@@ -402,51 +402,6 @@ body:not(.admin-mode) #budget input:disabled{opacity:1;-webkit-text-fill-color:v
 #adminStatus.admin-user{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
 
-/* ===== Supabase 일정 온라인 동기화 상태 ===== */
-#cloudSyncStatus{
-  display:inline-flex;align-items:center;gap:5px;
-  font-size:11px;font-weight:800;color:var(--muted);
-  background:var(--card);border:1px solid var(--line);
-  border-radius:999px;padding:6px 9px;
-}
-#cloudSyncStatus.ok{color:var(--brand);background:var(--soft)}
-#cloudSyncStatus.warn{color:#9a6412;background:#fff5d6}
-#cloudSyncStatus.error{color:#a33;background:var(--danger)}
-
-
-#shopCloudSyncStatus{
-  display:inline-flex;align-items:center;gap:5px;
-  font-size:11px;font-weight:800;color:var(--muted);
-  background:var(--card);border:1px solid var(--line);
-  border-radius:999px;padding:6px 9px;
-}
-#shopCloudSyncStatus.ok{color:var(--brand);background:var(--soft)}
-#shopCloudSyncStatus.warn{color:#9a6412;background:#fff5d6}
-#shopCloudSyncStatus.error{color:#a33;background:var(--danger)}
-
-
-#mealCloudSyncStatus{
-  display:inline-flex;align-items:center;gap:5px;
-  font-size:11px;font-weight:800;color:var(--muted);
-  background:var(--card);border:1px solid var(--line);
-  border-radius:999px;padding:6px 9px;
-}
-#mealCloudSyncStatus.ok{color:var(--brand);background:var(--soft)}
-#mealCloudSyncStatus.warn{color:#9a6412;background:#fff5d6}
-#mealCloudSyncStatus.error{color:#a33;background:var(--danger)}
-
-
-#budgetCloudSyncStatus{
-  display:inline-flex;align-items:center;gap:5px;
-  font-size:11px;font-weight:800;color:var(--muted);
-  background:var(--card);border:1px solid var(--line);
-  border-radius:999px;padding:6px 9px;
-}
-#budgetCloudSyncStatus.ok{color:var(--brand);background:var(--soft)}
-#budgetCloudSyncStatus.warn{color:#9a6412;background:#fff5d6}
-#budgetCloudSyncStatus.error{color:#a33;background:var(--danger)}
-
-
 .transport{display:none}.transport.active{display:block}
 .transport-head{background:linear-gradient(135deg,#194d63,#0c6b67);color:#fff;border-radius:18px;padding:16px;margin-bottom:10px}
 .transport-head h2{margin:0;font-size:24px}.transport-head p{margin:4px 0 0;font-size:12px;opacity:.92}
@@ -469,8 +424,6 @@ body:not(.admin-mode) #budget input:disabled{opacity:1;-webkit-text-fill-color:v
 .transport-delete{border:0;background:transparent;color:#b13c33;font-weight:900;font-size:15px}
 .transport-editgrid{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
 body:not(.admin-mode) .transport-addbox,body:not(.admin-mode) .transport-delete,body:not(.admin-mode) .transport-editgrid{display:none!important}
-#transportCloudSyncStatus{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:800;color:var(--muted);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 9px}
-#transportCloudSyncStatus.ok{color:var(--brand);background:var(--soft)}#transportCloudSyncStatus.warn{color:#9a6412;background:#fff5d6}#transportCloudSyncStatus.error{color:#a33;background:var(--danger)}
 @media(max-width:650px){.transport-addgrid,.transport-editgrid{grid-template-columns:1fr 1fr}.transport-addgrid .full,.transport-editgrid .full{grid-column:1/-1}.transport-card-top{grid-template-columns:80px minmax(0,1fr) 78px 24px}}
 
 
@@ -511,13 +464,6 @@ body:not(.admin-mode) .prep-delete,
 body:not(.admin-mode) .prep-editgrid{display:none!important}
 body:not(.admin-mode) #prep input:disabled,
 body:not(.admin-mode) #prep select:disabled{opacity:1;-webkit-text-fill-color:var(--ink);color:var(--ink)}
-#prepCloudSyncStatus{
-  display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:800;color:var(--muted);
-  background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 9px
-}
-#prepCloudSyncStatus.ok{color:var(--brand);background:var(--soft)}
-#prepCloudSyncStatus.warn{color:#9a6412;background:#fff5d6}
-#prepCloudSyncStatus.error{color:#a33;background:var(--danger)}
 @media(max-width:650px){
   .prep-summary{grid-template-columns:1fr 1fr}
   .prep-addgrid,.prep-editgrid{grid-template-columns:1fr 1fr}
@@ -556,24 +502,12 @@ body:not(.admin-mode) #prep select:disabled{opacity:1;-webkit-text-fill-color:va
   <div class="editbar">
     <button id="adminLoginBtn" class="primary" onclick="enterAdminMode()">🔒 관리자 로그인</button>
     <span id="adminStatus">● 관리자 수정 가능</span>
-    <span id="cloudSyncStatus">☁️ 일정 불러오는 중…</span>
-    <span id="shopCloudSyncStatus">🛍️ 쇼핑 동기화 대기</span>
-    <span id="mealCloudSyncStatus">🍽️ 식사 동기화 대기</span>
-    <span id="transportCloudSyncStatus">🚇 교통비 동기화 대기</span>
-    <span id="prepCloudSyncStatus">🧳 준비물 동기화 대기</span>
-    <span id="budgetCloudSyncStatus">💳 예산 동기화 대기</span>
 
     <div id="adminTools" style="display:none; gap:6px; flex-wrap:wrap;">
       <button id="editBtn" class="primary" onclick="toggleEdit()">✏️ 수정모드</button>
       <button class="cancel" onclick="cancelEdit()">✖️ 취소</button>
       <button onclick="saveEdits()">💾 저장</button>
-      <button onclick="saveShoppingToSupabase(true)">🛍️ 쇼핑 온라인 저장</button>
-      <button onclick="saveMealsToSupabase(true)">🍽️ 식사 온라인 저장</button>
-      <button onclick="saveTransportToSupabase(true)">🚇 교통비 온라인 저장</button>
-      <button onclick="savePrepToSupabase(true)">🧳 준비물 온라인 저장</button>
-      <button onclick="saveBudgetToSupabase(true)">💳 예산 온라인 저장</button>
       <button onclick="exportBackup()">⬇️ 백업</button>
-      <button onclick="exportHTML()">📄 HTML 내보내기</button>
       <label>⬆️ 불러오기
         <input type="file" accept=".json" hidden onchange="importBackup(event)">
       </label>
@@ -4101,7 +4035,6 @@ body:not(.admin-mode) #prep select:disabled{opacity:1;-webkit-text-fill-color:va
   </section>
 
 
-
   <section id="transport" class="transport">
     <div class="transport-head"><h2>🚇 교통비 기록</h2><p>지하철·JR·버스·택시 등 실제 사용한 교통비를 일차별로 기록합니다. 합계는 예산 탭에 자동 반영됩니다.</p></div>
     <div class="transport-summary">
@@ -4502,9 +4435,6 @@ function showPrep(btn){
   prepRender();
   scrollTopNow();
 }
-
-
-
 
 
 function openAll(dayIndex){
@@ -5244,7 +5174,6 @@ loadEdits();
 ensureStepDeleteHandlers();
 autoLinkEditableUrls();
 </script>
-
 
 
 <script>
