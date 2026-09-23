@@ -700,6 +700,25 @@ body:not(.admin-mode) .icoca-wallet-grid input:disabled{
   .icoca-wallet-total{padding:6px 7px}
 }
 
+
+.icoca-purchase-cell{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:5px;
+  white-space:nowrap;
+}
+.icoca-purchase-cell input[type="checkbox"]{
+  width:18px;
+  height:18px;
+  accent-color:var(--brand);
+}
+.icoca-purchase-cell span{
+  font-size:10px;
+  font-weight:850;
+  color:var(--brand);
+}
+
 </style>
 </head>
 <body class="">
@@ -4310,7 +4329,7 @@ body:not(.admin-mode) .icoca-wallet-grid input:disabled{
       <div class="icoca-wallet-head">
         <div>
           <div class="icoca-wallet-title">💳 ICOCA 구입·충전 기록</div>
-          <div class="icoca-wallet-sub">가족 4명의 카드 구입비와 추가 충전액을 기록합니다.</div>
+          <div class="icoca-wallet-sub">카드 구입은 체크하면 1인 ¥2,000으로 계산하고, 이후 추가 충전액만 입력합니다.</div>
         </div>
         <div class="icoca-wallet-total">
           <span>ICOCA 결제 합계</span>
@@ -4329,7 +4348,7 @@ body:not(.admin-mode) .icoca-wallet-grid input:disabled{
       <div id="icocaWalletRows"></div>
 
       <div class="icoca-wallet-note">
-        ※ ICOCA로 이용한 지하철·JR·버스는 카드에서 차감되므로, 이 화면에서는 <b>카드 구입·충전에 실제 지출한 금액</b>을 기록합니다.
+        ※ ICOCA 카드 구입은 <b>1장 ¥2,000</b>으로 계산합니다. 이후 추가 충전액만 입력합니다. ICOCA로 이용한 지하철·JR·버스는 카드에서 차감되므로, 이 화면에서는 <b>카드 구입·충전에 실제 지출한 금액</b>을 기록합니다.
         택시처럼 ICOCA 외 결제는 아래의 기존 <b>교통비 추가</b>에 그대로 등록하면 됩니다.
       </div>
     </div>
@@ -5855,7 +5874,7 @@ function transportEnsureState(raw){
   daughter:{name:'딸',type:'어린이',purchase:0,recharge:0}
  };
  const incoming=src.icoca||{};
- return {
+ const result={
   items:Array.isArray(src.items)?src.items:[],
   icoca:{
    self:{...base.self,...(incoming.self||{})},
@@ -5864,6 +5883,11 @@ function transportEnsureState(raw){
    daughter:{...base.daughter,...(incoming.daughter||{})}
   }
  };
+ Object.values(result.icoca).forEach(p=>{
+  const v=Number(p.purchase)||0;
+  if(v>0 && v<1000)p.purchase=2000;
+ });
+ return result;
 }
 function transportLoadLocal(){
  try{
@@ -5920,6 +5944,17 @@ function icocaUpdate(person,key,val){
  try{budgetRefresh()}catch(e){}
  try{saveTransportToSupabase(false)}catch(e){}
 }
+function icocaSetPurchased(person,checked){
+ if(!document.body.classList.contains('admin-mode'))return;
+ transportState=transportEnsureState(transportState);
+ if(!transportState.icoca[person])return;
+ transportState.icoca[person].purchase=checked?2000:0;
+ transportSaveLocal();
+ icocaRender();
+ transportRenderTotals();
+ try{budgetRefresh()}catch(e){}
+ try{saveTransportToSupabase(false)}catch(e){}
+}
 function icocaRender(){
  const root=document.getElementById('icocaWalletRows');
  if(!root)return;
@@ -5933,7 +5968,10 @@ function icocaRender(){
   return `<div class="icoca-wallet-grid icoca-wallet-row">
     <div class="icoca-wallet-person"><strong>${transportEscape(p.name)}</strong><small>${transportEscape(p.type)} ICOCA</small></div>
     <div style="font-size:10px;font-weight:850;color:var(--muted)">${transportEscape(p.type)}</div>
-    <div><input type="number" min="0" step="1" value="${purchase}" aria-label="${transportEscape(p.name)} ICOCA 카드 구입비" onchange="icocaUpdate('${key}','purchase',this.value)"></div>
+    <div class="icoca-purchase-cell">
+      <input type="checkbox" ${purchase>0?'checked':''} aria-label="${transportEscape(p.name)} ICOCA 카드 구입 완료" onchange="icocaSetPurchased('${key}',this.checked)">
+      <span>¥2,000</span>
+    </div>
     <div><input type="number" min="0" step="1" value="${recharge}" aria-label="${transportEscape(p.name)} ICOCA 추가 충전액" onchange="icocaUpdate('${key}','recharge',this.value)"></div>
     <div class="icoca-sum">${transportFmtYen(total)}</div>
   </div>`;
