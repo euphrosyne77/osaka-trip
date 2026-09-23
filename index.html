@@ -585,6 +585,121 @@ body:not(.admin-mode) #prep select:disabled{opacity:1;-webkit-text-fill-color:va
   margin-top:7px;
 }
 
+
+/* ===== 교통비 탭 · ICOCA 구입/충전 기록 ===== */
+.icoca-wallet{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:12px;
+  margin:10px 0 12px;
+}
+.icoca-wallet-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:10px;
+  margin-bottom:9px;
+}
+.icoca-wallet-title{
+  font-size:14px;
+  font-weight:900;
+  color:var(--brand);
+}
+.icoca-wallet-sub{
+  font-size:10px;
+  line-height:1.45;
+  color:var(--muted);
+  margin-top:2px;
+}
+.icoca-wallet-total{
+  flex:0 0 auto;
+  text-align:right;
+  background:var(--soft);
+  border-radius:10px;
+  padding:7px 9px;
+}
+.icoca-wallet-total span{
+  display:block;
+  font-size:8px;
+  color:var(--muted);
+  font-weight:800;
+}
+.icoca-wallet-total b{
+  display:block;
+  font-size:14px;
+  color:var(--brand);
+}
+.icoca-wallet-grid{
+  display:grid;
+  grid-template-columns:1.15fr 80px 95px 95px 90px;
+  gap:6px;
+  align-items:center;
+}
+.icoca-wallet-grid.head{
+  font-size:9px;
+  color:var(--muted);
+  font-weight:850;
+  padding:0 4px 4px;
+}
+.icoca-wallet-row{
+  padding:8px 4px;
+  border-top:1px solid var(--line);
+}
+.icoca-wallet-person{
+  min-width:0;
+}
+.icoca-wallet-person strong{
+  display:block;
+  font-size:12px;
+}
+.icoca-wallet-person small{
+  display:block;
+  font-size:9px;
+  color:var(--muted);
+  margin-top:1px;
+}
+.icoca-wallet-grid input{
+  width:100%;
+  min-width:0;
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:7px 6px;
+  background:var(--card);
+  color:var(--ink);
+  text-align:right;
+  font-size:11px;
+  font-weight:800;
+}
+.icoca-wallet-grid .icoca-sum{
+  text-align:right;
+  font-size:11px;
+  font-weight:900;
+  color:var(--brand);
+  white-space:nowrap;
+}
+.icoca-wallet-note{
+  font-size:9px;
+  color:var(--muted);
+  line-height:1.45;
+  margin-top:9px;
+}
+body:not(.admin-mode) .icoca-wallet-grid input:disabled{
+  opacity:1;
+  -webkit-text-fill-color:var(--ink);
+  color:var(--ink);
+  background:var(--soft);
+}
+@media(max-width:650px){
+  .icoca-wallet-grid{
+    grid-template-columns:1.1fr 64px 78px 78px 76px;
+    gap:4px;
+  }
+  .icoca-wallet-grid input{padding:6px 4px;font-size:10px}
+  .icoca-wallet-person strong{font-size:11px}
+  .icoca-wallet-total{padding:6px 7px}
+}
+
 </style>
 </head>
 <body class="">
@@ -4188,7 +4303,37 @@ body:not(.admin-mode) #prep select:disabled{opacity:1;-webkit-text-fill-color:va
         </a>
         <div class="icoca-guide-zoom">🔍 이미지를 누르면 크게 열립니다.</div>
       </div>
+
     </details>
+
+    <div class="icoca-wallet">
+      <div class="icoca-wallet-head">
+        <div>
+          <div class="icoca-wallet-title">💳 ICOCA 구입·충전 기록</div>
+          <div class="icoca-wallet-sub">가족 4명의 카드 구입비와 추가 충전액을 기록합니다.</div>
+        </div>
+        <div class="icoca-wallet-total">
+          <span>ICOCA 결제 합계</span>
+          <b id="icocaGrandTotal">¥0</b>
+        </div>
+      </div>
+
+      <div class="icoca-wallet-grid head">
+        <div>사용자</div>
+        <div>구분</div>
+        <div>카드 구입</div>
+        <div>추가 충전</div>
+        <div>합계</div>
+      </div>
+
+      <div id="icocaWalletRows"></div>
+
+      <div class="icoca-wallet-note">
+        ※ ICOCA로 이용한 지하철·JR·버스는 카드에서 차감되므로, 이 화면에서는 <b>카드 구입·충전에 실제 지출한 금액</b>을 기록합니다.
+        택시처럼 ICOCA 외 결제는 아래의 기존 <b>교통비 추가</b>에 그대로 등록하면 됩니다.
+      </div>
+    </div>
+
     <div class="transport-addbox">
       <div style="font-size:12px;font-weight:900;color:var(--brand);margin-bottom:7px">➕ 교통비 추가</div>
       <div class="transport-addgrid">
@@ -5687,15 +5832,55 @@ mealLoad();
 
 <script>
 const TRANSPORT_STORAGE='osaka_trip_transport_v1';
-let transportState={items:[]};
+let transportState={
+  items:[],
+  icoca:{
+    self:{name:'본인',type:'성인',purchase:0,recharge:0},
+    husband:{name:'남편',type:'성인',purchase:0,recharge:0},
+    son:{name:'아들',type:'성인',purchase:0,recharge:0},
+    daughter:{name:'딸',type:'어린이',purchase:0,recharge:0}
+  }
+};
 function transportUid(){return 'tr-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,7)}
 function transportFmtYen(v){return '¥'+Math.round(Number(v)||0).toLocaleString('ko-KR')}
 function transportRate(){return (typeof budgetState!=='undefined'&&Number(budgetState.rate)>0)?Number(budgetState.rate):8.78}
 function transportFmtKrw(v){return '₩'+Math.round((Number(v)||0)*transportRate()).toLocaleString('ko-KR')}
 function transportEscape(v){return String(v??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]))}
-function transportLoadLocal(){try{const raw=localStorage.getItem(TRANSPORT_STORAGE);if(raw){const o=JSON.parse(raw);if(o&&Array.isArray(o.items))transportState=o}}catch(e){}}
+function transportEnsureState(raw){
+ const src=(raw&&typeof raw==='object')?raw:{};
+ const base={
+  self:{name:'본인',type:'성인',purchase:0,recharge:0},
+  husband:{name:'남편',type:'성인',purchase:0,recharge:0},
+  son:{name:'아들',type:'성인',purchase:0,recharge:0},
+  daughter:{name:'딸',type:'어린이',purchase:0,recharge:0}
+ };
+ const incoming=src.icoca||{};
+ return {
+  items:Array.isArray(src.items)?src.items:[],
+  icoca:{
+   self:{...base.self,...(incoming.self||{})},
+   husband:{...base.husband,...(incoming.husband||{})},
+   son:{...base.son,...(incoming.son||{})},
+   daughter:{...base.daughter,...(incoming.daughter||{})}
+  }
+ };
+}
+function transportLoadLocal(){
+ try{
+  const raw=localStorage.getItem(TRANSPORT_STORAGE);
+  if(raw)transportState=transportEnsureState(JSON.parse(raw));
+  else transportState=transportEnsureState(transportState);
+ }catch(e){transportState=transportEnsureState(transportState)}
+}
 function transportSaveLocal(){try{localStorage.setItem(TRANSPORT_STORAGE,JSON.stringify(transportState))}catch(e){}}
-function transportTotal(){return (transportState.items||[]).reduce((s,x)=>s+(Number(x.yen)||0),0)}
+function icocaTotal(){
+ return Object.values(transportState.icoca||{}).reduce((s,x)=>
+  s+(Number(x.purchase)||0)+(Number(x.recharge)||0),0);
+}
+function transportOtherTotal(){
+ return (transportState.items||[]).reduce((s,x)=>s+(Number(x.yen)||0),0);
+}
+function transportTotal(){return icocaTotal()+transportOtherTotal()}
 function setTransportCloudStatus(state){
  const el=document.getElementById('transportCloudSyncStatus');if(!el)return;el.classList.remove('ok','warn','error');
  if(state==='loading')el.textContent='🚇 교통비 불러오는 중…';
@@ -5721,10 +5906,43 @@ async function loadTransportFromSupabase(){
  try{
   const {data,error}=await supabaseClient.from('travel_data').select('data_value,updated_at').eq('data_key','transport').maybeSingle();
   if(error)throw error;
-  if(data&&data.data_value){transportState={items:Array.isArray(data.data_value.items)?data.data_value.items:[]};transportSaveLocal();transportRender();try{budgetRefresh()}catch(e){};try{applyAdminAccess()}catch(e){};setTransportCloudStatus('ok');return true}
+  if(data&&data.data_value){transportState=transportEnsureState(data.data_value);transportSaveLocal();transportRender();try{budgetRefresh()}catch(e){};try{applyAdminAccess()}catch(e){};setTransportCloudStatus('ok');return true}
   setTransportCloudStatus(localStorage.getItem(TRANSPORT_STORAGE)?'local':'empty');transportRender();return false
  }catch(e){console.error('[transport load]',e);setTransportCloudStatus(localStorage.getItem(TRANSPORT_STORAGE)?'local':'error');transportRender();return false}
 }
+function icocaUpdate(person,key,val){
+ if(!document.body.classList.contains('admin-mode'))return;
+ transportState=transportEnsureState(transportState);
+ if(!transportState.icoca[person])return;
+ transportState.icoca[person][key]=Math.max(0,Number(val)||0);
+ transportSaveLocal();
+ transportRenderTotals();
+ try{budgetRefresh()}catch(e){}
+ try{saveTransportToSupabase(false)}catch(e){}
+}
+function icocaRender(){
+ const root=document.getElementById('icocaWalletRows');
+ if(!root)return;
+ transportState=transportEnsureState(transportState);
+ const order=['self','husband','son','daughter'];
+ root.innerHTML=order.map(key=>{
+  const p=transportState.icoca[key];
+  const purchase=Number(p.purchase)||0;
+  const recharge=Number(p.recharge)||0;
+  const total=purchase+recharge;
+  return `<div class="icoca-wallet-grid icoca-wallet-row">
+    <div class="icoca-wallet-person"><strong>${transportEscape(p.name)}</strong><small>${transportEscape(p.type)} ICOCA</small></div>
+    <div style="font-size:10px;font-weight:850;color:var(--muted)">${transportEscape(p.type)}</div>
+    <div><input type="number" min="0" step="1" value="${purchase}" aria-label="${transportEscape(p.name)} ICOCA 카드 구입비" onchange="icocaUpdate('${key}','purchase',this.value)"></div>
+    <div><input type="number" min="0" step="1" value="${recharge}" aria-label="${transportEscape(p.name)} ICOCA 추가 충전액" onchange="icocaUpdate('${key}','recharge',this.value)"></div>
+    <div class="icoca-sum">${transportFmtYen(total)}</div>
+  </div>`;
+ }).join('');
+ const g=document.getElementById('icocaGrandTotal');
+ if(g)g.textContent=transportFmtYen(icocaTotal());
+ try{applyAdminAccess()}catch(e){}
+}
+
 function transportSave(){transportSaveLocal();transportRender();try{budgetRefresh()}catch(e){};try{saveTransportToSupabase(false)}catch(e){}}
 function transportAdd(){
  if(!document.body.classList.contains('admin-mode'))return;
@@ -5737,6 +5955,7 @@ function transportDelete(id){if(!document.body.classList.contains('admin-mode'))
 function transportUpdate(id,key,val){if(!document.body.classList.contains('admin-mode'))return;const it=transportState.items.find(x=>x.id===id);if(!it)return;it[key]=(key==='yen')?(Number(val)||0):val;transportSaveLocal();transportRenderTotals();try{budgetRefresh()}catch(e){};try{saveTransportToSupabase(false)}catch(e){}}
 function transportRenderTotals(){
  const total=transportTotal(),y=document.getElementById('transportTotalYen'),k=document.getElementById('transportTotalKrw');if(y)y.textContent=transportFmtYen(total);if(k)k.textContent=transportFmtKrw(total);
+ const g=document.getElementById('icocaGrandTotal');if(g)g.textContent=transportFmtYen(icocaTotal());
  document.querySelectorAll('[data-transport-day-total]').forEach(el=>{const d=el.dataset.transportDayTotal,v=transportState.items.filter(x=>String(x.day)===String(d)).reduce((s,x)=>s+(Number(x.yen)||0),0);el.textContent=transportFmtYen(v)})
 }
 function transportRender(){
@@ -5748,7 +5967,7 @@ function transportRender(){
    h+=`<div class="transport-card"><div class="transport-card-top"><div class="transport-mode">${transportEscape(it.mode)}</div><div class="transport-route">${transportEscape(it.route)}</div><div class="transport-money">${transportFmtYen(it.yen)}<small>${transportFmtKrw(it.yen)}</small></div><button class="transport-delete" onclick="transportDelete('${transportEscape(it.id)}')">×</button></div>${it.note?`<div class="transport-note">${transportEscape(it.note)}</div>`:''}<div class="transport-editgrid"><select onchange="transportUpdate('${transportEscape(it.id)}','day',this.value)">${['1','2','3','4'].map(d=>`<option value="${d}" ${String(it.day)===d?'selected':''}>${d}일차</option>`).join('')}</select><select onchange="transportUpdate('${transportEscape(it.id)}','mode',this.value)">${['지하철','JR/철도','버스','택시','공항철도','기타'].map(m=>`<option ${it.mode===m?'selected':''}>${m}</option>`).join('')}</select><input value="${transportEscape(it.route)}" onchange="transportUpdate('${transportEscape(it.id)}','route',this.value)"><input type="number" min="0" value="${Number(it.yen)||0}" onchange="transportUpdate('${transportEscape(it.id)}','yen',this.value)"><input class="full" value="${transportEscape(it.note||'')}" placeholder="메모" onchange="transportUpdate('${transportEscape(it.id)}','note',this.value)"></div></div>`
   }
  }
- root.innerHTML=h;transportRenderTotals();try{applyAdminAccess()}catch(e){}
+ root.innerHTML=h;icocaRender();transportRenderTotals();try{applyAdminAccess()}catch(e){}
 }
 transportLoadLocal();
 </script>
