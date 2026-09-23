@@ -283,13 +283,20 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
   </div>
 
   <div class="editbar">
-    <button id="editBtn" class="primary" onclick="toggleEdit()">✏️ 수정모드</button>
-    <button class="cancel" onclick="cancelEdit()">✖️ 취소</button>
-    <button onclick="saveEdits()">💾 저장</button>
-    <button onclick="exportBackup()">⬇️ 백업</button>
-    <button onclick="exportHTML()">📄 HTML 내보내기</button>
-    <label>⬆️ 불러오기<input type="file" accept=".json" hidden="" onchange="importBackup(event)"></label>
-    <button onclick="resetEdits()">↩️ 초기화</button>
+    <button id="adminLoginBtn" class="primary" onclick="enterAdminMode()">🔒 관리자 모드</button>
+
+    <div id="adminTools" style="display:none; gap:6px; flex-wrap:wrap;">
+      <button id="editBtn" class="primary" onclick="toggleEdit()">✏️ 수정모드</button>
+      <button class="cancel" onclick="cancelEdit()">✖️ 취소</button>
+      <button onclick="saveEdits()">💾 저장</button>
+      <button onclick="exportBackup()">⬇️ 백업</button>
+      <button onclick="exportHTML()">📄 HTML 내보내기</button>
+      <label>⬆️ 불러오기
+        <input type="file" accept=".json" hidden onchange="importBackup(event)">
+      </label>
+      <button onclick="resetEdits()">↩️ 초기화</button>
+      <button onclick="leaveAdminMode()">🔓 관리자 종료</button>
+    </div>
   </div>
 
   <div id="days">
@@ -4825,5 +4832,38 @@ if ('serviceWorker' in navigator) {
   });
 }
 </script>
+
+<script>
+  const ADMIN_PASSWORD = '0009';
+
+  function enterAdminMode(){
+    const pw = prompt('관리자 비밀번호를 입력하세요.');
+
+    if(pw === null) return;
+
+    if(pw !== ADMIN_PASSWORD){
+      alert('비밀번호가 올바르지 않습니다.');
+      return;
+    }
+
+    document.getElementById('adminLoginBtn').style.display = 'none';
+    document.getElementById('adminTools').style.display = 'flex';
+  }
+
+  function leaveAdminMode(){
+    if(editMode){
+      setEditable(false);
+      editMode = false;
+      document.body.classList.remove('editing');
+
+      const btn = document.getElementById('editBtn');
+      if(btn) btn.textContent = '✏️ 수정모드';
+    }
+
+    document.getElementById('adminTools').style.display = 'none';
+    document.getElementById('adminLoginBtn').style.display = '';
+  }
+</script>
+
 </body>
 </html>
