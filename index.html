@@ -471,6 +471,63 @@ body:not(.admin-mode) #prep select:disabled{opacity:1;-webkit-text-fill-color:va
   .prep-row{grid-template-columns:28px 28px minmax(0,1fr) 44px 70px 22px;padding:8px 7px;gap:5px}
 }
 
+
+/* ===== 교통비 탭 · ICOCA 인포그래픽 ===== */
+.icoca-guide{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:15px;
+  margin:10px 0 12px;
+  overflow:hidden;
+}
+.icoca-guide>summary{
+  list-style:none;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  padding:12px 13px;
+  font-weight:900;
+  color:var(--brand);
+}
+.icoca-guide>summary::-webkit-details-marker{display:none}
+.icoca-guide[open]>summary{
+  border-bottom:1px solid var(--line);
+  background:var(--soft);
+}
+.icoca-guide .icoca-arrow{
+  font-size:20px;
+  color:var(--muted);
+  transition:.2s;
+}
+.icoca-guide[open] .icoca-arrow{transform:rotate(90deg)}
+.icoca-guide-body{padding:10px}
+.icoca-guide-note{
+  font-size:10px;
+  color:var(--muted);
+  line-height:1.5;
+  margin:0 2px 8px;
+}
+.icoca-guide-link{
+  display:block;
+  border-radius:12px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  background:#fff;
+}
+.icoca-guide-link img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+.icoca-guide-zoom{
+  text-align:center;
+  font-size:10px;
+  color:var(--muted);
+  margin-top:7px;
+}
+
 </style>
 </head>
 <body class="">
@@ -4041,6 +4098,23 @@ body:not(.admin-mode) #prep select:disabled{opacity:1;-webkit-text-fill-color:va
       <div><span>실제 교통비 합계</span><b id="transportTotalYen">¥0</b></div>
       <div><span>원화 환산</span><b id="transportTotalKrw">₩0</b></div>
     </div>
+
+    <details class="icoca-guide">
+      <summary>
+        <span>💳 ICOCA 이용 가이드 보기</span>
+        <span class="icoca-arrow">›</span>
+      </summary>
+      <div class="icoca-guide-body">
+        <div class="icoca-guide-note">
+          가족 4명 기준 ICOCA 구입·충전·사용·잔액 정리 방법입니다.
+          이미지를 누르면 원본 크기로 크게 볼 수 있습니다.
+        </div>
+        <a class="icoca-guide-link" href="./icoca-guide.png" target="_blank" rel="noopener">
+          <img src="./icoca-guide.png" alt="오사카·교토 가족여행 ICOCA 교통카드 가이드">
+        </a>
+        <div class="icoca-guide-zoom">🔍 이미지를 누르면 크게 열립니다.</div>
+      </div>
+    </details>
     <div class="transport-addbox">
       <div style="font-size:12px;font-weight:900;color:var(--brand);margin-bottom:7px">➕ 교통비 추가</div>
       <div class="transport-addgrid">
