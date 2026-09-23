@@ -84,14 +84,14 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
 }
 </style>
 </head>
-<body>
+<body class="">
 <header id="top">
   <h1>🇯🇵 오사카·교토 3박 4일</h1>
   <p>전철·버스·택시·도보 선택 · 줄 추가/삭제 가능 · 오프라인 사용 · 한자 읽는 법 포함</p>
   <div class="tabs">
-    <button id="tab0" class="active" onclick="showDay(0,this)">1일차</button>
-    <button id="tab1" onclick="showDay(1,this)">2일차</button>
-    <button id="tab2" onclick="showDay(2,this)">3일차</button>
+    <button id="tab0" class="" onclick="showDay(0,this)">1일차</button>
+    <button id="tab1" onclick="showDay(1,this)" class="">2일차</button>
+    <button id="tab2" onclick="showDay(2,this)" class="active">3일차</button>
     <button id="tab3" onclick="showDay(3,this)">4일차</button>
     <button id="tabEmergency" onclick="showEmergency(this)">긴급</button>
   </div>
@@ -121,7 +121,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
   </div>
 
   <div id="days">
-    <section class="day active" data-day="0">
+    <section class="day" data-day="0">
       <div class="day-head">
         <b data-editable="1" contenteditable="false">1일차</b><span>9/26</span>
         <p data-editable="1" contenteditable="false">간사이공항 → 숙소 → 덴노지 → 아베노 큐즈몰 → MEGA 돈키호테 → 숙소</p>
@@ -214,7 +214,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
           
@@ -224,7 +224,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
           </div>
         </details>
       
-        <details class="segment" open="">
+        <details class="segment">
           <summary>
             <span data-editable="1" contenteditable="false">간사이공항역 → 난카이 난바역</span>
             <span class="arrow">›</span>
@@ -305,7 +305,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
           
@@ -315,7 +315,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
           </div>
         </details>
       
-        <details class="segment" open="">
+        <details class="segment">
           <summary>
             <span data-editable="1" contenteditable="false">난카이 난바역 → 숙소</span>
             <span class="arrow">›</span>
@@ -398,7 +398,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
           
@@ -471,7 +471,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
           
@@ -481,7 +481,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
           </div>
         </details>
       
-        <details class="segment">
+        <details class="segment" open="">
           <summary>
             <span class="segment-title-wrap">
               <span data-editable="1" contenteditable="false">숙소 → 덴노지공원</span>
@@ -567,7 +567,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
           
@@ -640,7 +640,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
           
@@ -713,7 +713,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
           
@@ -766,7 +766,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
           
@@ -776,7 +776,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
           </div>
         </details>
       
-        <details class="segment" open="">
+        <details class="segment">
           <summary>
             <span data-editable="1" contenteditable="false">아베노 큐즈몰 → MEGA 돈키호테 신세카이점</span>
             <span class="arrow">›</span>
@@ -859,7 +859,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
           
@@ -932,7 +932,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
           
@@ -1025,7 +1025,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
           
@@ -1098,7 +1098,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
           
@@ -1120,10 +1120,10 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
       </div>
     </section>
   
-    <section class="day " data-day="1">
+    <section class="day" data-day="1">
       <div class="day-head">
         <b data-editable="1" contenteditable="false">2일차</b><span>9/27</span>
-        <p data-editable="1" contenteditable="false">성당 → sumigg&#39;s → 호코쿠 신사·구 육군 위수형무소터 → 한큐 우메다 → HEP FIVE → 숙소</p>
+        <p data-editable="1" contenteditable="false">성당 → sumigg's → 호코쿠 신사·구 육군 위수형무소터 → 한큐 우메다 → HEP FIVE → 숙소</p>
       </div>
 
       <div class="foldbar">
@@ -1132,7 +1132,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
       </div>
 
       
-        <details class="segment">
+        <details class="segment" open="">
           <summary>
             <span data-editable="1" contenteditable="false">숙소 → 오사카 주교좌성당</span>
             <span class="arrow">›</span>
@@ -1157,9 +1157,9 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <li><span data-editable="1" contenteditable="false">성당까지 약 13분(약 950m) 걷는다.</span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li>
                 <li><span data-editable="1" contenteditable="false">「カトリック玉造教会」(카토릭쿠 타마츠쿠리 쿄카이)를 찾는다.</span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li>
                 <li><span data-editable="1" contenteditable="false">주소 「大阪市中央区玉造2丁目24-22」(오사카시 츄오쿠 타마츠쿠리 니초메 24-22)를 확인한다.</span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li>
-              </ol>
+              <li><span data-editable="1" contenteditable="false">https://maps.app.goo.gl/DWG8spewQ7Bkoyf98<br></span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li></ol>
               <div class="step-edit-tools"><button type="button" onclick="addStep(this,event)">➕ 줄 추가</button></div>
-              <div class="mode-delete-wrap"><button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button></div>
+              <div class="mode-delete-wrap"><button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button></div>
             </div>
             <div class="modepanel ">
               <div class="meta" data-editable="1" contenteditable="false">환승 1회 · 약 40분 전후 · JR 이용이 어려울 때 대안</div>
@@ -1177,7 +1177,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <li><span data-editable="1" contenteditable="false">주소 「大阪市中央区玉造2丁目24-22」(오사카시 츄오쿠 타마츠쿠리 니초메 24-22)를 확인한다.</span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li>
               </ol>
               <div class="step-edit-tools"><button type="button" onclick="addStep(this,event)">➕ 줄 추가</button></div>
-              <div class="mode-delete-wrap"><button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button></div>
+              <div class="mode-delete-wrap"><button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button></div>
             </div>
             <div class="modepanel ">
               <div class="meta" data-editable="1" contenteditable="false">약 25~35분 예상 · 예상 택시비 약 2,300~3,000엔/대 · 비용 높음 · 컨디션 나쁠 때 대안</div>
@@ -1248,7 +1248,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
 
@@ -1258,7 +1258,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
           </div>
         </details>
       
-                <details class="segment">
+                <details class="segment" open="">
           <summary>
             <span data-editable="1" contenteditable="false">성당 → sumigg's</span>
             <span class="arrow">›</span>
@@ -1313,12 +1313,12 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                     <span data-editable="1" contenteditable="false">길을 잃으면 「森ノ宮中央2-10-7」 주소를 주변 사람에게 보여준다.</span>
                     <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
                   </li>
-              </ol>
+              <li><span data-editable="1" contenteditable="false">https://maps.app.goo.gl/TWNdjhCRmZD3GhTE9</span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li></ol>
               <div class="step-edit-tools">
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
             <div class="modepanel ">
@@ -1345,7 +1345,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
 
@@ -1355,7 +1355,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
           </div>
         </details>
       
-                <details class="segment">
+                <details class="segment" open="">
           <summary>
             <span class="segment-title-wrap">
               <span data-editable="1" contenteditable="false">sumigg's → 호코쿠 신사·구 육군 위수형무소터</span>
@@ -1412,12 +1412,12 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                     <span data-editable="1" contenteditable="false">천수각까지 갈 필요는 없다. 관람 후 다음 이동을 위해 「大阪城公園駅」(오사카조코엔 에키 / 오사카성공원역) 방향 표지를 찾는다.</span>
                     <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
                   </li>
-              </ol>
+              <li><span data-editable="1" contenteditable="false">https://maps.app.goo.gl/ACQW9thziEKfQot58</span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li></ol>
               <div class="step-edit-tools">
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
 
@@ -1427,7 +1427,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
           </div>
         </details>
       
-                <details class="segment">
+                <details class="segment" open="">
           <summary>
             <span data-editable="1" contenteditable="false">호코쿠 신사·구 육군 위수형무소터 → 한큐 우메다 본점</span>
             <span class="arrow">›</span>
@@ -1495,15 +1495,15 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                     <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
                   </li>
                   <li>
-                    <span data-editable="1" contenteditable="false">B2에서 「和洋酒 / Sake & Liquor」(와요슈 / 주류) 표지판을 찾아 일본주·양주 코너로 간다.</span>
+                    <span data-editable="1" contenteditable="false">B2에서 「和洋酒 / Sake &amp; Liquor」(와요슈 / 주류) 표지판을 찾아 일본주·양주 코너로 간다.</span>
                     <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
                   </li>
-              </ol>
+              <li><span data-editable="1" contenteditable="false">https://maps.app.goo.gl/RmWmmwtccAMU8Yf47</span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li></ol>
               <div class="step-edit-tools">
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
             <div class="modepanel ">
@@ -1522,7 +1522,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                     <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
                   </li>
                   <li>
-                    <span data-editable="1" contenteditable="false">건물 안으로 들어가 B2 「和洋酒 / Sake & Liquor」 코너로 이동한다.</span>
+                    <span data-editable="1" contenteditable="false">건물 안으로 들어가 B2 「和洋酒 / Sake &amp; Liquor」 코너로 이동한다.</span>
                     <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
                   </li>
               </ol>
@@ -1530,7 +1530,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
 
@@ -1540,7 +1540,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
           </div>
         </details>
       
-                <details class="segment">
+                <details class="segment" open="">
           <summary>
             <span data-editable="1" contenteditable="false">한큐 우메다 본점 → HEP FIVE</span>
             <span class="arrow">›</span>
@@ -1548,7 +1548,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
           <div class="modebar">
 
               <button class="mode-choice active" onclick="selectMode(this)">🚶 바로 HEP FIVE</button>
-              <button class="mode-choice " onclick="selectMode(this)">🅱️ 리커 마운틴 경유</button>
+              <button class="mode-choice" onclick="selectMode(this)">🅱️ 리커 마운틴 경유</button>
 
           </div>
 
@@ -1591,15 +1591,15 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                     <span data-editable="1" contenteditable="false">「HEP FIVE」 간판과 빨간 대관람차를 확인하고 건물 안으로 들어간다.</span>
                     <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
                   </li>
-              </ol>
+              <li><span data-editable="1" contenteditable="false">https://maps.app.goo.gl/LFh8EHxdVHRxZFho8</span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li></ol>
               <div class="step-edit-tools">
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
-            <div class="modepanel ">
+            <div class="modepanel">
               <div class="meta" data-editable="1" contenteditable="false">한큐에 원하는 술이 없을 때만 · 플랜 B</div>
               <ol>
                   <li>
@@ -1647,7 +1647,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
 
@@ -1657,7 +1657,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
           </div>
         </details>
       
-        <details class="segment">
+        <details class="segment" open="">
           <summary>
             <span data-editable="1" contenteditable="false">HEP FIVE → 숙소</span>
             <span class="arrow">›</span>
@@ -1735,12 +1735,12 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                     <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
                   </li>
                 
-              </ol>
+              <li><span data-editable="1" contenteditable="false">https://maps.app.goo.gl/zRBpsXigfbKzPtKB8</span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li></ol>
               <div class="step-edit-tools">
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
           
@@ -1813,7 +1813,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
           
@@ -1835,7 +1835,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
       </div>
     </section>
   
-    <section class="day " data-day="2">
+    <section class="day active" data-day="2">
       <div class="day-head">
         <b data-editable="1" contenteditable="false">3일차</b><span>9/28</span>
         <p data-editable="1" contenteditable="false">교토대 → 우토로 평화기념관 → 나니와 닛폰바시 식당 → 숙소</p>
@@ -1847,7 +1847,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
       </div>
 
       
-        <details class="segment">
+        <details class="segment" open="">
           <summary>
             <span data-editable="1" contenteditable="false">숙소 → JR 오사카역</span>
             <span class="arrow">›</span>
@@ -1928,7 +1928,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
           
@@ -2019,7 +2019,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
           
@@ -2112,7 +2112,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
           
@@ -2185,7 +2185,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
           
@@ -2278,7 +2278,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
           
@@ -2351,7 +2351,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
           
@@ -2442,7 +2442,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
           
@@ -2538,7 +2538,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
           
@@ -2611,7 +2611,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
           
@@ -2702,7 +2702,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
           
@@ -2795,7 +2795,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
           
@@ -2868,7 +2868,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
           
@@ -2985,7 +2985,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
           
@@ -3058,7 +3058,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
           
@@ -3151,7 +3151,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
           
@@ -3224,7 +3224,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
           
@@ -3315,7 +3315,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
           
@@ -3406,7 +3406,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
               <div class="mode-delete-wrap">
-                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 전체 삭제</button>
+                <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
           
@@ -3653,11 +3653,66 @@ function ensureStepDeleteHandlers(){
   });
 }
 
+function autoLinkEditableUrls(root=document){
+  const targets=[...root.querySelectorAll('[data-editable="1"]')];
+
+  targets.forEach(el=>{
+    const walker=document.createTreeWalker(
+      el,
+      NodeFilter.SHOW_TEXT,
+      {
+        acceptNode(node){
+          if(!node.nodeValue || !/https?:\/\//i.test(node.nodeValue)) return NodeFilter.FILTER_REJECT;
+          if(node.parentElement && node.parentElement.closest('a')) return NodeFilter.FILTER_REJECT;
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      }
+    );
+
+    const textNodes=[];
+    while(walker.nextNode()) textNodes.push(walker.currentNode);
+
+    textNodes.forEach(node=>{
+      const text=node.nodeValue;
+      const re=/https?:\/\/[^\s<]+/ig;
+      let m, last=0;
+      const frag=document.createDocumentFragment();
+
+      while((m=re.exec(text))!==null){
+        let url=m[0];
+        let trailing='';
+
+        // 문장 끝의 마침표·쉼표 등은 링크에서 제외
+        while(/[.,;:!?)\]}]$/.test(url)){
+          trailing=url.slice(-1)+trailing;
+          url=url.slice(0,-1);
+        }
+
+        frag.appendChild(document.createTextNode(text.slice(last,m.index)));
+
+        const a=document.createElement('a');
+        a.href=url;
+        a.textContent=url;
+        a.target='_blank';
+        a.rel='noopener noreferrer';
+        frag.appendChild(a);
+
+        if(trailing) frag.appendChild(document.createTextNode(trailing));
+        last=m.index+m[0].length;
+      }
+
+      frag.appendChild(document.createTextNode(text.slice(last)));
+      node.replaceWith(frag);
+    });
+  });
+}
+
 function restoreSnapshot(obj){
   if(!obj)return;
   if(typeof obj.days==='string')document.getElementById('days').innerHTML=obj.days;
   if(typeof obj.emergency==='string')document.getElementById('emergency').innerHTML=obj.emergency;
   ensureStepDeleteHandlers();
+  autoLinkEditableUrls();
 }
 
 function toggleEdit(){
@@ -3671,6 +3726,7 @@ function toggleEdit(){
     editMode=false;
     document.body.classList.remove('editing');
     setEditable(false);
+    autoLinkEditableUrls();
     document.getElementById('editBtn').textContent='✏️ 수정모드';
     snapshot=null;
   }
@@ -3822,6 +3878,7 @@ function deleteStep(btn,ev){
 
 function saveEdits(){
   try{
+    autoLinkEditableUrls();
     const snap=fullSnapshot();
     localStorage.setItem(STORAGE,JSON.stringify(snap));
     if(editMode)snapshot=snap;
@@ -3853,6 +3910,7 @@ function exportBackup(){
 
 function exportHTML(){
   try{
+    autoLinkEditableUrls();
     // 현재 화면의 수정 내용을 HTML 자체에 포함한다.
     const clone=document.documentElement.cloneNode(true);
     clone.querySelector('body')?.classList.remove('editing');
@@ -3908,6 +3966,7 @@ function resetEdits(){
 
 loadEdits();
 ensureStepDeleteHandlers();
+autoLinkEditableUrls();
 </script>
 
 
@@ -3931,5 +3990,6 @@ if ('serviceWorker' in navigator) {
   });
 }
 </script>
+
 
 </body></html>
