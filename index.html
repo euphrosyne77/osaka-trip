@@ -252,6 +252,60 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
   .planb-food-row:hover,.planb-food-row.selected{background:#173b37}
 }
 
+
+/* ===== 가족 보기 전용 / 관리자 수정 모드 ===== */
+.admin-help{display:none}
+body.admin-mode .admin-help{display:block}
+
+/* 가족 보기 모드: 데이터 변경용 UI는 숨김 */
+body:not(.admin-mode) .shop-addbox,
+body:not(.admin-mode) .shop-delete-item,
+body:not(.admin-mode) .shop-actions .danger,
+body:not(.admin-mode) .meal-addbox,
+body:not(.admin-mode) .meal-actions,
+body:not(.admin-mode) .meal-editbox,
+body:not(.admin-mode) .meal-actionsbar{
+  display:none!important;
+}
+
+/* 가족 보기 모드: 체크/금액/환율은 현재 값을 볼 수 있지만 조작 불가 */
+body:not(.admin-mode) #shopping input:disabled,
+body:not(.admin-mode) #shopping select:disabled,
+body:not(.admin-mode) #meals input:disabled,
+body:not(.admin-mode) #meals select:disabled{
+  opacity:1;
+  -webkit-text-fill-color:var(--ink);
+  color:var(--ink);
+  cursor:default;
+}
+body:not(.admin-mode) .shop-check:disabled,
+body:not(.admin-mode) .meal-use input:disabled{
+  opacity:1;
+}
+body:not(.admin-mode) .yen-input:disabled,
+body:not(.admin-mode) #shopFx:disabled,
+body:not(.admin-mode) .meal-yen:disabled,
+body:not(.admin-mode) #mealFx:disabled,
+body:not(.admin-mode) .meal-group:disabled{
+  background:var(--soft);
+  border-color:var(--line);
+}
+
+/* 관리자 모드 표시 */
+#adminStatus{
+  display:none;
+  align-items:center;
+  gap:5px;
+  font-size:11px;
+  font-weight:850;
+  color:var(--brand);
+  background:var(--soft);
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:6px 9px;
+}
+body.admin-mode #adminStatus{display:inline-flex}
+
 </style>
 </head>
 <body class="">
@@ -275,7 +329,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
     단순히 몇 분 빠른 복잡한 환승이면 저장해 둔 쉬운 경로를 이용해도 됩니다.
     다만 <b>운행 중단·큰 지연·공사·환승 불가</b>가 표시되면 당일 운행정보를 우선 확인하세요.
   </div>
-  <div class="map-note">
+  <div class="map-note admin-help">
     <b>✏️ 수정 방법</b><br>
     수정모드에서 문장을 직접 고칠 수 있습니다. <b>➕ 큰 경로 추가</b>로 이동구간을 만들고,
     각 큰 경로에서 <b>➕ 이동수단 추가 / 🗑 큰 경로 삭제</b>, 각 이동수단에서 <b>➕ 줄 추가</b>와 줄 삭제가 가능합니다.
@@ -284,6 +338,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
 
   <div class="editbar">
     <button id="adminLoginBtn" class="primary" onclick="enterAdminMode()">🔒 관리자 모드</button>
+    <span id="adminStatus">● 관리자 수정 가능</span>
 
     <div id="adminTools" style="display:none; gap:6px; flex-wrap:wrap;">
       <button id="editBtn" class="primary" onclick="toggleEdit()">✏️ 수정모드</button>
@@ -4836,9 +4891,41 @@ if ('serviceWorker' in navigator) {
 <script>
   const ADMIN_PASSWORD = '0009';
 
+  function isAdminMode(){
+    return document.body.classList.contains('admin-mode');
+  }
+
+  function applyAdminAccess(){
+    const locked = !isAdminMode();
+
+    /* 쇼핑·선물: 환율 / 구매체크 / 실구매금액 / 전달체크 */
+    document.querySelectorAll(
+      '#shopFx, #shopping .shop-check, #shopping .yen-input'
+    ).forEach(el => {
+      el.disabled = locked;
+      if(locked) el.setAttribute('tabindex','-1');
+      else el.removeAttribute('tabindex');
+    });
+
+    /* 식사: 환율 / 이용체크 / 식사그룹 / 실제금액 */
+    document.querySelectorAll(
+      '#mealFx, #meals .meal-use input, #meals .meal-group, #meals .meal-yen'
+    ).forEach(el => {
+      el.disabled = locked;
+      if(locked) el.setAttribute('tabindex','-1');
+      else el.removeAttribute('tabindex');
+    });
+
+    /* 혹시 관리자 종료 시 수정모드가 남아있지 않도록 보장 */
+    if(locked){
+      document.querySelectorAll('[data-editable="1"]').forEach(el=>{
+        el.contentEditable='false';
+      });
+    }
+  }
+
   function enterAdminMode(){
     const pw = prompt('관리자 비밀번호를 입력하세요.');
-
     if(pw === null) return;
 
     if(pw !== ADMIN_PASSWORD){
@@ -4846,12 +4933,16 @@ if ('serviceWorker' in navigator) {
       return;
     }
 
+    document.body.classList.add('admin-mode');
     document.getElementById('adminLoginBtn').style.display = 'none';
     document.getElementById('adminTools').style.display = 'flex';
+    applyAdminAccess();
+
+    alert('관리자 모드입니다. 일정·쇼핑·선물·식사 정보를 수정할 수 있습니다.');
   }
 
   function leaveAdminMode(){
-    if(editMode){
+    if(typeof editMode !== 'undefined' && editMode){
       setEditable(false);
       editMode = false;
       document.body.classList.remove('editing');
@@ -4860,9 +4951,31 @@ if ('serviceWorker' in navigator) {
       if(btn) btn.textContent = '✏️ 수정모드';
     }
 
+    document.body.classList.remove('admin-mode');
     document.getElementById('adminTools').style.display = 'none';
     document.getElementById('adminLoginBtn').style.display = '';
+    applyAdminAccess();
   }
+
+  /* 쇼핑/식사 화면은 JS로 다시 그려지므로 새 컨트롤이 생길 때마다 잠금 재적용 */
+  const accessObserver = new MutationObserver(() => {
+    applyAdminAccess();
+  });
+
+  window.addEventListener('DOMContentLoaded', () => {
+    document.body.classList.remove('admin-mode');
+    const adminTools = document.getElementById('adminTools');
+    const adminLoginBtn = document.getElementById('adminLoginBtn');
+    if(adminTools) adminTools.style.display = 'none';
+    if(adminLoginBtn) adminLoginBtn.style.display = '';
+
+    applyAdminAccess();
+
+    const shopping = document.getElementById('shopping');
+    const meals = document.getElementById('meals');
+    if(shopping) accessObserver.observe(shopping,{childList:true,subtree:true});
+    if(meals) accessObserver.observe(meals,{childList:true,subtree:true});
+  });
 </script>
 
 </body>
