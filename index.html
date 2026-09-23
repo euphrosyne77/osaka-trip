@@ -21,7 +21,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,Bl
 header{position:sticky;top:0;z-index:50;background:linear-gradient(135deg,#0b6f69,#18586e);color:#fff;padding:15px 14px 12px;box-shadow:0 2px 12px #0002}
 header h1{font-size:20px;margin:0}
 header p{font-size:12px;margin:3px 0 8px;opacity:.92}
-.tabs{display:grid;grid-template-columns:repeat(9,1fr);gap:5px}
+.tabs{display:grid;grid-template-columns:repeat(10,1fr);gap:5px}
 .tabs button{border:0;border-radius:10px;padding:9px 2px;background:#ffffff22;color:#fff;font-weight:800;font-size:12px}
 .tabs button.active{background:#fff;color:var(--brand)}
 main{max-width:760px;margin:auto;padding:14px 12px 60px}
@@ -473,6 +473,58 @@ body:not(.admin-mode) .transport-addbox,body:not(.admin-mode) .transport-delete,
 #transportCloudSyncStatus.ok{color:var(--brand);background:var(--soft)}#transportCloudSyncStatus.warn{color:#9a6412;background:#fff5d6}#transportCloudSyncStatus.error{color:#a33;background:var(--danger)}
 @media(max-width:650px){.transport-addgrid,.transport-editgrid{grid-template-columns:1fr 1fr}.transport-addgrid .full,.transport-editgrid .full{grid-column:1/-1}.transport-card-top{grid-template-columns:80px minmax(0,1fr) 78px 24px}}
 
+
+/* ===== 준비물 체크리스트 ===== */
+.prep{display:none}
+.prep.active{display:block}
+.prep-head{background:linear-gradient(135deg,#2d566c,#0c6b67);color:#fff;border-radius:18px;padding:16px;margin-bottom:10px;box-shadow:0 8px 24px #0c6b6718}
+.prep-head h2{margin:0;font-size:24px;letter-spacing:-.4px}
+.prep-head p{margin:4px 0 0;font-size:12px;opacity:.92}
+.prep-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:10px 0}
+.prep-stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px;min-width:0}
+.prep-stat span{display:block;font-size:9px;color:var(--muted);font-weight:850}
+.prep-stat b{display:block;margin-top:2px;font-size:15px;color:var(--brand);line-height:1.3}
+.prep-progress{height:8px;background:var(--line);border-radius:999px;overflow:hidden;margin-top:6px}
+.prep-progress i{display:block;height:100%;width:0;background:var(--brand);border-radius:999px;transition:.2s}
+.prep-addbox{background:var(--card);border:1px dashed var(--brand);border-radius:15px;padding:11px;margin:10px 0}
+.prep-addtitle{font-size:12px;font-weight:900;color:var(--brand);margin-bottom:7px}
+.prep-addgrid{display:grid;grid-template-columns:130px minmax(0,1fr) 80px 120px;gap:6px}
+.prep-addgrid input,.prep-addgrid select{min-width:0;width:100%;border:1px solid var(--line);border-radius:9px;padding:8px;background:var(--card);color:var(--ink);font-size:12px}
+.prep-addgrid .full{grid-column:1/-1}
+.prep-addgrid button{border:0;border-radius:9px;padding:9px 12px;background:var(--brand);color:#fff;font-weight:850}
+.prep-category{margin:17px 2px 7px;padding-bottom:7px;border-bottom:2px solid var(--brand);font-size:18px;font-weight:900;color:var(--brand)}
+.prep-row{display:grid;grid-template-columns:34px 34px minmax(0,1fr) 58px 95px 28px;gap:7px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:9px 10px;margin:7px 0}
+.prep-check{width:20px;height:20px;accent-color:var(--brand)}
+.prep-name{min-width:0}
+.prep-name strong{display:block;font-size:12px;line-height:1.35}
+.prep-name small{display:block;color:var(--muted);font-size:9px;margin-top:2px;line-height:1.35}
+.prep-qty{text-align:center;font-size:11px;font-weight:850}
+.prep-cost{text-align:right;font-size:11px;font-weight:900}
+.prep-cost small{display:block;color:var(--muted);font-size:8px;font-weight:700}
+.prep-delete{border:0;background:transparent;color:#b13c33;font-size:15px;font-weight:900;cursor:pointer}
+.prep-editgrid{display:grid;grid-template-columns:130px minmax(0,1fr) 80px 120px;gap:6px;grid-column:1/-1;padding-top:7px;border-top:1px dashed var(--line)}
+.prep-editgrid input,.prep-editgrid select{min-width:0;width:100%;border:1px solid var(--line);border-radius:8px;padding:7px;background:var(--card);color:var(--ink);font-size:11px}
+.prep-editgrid .full{grid-column:1/-1}
+.prep-legend{font-size:10px;color:var(--muted);line-height:1.5;margin:8px 2px}
+body:not(.admin-mode) .prep-addbox,
+body:not(.admin-mode) .prep-delete,
+body:not(.admin-mode) .prep-editgrid{display:none!important}
+body:not(.admin-mode) #prep input:disabled,
+body:not(.admin-mode) #prep select:disabled{opacity:1;-webkit-text-fill-color:var(--ink);color:var(--ink)}
+#prepCloudSyncStatus{
+  display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:800;color:var(--muted);
+  background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 9px
+}
+#prepCloudSyncStatus.ok{color:var(--brand);background:var(--soft)}
+#prepCloudSyncStatus.warn{color:#9a6412;background:#fff5d6}
+#prepCloudSyncStatus.error{color:#a33;background:var(--danger)}
+@media(max-width:650px){
+  .prep-summary{grid-template-columns:1fr 1fr}
+  .prep-addgrid,.prep-editgrid{grid-template-columns:1fr 1fr}
+  .prep-addgrid .full,.prep-editgrid .full{grid-column:1/-1}
+  .prep-row{grid-template-columns:28px 28px minmax(0,1fr) 44px 70px 22px;padding:8px 7px;gap:5px}
+}
+
 </style>
 </head>
 <body class="">
@@ -488,6 +540,7 @@ body:not(.admin-mode) .transport-addbox,body:not(.admin-mode) .transport-delete,
     <button id="tabShopping" onclick="showShopping(this)">쇼핑·선물</button>
     <button id="tabMeals" onclick="showMeals(this)">식사</button>
     <button id="tabTransport" onclick="showTransport(this)">교통비</button>
+    <button id="tabPrep" onclick="showPrep(this)">준비물</button>
     <button id="tabBudget" onclick="showBudget(this)">예산</button>
   </div>
 </header>
@@ -507,6 +560,7 @@ body:not(.admin-mode) .transport-addbox,body:not(.admin-mode) .transport-delete,
     <span id="shopCloudSyncStatus">🛍️ 쇼핑 동기화 대기</span>
     <span id="mealCloudSyncStatus">🍽️ 식사 동기화 대기</span>
     <span id="transportCloudSyncStatus">🚇 교통비 동기화 대기</span>
+    <span id="prepCloudSyncStatus">🧳 준비물 동기화 대기</span>
     <span id="budgetCloudSyncStatus">💳 예산 동기화 대기</span>
 
     <div id="adminTools" style="display:none; gap:6px; flex-wrap:wrap;">
@@ -516,6 +570,7 @@ body:not(.admin-mode) .transport-addbox,body:not(.admin-mode) .transport-delete,
       <button onclick="saveShoppingToSupabase(true)">🛍️ 쇼핑 온라인 저장</button>
       <button onclick="saveMealsToSupabase(true)">🍽️ 식사 온라인 저장</button>
       <button onclick="saveTransportToSupabase(true)">🚇 교통비 온라인 저장</button>
+      <button onclick="savePrepToSupabase(true)">🧳 준비물 온라인 저장</button>
       <button onclick="saveBudgetToSupabase(true)">💳 예산 온라인 저장</button>
       <button onclick="exportBackup()">⬇️ 백업</button>
       <button onclick="exportHTML()">📄 HTML 내보내기</button>
@@ -4072,6 +4127,57 @@ body:not(.admin-mode) .transport-addbox,body:not(.admin-mode) .transport-delete,
     </div>
   </section>
 
+
+  <section id="prep" class="prep">
+    <div class="prep-head">
+      <h2>🧳 여행 준비물</h2>
+      <p>가족 4명 기준 · 준비 완료와 실제 짐에 넣었는지를 따로 확인합니다. 비용은 예산 탭에 자동 반영됩니다.</p>
+    </div>
+
+    <div class="prep-summary">
+      <div class="prep-stat">
+        <span>준비 완료</span><b id="prepReadyText">0 / 0</b>
+        <div class="prep-progress"><i id="prepReadyBar"></i></div>
+      </div>
+      <div class="prep-stat">
+        <span>짐싸기 완료</span><b id="prepPackedText">0 / 0</b>
+        <div class="prep-progress"><i id="prepPackedBar"></i></div>
+      </div>
+      <div class="prep-stat"><span>구매비 합계</span><b id="prepTotalKrw">₩0</b></div>
+      <div class="prep-stat"><span>총 항목</span><b id="prepTotalCount">0개</b></div>
+    </div>
+
+    <div class="prep-legend">
+      <b>준비</b> = 구매·예약·확인까지 끝난 상태 · <b>짐</b> = 실제 캐리어/휴대가방에 넣은 상태<br>
+      여권·항공권·보험처럼 구매할 필요가 없는 항목도 준비 완료 체크를 사용합니다.
+    </div>
+
+    <div class="prep-addbox">
+      <div class="prep-addtitle">➕ 준비물 추가</div>
+      <div class="prep-addgrid">
+        <select id="prepAddCategory">
+          <option>여행 필수</option><option>돈·결제</option><option>통신·전자기기</option>
+          <option>이동·가방</option><option>의류</option><option>비·날씨</option>
+          <option>세면·생활</option><option>건강·상비용품</option><option>아이들</option>
+          <option>쇼핑 대비</option><option>기타</option>
+        </select>
+        <input id="prepAddName" type="text" placeholder="준비물 이름">
+        <input id="prepAddQty" type="number" min="1" step="1" value="1" placeholder="수량">
+        <input id="prepAddCost" type="number" min="0" step="1" placeholder="비용(원)">
+        <input id="prepAddNote" class="full" type="text" placeholder="메모 (선택)">
+        <button class="full" type="button" onclick="prepAdd()">추가</button>
+      </div>
+    </div>
+
+    <div id="prepList"></div>
+
+    <div class="pager">
+      <button onclick="showTransport(document.getElementById('tabTransport'))">‹ 교통비</button>
+      <button onclick="scrollTopNow()">맨 위로 ↑</button>
+      <button onclick="showBudget(document.getElementById('tabBudget'))">예산 ›</button>
+    </div>
+  </section>
+
   <section id="budget" class="budget">
     <div class="budget-head">
       <h2>💳 여행 예산 · 지출 요약</h2>
@@ -4171,9 +4277,9 @@ body:not(.admin-mode) .transport-addbox,body:not(.admin-mode) .transport-delete,
       <div class="budget-row" data-budget-row="prep">
         <div class="budget-cat">📱 eSIM·준비물</div>
         <div class="budget-plan">국내 구매<small>별도 계획금액 없음</small></div>
-        <div><div class="budget-actual-wrap"><input class="budget-input" id="budgetActualPrep" type="number" inputmode="numeric" min="0" step="1" placeholder="실제 ₩" oninput="budgetSetKrw('prep',this.value)"><span class="unit">원</span></div></div>
-        <div class="budget-note">eSIM, 변환기, 우산 비옷, 보조배터리, 기타 준비물.</div>
-        <div class="budget-status"><span class="budget-badge" id="budgetStatusPrep">미입력</span><label class="budget-paid budget-admin-only"><input id="budgetPaidPrep" type="checkbox" onchange="budgetSetPaid('prep',this.checked)">완료</label></div>
+        <div><div class="budget-auto" id="budgetActualPrepKrw">₩0</div></div>
+        <div class="budget-note">준비물 탭에 입력한 실제 구매비용을 자동 합산합니다.</div>
+        <div class="budget-status"><span class="budget-badge" id="budgetStatusPrep">자동연동</span></div>
       </div>
     </div>
 
@@ -4303,6 +4409,7 @@ function showDay(i,btn){
   document.getElementById('meals').classList.remove('active');
   document.getElementById('budget').classList.remove('active');
   document.getElementById('transport').classList.remove('active');
+  document.getElementById('prep').classList.remove('active');
   document.querySelectorAll('.day').forEach((d,n)=>d.classList.toggle('active',n===i));
   document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
   if(btn)btn.classList.add('active'); else setActiveTab(i);
@@ -4320,6 +4427,7 @@ function showEmergency(btn){
   document.getElementById('meals').classList.remove('active');
   document.getElementById('budget').classList.remove('active');
   document.getElementById('transport').classList.remove('active');
+  document.getElementById('prep').classList.remove('active');
   document.getElementById('emergency').classList.add('active');
   document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
   (btn||document.getElementById('tabEmergency')).classList.add('active');
@@ -4333,6 +4441,7 @@ function showShopping(btn){
   document.getElementById('meals').classList.remove('active');
   document.getElementById('budget').classList.remove('active');
   document.getElementById('transport').classList.remove('active');
+  document.getElementById('prep').classList.remove('active');
   document.getElementById('shopping').classList.add('active');
   document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
   (btn||document.getElementById('tabShopping')).classList.add('active');
@@ -4346,6 +4455,7 @@ function showMeals(btn){
   document.getElementById('shopping').classList.remove('active');
   document.getElementById('budget').classList.remove('active');
   document.getElementById('transport').classList.remove('active');
+  document.getElementById('prep').classList.remove('active');
   document.getElementById('meals').classList.add('active');
   document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
   (btn||document.getElementById('tabMeals')).classList.add('active');
@@ -4359,6 +4469,7 @@ function showBudget(btn){
   document.getElementById('shopping').classList.remove('active');
   document.getElementById('meals').classList.remove('active');
   document.getElementById('transport').classList.remove('active');
+  document.getElementById('prep').classList.remove('active');
   document.getElementById('budget').classList.add('active');
   document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
   (btn||document.getElementById('tabBudget')).classList.add('active');
@@ -4377,6 +4488,21 @@ function showTransport(btn){
   transportRender();
   scrollTopNow();
 }
+
+function showPrep(btn){
+  document.querySelectorAll('.day').forEach(d=>d.classList.remove('active'));
+  document.getElementById('emergency').classList.remove('active');
+  document.getElementById('shopping').classList.remove('active');
+  document.getElementById('meals').classList.remove('active');
+  document.getElementById('transport').classList.remove('active');
+  document.getElementById('budget').classList.remove('active');
+  document.getElementById('prep').classList.add('active');
+  document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
+  (btn||document.getElementById('tabPrep')).classList.add('active');
+  prepRender();
+  scrollTopNow();
+}
+
 
 
 
@@ -5550,6 +5676,261 @@ function transportRender(){
 transportLoadLocal();
 </script>
 
+
+<script>
+/* ===== 준비물 체크리스트 + Supabase 동기화 ===== */
+const PREP_STORAGE='osaka_trip_prep_v1';
+const PREP_BASE=[
+  {id:'prep-passport',category:'여행 필수',name:'여권 4개',qty:4,note:'출발 전 유효기간과 이름 확인',cost:0},
+  {id:'prep-flight',category:'여행 필수',name:'항공권·탑승 정보',qty:1,note:'제주항공 일정 및 터미널 확인',cost:0},
+  {id:'prep-hotel',category:'여행 필수',name:'숙소 예약정보',qty:1,note:'숙소명·주소 화면 또는 캡처',cost:0},
+  {id:'prep-insurance',category:'여행 필수',name:'여행자보험 정보',qty:1,note:'증권·긴급연락처 확인',cost:0},
+  {id:'prep-vjw',category:'여행 필수',name:'Visit Japan Web 확인',qty:4,note:'필요 화면은 캡처도 준비',cost:0},
+
+  {id:'prep-cash',category:'돈·결제',name:'엔화 현금',qty:1,note:'가족 공용 현금',cost:0},
+  {id:'prep-cards',category:'돈·결제',name:'해외결제 카드',qty:2,note:'주카드와 예비카드 분산 보관',cost:0},
+  {id:'prep-coin',category:'돈·결제',name:'동전지갑',qty:1,note:'일본 동전 정리용',cost:0},
+
+  {id:'prep-esim',category:'통신·전자기기',name:'eSIM·로밍 설정',qty:4,note:'출국 전 설치·개통 방법 확인',cost:0},
+  {id:'prep-phone',category:'통신·전자기기',name:'휴대폰',qty:4,note:'가족별 충전 확인',cost:0},
+  {id:'prep-charger',category:'통신·전자기기',name:'충전기·충전 케이블',qty:4,note:'기기별 케이블 확인',cost:0},
+  {id:'prep-powerbank',category:'통신·전자기기',name:'보조배터리',qty:2,note:'위탁수하물 금지 · 기내 휴대',cost:0},
+  {id:'prep-earphone',category:'통신·전자기기',name:'이어폰',qty:2,note:'이동 중 사용',cost:0},
+
+  {id:'prep-icoca',category:'이동·가방',name:'ICOCA 사용 준비',qty:4,note:'교통카드 준비 또는 현지 구매 계획',cost:0},
+  {id:'prep-name-tag',category:'이동·가방',name:'캐리어 네임택',qty:4,note:'캐리어 구분',cost:0},
+  {id:'prep-crossbag',category:'이동·가방',name:'작은 크로스백·휴대가방',qty:4,note:'여권·지갑·휴대폰용',cost:0},
+
+  {id:'prep-clothes',category:'의류',name:'3박 4일 옷',qty:4,note:'가족별 여벌 포함',cost:0},
+  {id:'prep-underwear',category:'의류',name:'속옷·양말',qty:4,note:'가족별 준비',cost:0},
+  {id:'prep-pajama',category:'의류',name:'잠옷',qty:4,note:'숙소용',cost:0},
+  {id:'prep-shoes',category:'의류',name:'편한 신발',qty:4,note:'걷는 일정이 많음',cost:0},
+  {id:'prep-jacket',category:'의류',name:'얇은 겉옷',qty:4,note:'실내 냉방·저녁 대비',cost:0},
+
+  {id:'prep-umbrella',category:'비·날씨',name:'접이식 우산',qty:2,note:'일기예보 보고 수량 조정',cost:0},
+  {id:'prep-rainbag',category:'비·날씨',name:'비닐봉투·지퍼백',qty:5,note:'젖은 물건·소분용',cost:0},
+
+  {id:'prep-tooth',category:'세면·생활',name:'칫솔·치약',qty:4,note:'가족별',cost:0},
+  {id:'prep-skin',category:'세면·생활',name:'화장품·스킨케어',qty:1,note:'필요한 만큼 소분',cost:0},
+  {id:'prep-glasses',category:'세면·생활',name:'안경·렌즈용품',qty:1,note:'해당 가족만',cost:0},
+  {id:'prep-wetwipe',category:'세면·생활',name:'물티슈·휴지',qty:1,note:'이동 중 사용',cost:0},
+  {id:'prep-mask',category:'세면·생활',name:'마스크',qty:1,note:'필요 시 사용',cost:0},
+
+  {id:'prep-rx',category:'건강·상비용품',name:'평소 복용약',qty:1,note:'복용일수보다 조금 여유 있게',cost:0},
+  {id:'prep-firstaid',category:'건강·상비용품',name:'상비약·밴드',qty:1,note:'멀미약·진통제·소화제 등 필요한 것',cost:0},
+
+  {id:'prep-kidsbag',category:'아이들',name:'아이들 작은 가방',qty:2,note:'각자 휴대할 물건',cost:0},
+  {id:'prep-snack',category:'아이들',name:'간식·물',qty:1,note:'이동 중 대비',cost:0},
+  {id:'prep-kids-ent',category:'아이들',name:'이어폰·심심풀이',qty:2,note:'긴 이동시간 대비',cost:0},
+
+  {id:'prep-foldbag',category:'쇼핑 대비',name:'접이식 보조가방',qty:1,note:'선물·쇼핑 물품 증가 대비',cost:0},
+  {id:'prep-cushion',category:'쇼핑 대비',name:'완충용 지퍼백·봉투',qty:1,note:'깨지기 쉬운 물건 보호',cost:0}
+];
+let prepState={ready:{},packed:{},cost:{},customItems:[],deleted:{}};
+
+function prepItems(){
+  return PREP_BASE.filter(x=>!prepState.deleted[x.id]).concat(prepState.customItems||[]);
+}
+function prepUid(){return 'prep-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,7)}
+function prepEscape(v){return String(v??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]))}
+function prepFmtKrw(v){return '₩'+Math.round(Number(v)||0).toLocaleString('ko-KR')}
+function prepTotalKrw(){return prepItems().reduce((s,x)=>s+(Number(prepState.cost[x.id] ?? x.cost)||0),0)}
+
+function prepLoadLocal(){
+  try{
+    const raw=localStorage.getItem(PREP_STORAGE);
+    if(raw){
+      const o=JSON.parse(raw);
+      prepState={...prepState,...o};
+      if(!prepState.ready)prepState.ready={};
+      if(!prepState.packed)prepState.packed={};
+      if(!prepState.cost)prepState.cost={};
+      if(!Array.isArray(prepState.customItems))prepState.customItems=[];
+      if(!prepState.deleted)prepState.deleted={};
+    }
+  }catch(e){}
+}
+function prepSaveLocal(){try{localStorage.setItem(PREP_STORAGE,JSON.stringify(prepState))}catch(e){}}
+
+function setPrepCloudStatus(state){
+  const el=document.getElementById('prepCloudSyncStatus');if(!el)return;
+  el.classList.remove('ok','warn','error');
+  if(state==='loading')el.textContent='🧳 준비물 불러오는 중…';
+  else if(state==='saving')el.textContent='🧳 준비물 저장 중…';
+  else if(state==='ok'){el.textContent='🧳 준비물 온라인 최신';el.classList.add('ok')}
+  else if(state==='local'){el.textContent='🧳 기기 저장 준비물';el.classList.add('warn')}
+  else if(state==='empty'){el.textContent='🧳 온라인 준비물 미등록';el.classList.add('warn')}
+  else{el.textContent='🧳 준비물 온라인 연결 실패';el.classList.add('error')}
+}
+
+async function savePrepToSupabase(showAlert=false){
+  prepSaveLocal();
+  try{
+    const {data:{session}}=await supabaseClient.auth.getSession();
+    if(!session){
+      setPrepCloudStatus('local');
+      if(showAlert)alert('관리자 로그인이 필요합니다.');
+      return false;
+    }
+    setPrepCloudStatus('saving');
+    const {error}=await supabaseClient.from('travel_data').upsert({
+      data_key:'preparation',
+      data_value:prepState,
+      updated_at:new Date().toISOString()
+    },{onConflict:'data_key'});
+    if(error)throw error;
+    setPrepCloudStatus('ok');
+    if(showAlert)alert('준비물 내용을 온라인에 저장했습니다.');
+    return true;
+  }catch(e){
+    console.error('[preparation save]',e);
+    setPrepCloudStatus('error');
+    if(showAlert)alert('준비물 온라인 저장에 실패했습니다. 현재 기기에는 저장되어 있습니다.');
+    return false;
+  }
+}
+
+async function loadPrepFromSupabase(){
+  setPrepCloudStatus('loading');
+  try{
+    const {data,error}=await supabaseClient.from('travel_data')
+      .select('data_value,updated_at').eq('data_key','preparation').maybeSingle();
+    if(error)throw error;
+    if(data&&data.data_value){
+      prepState={...prepState,...data.data_value};
+      if(!prepState.ready)prepState.ready={};
+      if(!prepState.packed)prepState.packed={};
+      if(!prepState.cost)prepState.cost={};
+      if(!Array.isArray(prepState.customItems))prepState.customItems=[];
+      if(!prepState.deleted)prepState.deleted={};
+      prepSaveLocal();
+      prepRender();
+      try{budgetRefresh()}catch(e){}
+      try{applyAdminAccess()}catch(e){}
+      setPrepCloudStatus('ok');
+      return true;
+    }
+    setPrepCloudStatus(localStorage.getItem(PREP_STORAGE)?'local':'empty');
+    prepRender();
+    return false;
+  }catch(e){
+    console.error('[preparation load]',e);
+    setPrepCloudStatus(localStorage.getItem(PREP_STORAGE)?'local':'error');
+    prepRender();
+    return false;
+  }
+}
+
+function prepSave(){
+  prepSaveLocal();
+  prepRenderSummary();
+  try{budgetRefresh()}catch(e){}
+  try{savePrepToSupabase(false)}catch(e){}
+}
+function prepToggle(id,type,checked){
+  if(!document.body.classList.contains('admin-mode'))return;
+  prepState[type][id]=!!checked;
+  prepSave();
+}
+function prepSetCost(id,val){
+  if(!document.body.classList.contains('admin-mode'))return;
+  prepState.cost[id]=Math.max(0,Number(val)||0);
+  prepSave();
+}
+function prepAdd(){
+  if(!document.body.classList.contains('admin-mode'))return;
+  const category=document.getElementById('prepAddCategory').value;
+  const name=document.getElementById('prepAddName').value.trim();
+  const qty=Math.max(1,Number(document.getElementById('prepAddQty').value)||1);
+  const cost=Math.max(0,Number(document.getElementById('prepAddCost').value)||0);
+  const note=document.getElementById('prepAddNote').value.trim();
+  if(!name){alert('준비물 이름을 입력해 주세요.');return}
+  const id=prepUid();
+  prepState.customItems.push({id,category,name,qty,note,cost:0});
+  prepState.cost[id]=cost;
+  document.getElementById('prepAddName').value='';
+  document.getElementById('prepAddQty').value='1';
+  document.getElementById('prepAddCost').value='';
+  document.getElementById('prepAddNote').value='';
+  prepSaveLocal(); prepRender(); try{budgetRefresh()}catch(e){}; try{savePrepToSupabase(false)}catch(e){}
+}
+function prepDelete(id){
+  if(!document.body.classList.contains('admin-mode'))return;
+  if(!confirm('이 준비물을 목록에서 삭제할까요?'))return;
+  if(PREP_BASE.some(x=>x.id===id))prepState.deleted[id]=true;
+  else prepState.customItems=prepState.customItems.filter(x=>x.id!==id);
+  delete prepState.ready[id];delete prepState.packed[id];delete prepState.cost[id];
+  prepSaveLocal();prepRender();try{budgetRefresh()}catch(e){};try{savePrepToSupabase(false)}catch(e){}
+}
+function prepUpdate(id,key,val){
+  if(!document.body.classList.contains('admin-mode'))return;
+  let it=prepState.customItems.find(x=>x.id===id);
+  if(!it){
+    const base=PREP_BASE.find(x=>x.id===id);if(!base)return;
+    const custom={...base,id:prepUid()};
+    prepState.deleted[id]=true;
+    prepState.customItems.push(custom);
+    prepState.ready[custom.id]=!!prepState.ready[id];
+    prepState.packed[custom.id]=!!prepState.packed[id];
+    prepState.cost[custom.id]=Number(prepState.cost[id]??base.cost)||0;
+    delete prepState.ready[id];delete prepState.packed[id];delete prepState.cost[id];
+    it=custom;id=custom.id;
+  }
+  if(key==='qty')it.qty=Math.max(1,Number(val)||1); else it[key]=val;
+  prepSaveLocal();prepRender();try{budgetRefresh()}catch(e){};try{savePrepToSupabase(false)}catch(e){}
+}
+
+function prepRenderSummary(){
+  const items=prepItems(), total=items.length;
+  const ready=items.filter(x=>prepState.ready[x.id]).length;
+  const packed=items.filter(x=>prepState.packed[x.id]).length;
+  const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v};
+  set('prepReadyText',`${ready} / ${total}`);
+  set('prepPackedText',`${packed} / ${total}`);
+  set('prepTotalKrw',prepFmtKrw(prepTotalKrw()));
+  set('prepTotalCount',`${total}개`);
+  const rb=document.getElementById('prepReadyBar'),pb=document.getElementById('prepPackedBar');
+  if(rb)rb.style.width=(total?ready/total*100:0)+'%';
+  if(pb)pb.style.width=(total?packed/total*100:0)+'%';
+}
+
+function prepRender(){
+  const root=document.getElementById('prepList');if(!root)return;
+  const cats=['여행 필수','돈·결제','통신·전자기기','이동·가방','의류','비·날씨','세면·생활','건강·상비용품','아이들','쇼핑 대비','기타'];
+  const items=prepItems();
+  let h='';
+  for(const cat of cats){
+    const rows=items.filter(x=>x.category===cat);
+    if(!rows.length)continue;
+    h+=`<div class="prep-category">${prepEscape(cat)}</div>`;
+    for(const it of rows){
+      const cost=Number(prepState.cost[it.id] ?? it.cost)||0;
+      h+=`<div class="prep-row">
+        <input class="prep-check" type="checkbox" title="준비 완료" ${prepState.ready[it.id]?'checked':''} onchange="prepToggle('${prepEscape(it.id)}','ready',this.checked)">
+        <input class="prep-check" type="checkbox" title="짐에 넣음" ${prepState.packed[it.id]?'checked':''} onchange="prepToggle('${prepEscape(it.id)}','packed',this.checked)">
+        <div class="prep-name"><strong>${prepEscape(it.name)}</strong>${it.note?`<small>${prepEscape(it.note)}</small>`:''}</div>
+        <div class="prep-qty">${Number(it.qty)||1}개</div>
+        <div class="prep-cost">${prepFmtKrw(cost)}<small>실제비용</small></div>
+        <button class="prep-delete" type="button" onclick="prepDelete('${prepEscape(it.id)}')">×</button>
+        <div class="prep-editgrid">
+          <select onchange="prepUpdate('${prepEscape(it.id)}','category',this.value)">
+            ${cats.map(c=>`<option ${c===it.category?'selected':''}>${c}</option>`).join('')}
+          </select>
+          <input value="${prepEscape(it.name)}" onchange="prepUpdate('${prepEscape(it.id)}','name',this.value)" aria-label="준비물 이름">
+          <input type="number" min="1" value="${Number(it.qty)||1}" onchange="prepUpdate('${prepEscape(it.id)}','qty',this.value)" aria-label="수량">
+          <input type="number" min="0" value="${cost}" onchange="prepSetCost('${prepEscape(it.id)}',this.value)" aria-label="비용 원">
+          <input class="full" value="${prepEscape(it.note||'')}" placeholder="메모" onchange="prepUpdate('${prepEscape(it.id)}','note',this.value)">
+        </div>
+      </div>`;
+    }
+  }
+  root.innerHTML=h;
+  prepRenderSummary();
+  try{applyAdminAccess()}catch(e){}
+}
+prepLoadLocal();
+</script>
+
 <script>
 /* ===== 여행 예산 · 지출 요약 ===== */
 const BUDGET_STORAGE='osaka_trip_budget_v1';
@@ -5735,7 +6116,7 @@ function budgetRefresh(){
   const food=budgetMealYen();
   const admission=Number(budgetState.yen.admission)||0;
   const shopping=budgetShoppingYen();
-  const prep=Number(budgetState.krw.prep)||0;
+  const prep=(typeof prepTotalKrw==='function')?prepTotalKrw():(Number(budgetState.krw.prep)||0);
   const actual=airfare+(lodging+transport+food+admission+shopping)*rate+prep;
   const remain=planHigh-actual;
 
@@ -5762,6 +6143,7 @@ function budgetRefresh(){
   set('budgetActualAdmissionKrw',budgetFmtKrw(admission*rate));
   set('budgetActualShoppingYen',budgetFmtYen(shopping));
   set('budgetActualShoppingKrw',budgetFmtKrw(shopping*rate));
+  set('budgetActualPrepKrw',budgetFmtKrw(prep));
 
   const pct=planHigh>0?Math.max(0,Math.min(100,(actual/planHigh)*100)):0;
   const bar=document.getElementById('budgetProgressBar');if(bar)bar.style.width=pct.toFixed(1)+'%';
@@ -5798,8 +6180,7 @@ function budgetRender(){
   const mapY={lodging:'budgetActualLodging',admission:'budgetActualAdmission'};
   Object.entries(mapY).forEach(([k,id])=>{const e=document.getElementById(id);if(e)e.value=budgetState.yen[k]??'';});
   const a=document.getElementById('budgetActualAirfare');if(a)a.value=budgetState.krw.airfare??'';
-  const p=document.getElementById('budgetActualPrep');if(p)p.value=budgetState.krw.prep??'';
-  const paidIds={airfare:'budgetPaidAirfare',lodging:'budgetPaidLodging',admission:'budgetPaidAdmission',prep:'budgetPaidPrep'};
+  const paidIds={airfare:'budgetPaidAirfare',lodging:'budgetPaidLodging',admission:'budgetPaidAdmission'};
   Object.entries(paidIds).forEach(([k,id])=>{const e=document.getElementById(id);if(e)e.checked=!!budgetState.paid[k];});
   budgetRefresh();
   try{if(typeof applyAdminAccess==='function')applyAdminAccess();}catch(e){}
@@ -5957,6 +6338,11 @@ if ('serviceWorker' in navigator) {
       if(locked)el.setAttribute('tabindex','-1'); else el.removeAttribute('tabindex');
     });
 
+    document.querySelectorAll('#prep input, #prep select').forEach(el=>{
+      el.disabled=locked;
+      if(locked)el.setAttribute('tabindex','-1'); else el.removeAttribute('tabindex');
+    });
+
     if(locked){
       document.querySelectorAll('[data-editable="1"]').forEach(el=>{
         el.contentEditable='false';
@@ -6089,10 +6475,12 @@ if ('serviceWorker' in navigator) {
     const shopping = document.getElementById('shopping');
     const meals = document.getElementById('meals');
     const transport = document.getElementById('transport');
+    const prep = document.getElementById('prep');
     const budget = document.getElementById('budget');
     if(shopping) accessObserver.observe(shopping,{childList:true,subtree:true});
     if(meals) accessObserver.observe(meals,{childList:true,subtree:true});
     if(transport) accessObserver.observe(transport,{childList:true,subtree:true});
+    if(prep) accessObserver.observe(prep,{childList:true,subtree:true});
     if(budget) accessObserver.observe(budget,{childList:true,subtree:true});
 
     /* 기존 로그인 세션이 있으면 자동으로 관리자 모드 복원 */
@@ -6108,7 +6496,11 @@ if ('serviceWorker' in navigator) {
     await loadShoppingFromSupabase();
     await loadMealsFromSupabase();
     await loadTransportFromSupabase();
+    await loadPrepFromSupabase();
     await loadBudgetFromSupabase();
+
+    /* 새로고침 직후에는 항상 1일차를 정상 표시한다. */
+    showDay(0,document.getElementById('tab0'));
   });
 
   supabaseClient.auth.onAuthStateChange((_event, session) => {
