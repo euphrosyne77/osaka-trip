@@ -21,7 +21,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,Bl
 header{position:sticky;top:0;z-index:50;background:linear-gradient(135deg,#0b6f69,#18586e);color:#fff;padding:15px 14px 12px;box-shadow:0 2px 12px #0002}
 header h1{font-size:20px;margin:0}
 header p{font-size:12px;margin:3px 0 8px;opacity:.92}
-.tabs{display:grid;grid-template-columns:repeat(8,1fr);gap:5px}
+.tabs{display:grid;grid-template-columns:repeat(9,1fr);gap:5px}
 .tabs button{border:0;border-radius:10px;padding:9px 2px;background:#ffffff22;color:#fff;font-weight:800;font-size:12px}
 .tabs button.active{background:#fff;color:var(--brand)}
 main{max-width:760px;margin:auto;padding:14px 12px 60px}
@@ -446,6 +446,33 @@ body:not(.admin-mode) #budget input:disabled{opacity:1;-webkit-text-fill-color:v
 #budgetCloudSyncStatus.warn{color:#9a6412;background:#fff5d6}
 #budgetCloudSyncStatus.error{color:#a33;background:var(--danger)}
 
+
+.transport{display:none}.transport.active{display:block}
+.transport-head{background:linear-gradient(135deg,#194d63,#0c6b67);color:#fff;border-radius:18px;padding:16px;margin-bottom:10px}
+.transport-head h2{margin:0;font-size:24px}.transport-head p{margin:4px 0 0;font-size:12px;opacity:.92}
+.transport-summary{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.transport-summary>div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:11px}
+.transport-summary span{display:block;font-size:9px;color:var(--muted);font-weight:850}
+.transport-summary b{display:block;font-size:17px;color:var(--brand);margin-top:2px}
+.transport-addbox{background:var(--card);border:1px dashed var(--brand);border-radius:15px;padding:11px;margin:10px 0}
+.transport-addgrid,.transport-editgrid{display:grid;grid-template-columns:92px 110px minmax(0,1fr) 100px;gap:6px}
+.transport-addgrid input,.transport-addgrid select,.transport-editgrid input,.transport-editgrid select{width:100%;min-width:0;border:1px solid var(--line);border-radius:9px;padding:8px;background:var(--card);color:var(--ink);font-size:12px}
+.transport-addgrid .full,.transport-editgrid .full{grid-column:1/-1}
+.transport-addgrid button{border:0;border-radius:9px;padding:9px 12px;background:var(--brand);color:#fff;font-weight:850}
+.transport-day-head{display:flex;justify-content:space-between;align-items:center;margin:17px 2px 7px;padding-bottom:7px;border-bottom:2px solid var(--brand)}
+.transport-day-head b{font-size:18px;color:var(--brand)}.transport-day-head span{font-size:10px;color:var(--brand);background:var(--soft);border-radius:999px;padding:4px 8px;font-weight:850}
+.transport-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:11px;margin:8px 0}
+.transport-card-top{display:grid;grid-template-columns:95px minmax(0,1fr) 95px 28px;gap:7px;align-items:center}
+.transport-mode{font-size:10px;font-weight:900;color:var(--brand);background:var(--soft);border-radius:999px;padding:4px 7px;text-align:center}
+.transport-route{font-size:12px;font-weight:900}.transport-money{text-align:right;font-size:12px;font-weight:900}
+.transport-money small{display:block;font-size:9px;color:var(--muted)}.transport-note{font-size:10px;color:var(--muted);margin-top:6px}
+.transport-delete{border:0;background:transparent;color:#b13c33;font-weight:900;font-size:15px}
+.transport-editgrid{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
+body:not(.admin-mode) .transport-addbox,body:not(.admin-mode) .transport-delete,body:not(.admin-mode) .transport-editgrid{display:none!important}
+#transportCloudSyncStatus{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:800;color:var(--muted);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 9px}
+#transportCloudSyncStatus.ok{color:var(--brand);background:var(--soft)}#transportCloudSyncStatus.warn{color:#9a6412;background:#fff5d6}#transportCloudSyncStatus.error{color:#a33;background:var(--danger)}
+@media(max-width:650px){.transport-addgrid,.transport-editgrid{grid-template-columns:1fr 1fr}.transport-addgrid .full,.transport-editgrid .full{grid-column:1/-1}.transport-card-top{grid-template-columns:80px minmax(0,1fr) 78px 24px}}
+
 </style>
 </head>
 <body class="">
@@ -460,6 +487,7 @@ body:not(.admin-mode) #budget input:disabled{opacity:1;-webkit-text-fill-color:v
     <button id="tabEmergency" onclick="showEmergency(this)">주요 목적지</button>
     <button id="tabShopping" onclick="showShopping(this)">쇼핑·선물</button>
     <button id="tabMeals" onclick="showMeals(this)">식사</button>
+    <button id="tabTransport" onclick="showTransport(this)">교통비</button>
     <button id="tabBudget" onclick="showBudget(this)">예산</button>
   </div>
 </header>
@@ -478,6 +506,7 @@ body:not(.admin-mode) #budget input:disabled{opacity:1;-webkit-text-fill-color:v
     <span id="cloudSyncStatus">☁️ 일정 불러오는 중…</span>
     <span id="shopCloudSyncStatus">🛍️ 쇼핑 동기화 대기</span>
     <span id="mealCloudSyncStatus">🍽️ 식사 동기화 대기</span>
+    <span id="transportCloudSyncStatus">🚇 교통비 동기화 대기</span>
     <span id="budgetCloudSyncStatus">💳 예산 동기화 대기</span>
 
     <div id="adminTools" style="display:none; gap:6px; flex-wrap:wrap;">
@@ -486,6 +515,7 @@ body:not(.admin-mode) #budget input:disabled{opacity:1;-webkit-text-fill-color:v
       <button onclick="saveEdits()">💾 저장</button>
       <button onclick="saveShoppingToSupabase(true)">🛍️ 쇼핑 온라인 저장</button>
       <button onclick="saveMealsToSupabase(true)">🍽️ 식사 온라인 저장</button>
+      <button onclick="saveTransportToSupabase(true)">🚇 교통비 온라인 저장</button>
       <button onclick="saveBudgetToSupabase(true)">💳 예산 온라인 저장</button>
       <button onclick="exportBackup()">⬇️ 백업</button>
       <button onclick="exportHTML()">📄 HTML 내보내기</button>
@@ -4016,6 +4046,32 @@ body:not(.admin-mode) #budget input:disabled{opacity:1;-webkit-text-fill-color:v
   </section>
 
 
+
+  <section id="transport" class="transport">
+    <div class="transport-head"><h2>🚇 교통비 기록</h2><p>지하철·JR·버스·택시 등 실제 사용한 교통비를 일차별로 기록합니다. 합계는 예산 탭에 자동 반영됩니다.</p></div>
+    <div class="transport-summary">
+      <div><span>실제 교통비 합계</span><b id="transportTotalYen">¥0</b></div>
+      <div><span>원화 환산</span><b id="transportTotalKrw">₩0</b></div>
+    </div>
+    <div class="transport-addbox">
+      <div style="font-size:12px;font-weight:900;color:var(--brand);margin-bottom:7px">➕ 교통비 추가</div>
+      <div class="transport-addgrid">
+        <select id="transportAddDay"><option value="1">1일차</option><option value="2">2일차</option><option value="3">3일차</option><option value="4">4일차</option></select>
+        <select id="transportAddMode"><option>지하철</option><option>JR/철도</option><option>버스</option><option>택시</option><option>공항철도</option><option>기타</option></select>
+        <input id="transportAddRoute" placeholder="예: 난바 → 다이코쿠초">
+        <input id="transportAddYen" type="number" min="0" step="1" placeholder="금액(엔)">
+        <input id="transportAddNote" class="full" placeholder="메모 (선택)">
+        <button class="full" type="button" onclick="transportAdd()">추가</button>
+      </div>
+    </div>
+    <div id="transportList"></div>
+    <div class="pager">
+      <button onclick="showMeals(document.getElementById('tabMeals'))">‹ 식사</button>
+      <button onclick="scrollTopNow()">맨 위로 ↑</button>
+      <button onclick="showBudget(document.getElementById('tabBudget'))">예산 ›</button>
+    </div>
+  </section>
+
   <section id="budget" class="budget">
     <div class="budget-head">
       <h2>💳 여행 예산 · 지출 요약</h2>
@@ -4083,9 +4139,9 @@ body:not(.admin-mode) #budget input:disabled{opacity:1;-webkit-text-fill-color:v
       <div class="budget-row" data-budget-row="transport">
         <div class="budget-cat">🚇 현지 교통</div>
         <div class="budget-plan">¥60,000 ~ 80,000<small id="budgetPlanTransportKrw">₩0 ~ ₩0</small></div>
-        <div><div class="budget-actual-wrap"><input class="budget-input" id="budgetActualTransport" type="number" inputmode="numeric" min="0" step="1" placeholder="실제 ¥" oninput="budgetSetYen('transport',this.value)"><span class="unit">엔</span></div><div class="budget-auto" id="budgetActualTransportKrw">₩0</div></div>
-        <div class="budget-note">ICOCA 구입·충전, 난카이 공항급행, JR·지하철·버스, 택시 일부.</div>
-        <div class="budget-status"><span class="budget-badge" id="budgetStatusTransport">미입력</span><label class="budget-paid budget-admin-only"><input id="budgetPaidTransport" type="checkbox" onchange="budgetSetPaid('transport',this.checked)">완료</label></div>
+        <div><div class="budget-auto" id="budgetActualTransportYen">¥0</div><div class="budget-auto" id="budgetActualTransportKrw">₩0</div></div>
+        <div class="budget-note">교통비 탭에서 입력한 실제 금액을 자동 합산합니다.</div>
+        <div class="budget-status"><span class="budget-badge" id="budgetStatusTransport">자동연동</span></div>
       </div>
 
       <div class="budget-row" data-budget-row="food">
@@ -4246,6 +4302,7 @@ function showDay(i,btn){
   document.getElementById('shopping').classList.remove('active');
   document.getElementById('meals').classList.remove('active');
   document.getElementById('budget').classList.remove('active');
+  document.getElementById('transport').classList.remove('active');
   document.querySelectorAll('.day').forEach((d,n)=>d.classList.toggle('active',n===i));
   document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
   if(btn)btn.classList.add('active'); else setActiveTab(i);
@@ -4262,6 +4319,7 @@ function showEmergency(btn){
   document.getElementById('shopping').classList.remove('active');
   document.getElementById('meals').classList.remove('active');
   document.getElementById('budget').classList.remove('active');
+  document.getElementById('transport').classList.remove('active');
   document.getElementById('emergency').classList.add('active');
   document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
   (btn||document.getElementById('tabEmergency')).classList.add('active');
@@ -4274,6 +4332,7 @@ function showShopping(btn){
   document.getElementById('emergency').classList.remove('active');
   document.getElementById('meals').classList.remove('active');
   document.getElementById('budget').classList.remove('active');
+  document.getElementById('transport').classList.remove('active');
   document.getElementById('shopping').classList.add('active');
   document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
   (btn||document.getElementById('tabShopping')).classList.add('active');
@@ -4286,6 +4345,7 @@ function showMeals(btn){
   document.getElementById('emergency').classList.remove('active');
   document.getElementById('shopping').classList.remove('active');
   document.getElementById('budget').classList.remove('active');
+  document.getElementById('transport').classList.remove('active');
   document.getElementById('meals').classList.add('active');
   document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
   (btn||document.getElementById('tabMeals')).classList.add('active');
@@ -4298,12 +4358,26 @@ function showBudget(btn){
   document.getElementById('emergency').classList.remove('active');
   document.getElementById('shopping').classList.remove('active');
   document.getElementById('meals').classList.remove('active');
+  document.getElementById('transport').classList.remove('active');
   document.getElementById('budget').classList.add('active');
   document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
   (btn||document.getElementById('tabBudget')).classList.add('active');
   budgetRender();
   scrollTopNow();
 }
+function showTransport(btn){
+  document.querySelectorAll('.day').forEach(d=>d.classList.remove('active'));
+  document.getElementById('emergency').classList.remove('active');
+  document.getElementById('shopping').classList.remove('active');
+  document.getElementById('meals').classList.remove('active');
+  document.getElementById('budget').classList.remove('active');
+  document.getElementById('transport').classList.add('active');
+  document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
+  (btn||document.getElementById('tabTransport')).classList.add('active');
+  transportRender();
+  scrollTopNow();
+}
+
 
 
 
@@ -5409,7 +5483,74 @@ mealLoad();
 </script>
 
 <script>
+const TRANSPORT_STORAGE='osaka_trip_transport_v1';
+let transportState={items:[]};
+function transportUid(){return 'tr-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,7)}
+function transportFmtYen(v){return '¥'+Math.round(Number(v)||0).toLocaleString('ko-KR')}
+function transportRate(){return (typeof budgetState!=='undefined'&&Number(budgetState.rate)>0)?Number(budgetState.rate):8.78}
+function transportFmtKrw(v){return '₩'+Math.round((Number(v)||0)*transportRate()).toLocaleString('ko-KR')}
+function transportEscape(v){return String(v??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]))}
+function transportLoadLocal(){try{const raw=localStorage.getItem(TRANSPORT_STORAGE);if(raw){const o=JSON.parse(raw);if(o&&Array.isArray(o.items))transportState=o}}catch(e){}}
+function transportSaveLocal(){try{localStorage.setItem(TRANSPORT_STORAGE,JSON.stringify(transportState))}catch(e){}}
+function transportTotal(){return (transportState.items||[]).reduce((s,x)=>s+(Number(x.yen)||0),0)}
+function setTransportCloudStatus(state){
+ const el=document.getElementById('transportCloudSyncStatus');if(!el)return;el.classList.remove('ok','warn','error');
+ if(state==='loading')el.textContent='🚇 교통비 불러오는 중…';
+ else if(state==='saving')el.textContent='🚇 교통비 저장 중…';
+ else if(state==='ok'){el.textContent='🚇 교통비 온라인 최신';el.classList.add('ok')}
+ else if(state==='local'){el.textContent='🚇 기기 저장 교통비';el.classList.add('warn')}
+ else if(state==='empty'){el.textContent='🚇 온라인 교통비 미등록';el.classList.add('warn')}
+ else{el.textContent='🚇 교통비 온라인 연결 실패';el.classList.add('error')}
+}
+async function saveTransportToSupabase(showAlert=false){
+ transportSaveLocal();
+ try{
+  const {data:{session}}=await supabaseClient.auth.getSession();
+  if(!session){setTransportCloudStatus('local');if(showAlert)alert('관리자 로그인이 필요합니다.');return false}
+  setTransportCloudStatus('saving');
+  const {error}=await supabaseClient.from('travel_data').upsert({data_key:'transport',data_value:transportState,updated_at:new Date().toISOString()},{onConflict:'data_key'});
+  if(error)throw error;
+  setTransportCloudStatus('ok');if(showAlert)alert('교통비 내용을 온라인에 저장했습니다.');return true
+ }catch(e){console.error('[transport save]',e);setTransportCloudStatus('error');if(showAlert)alert('교통비 온라인 저장에 실패했습니다. 현재 기기에는 저장되어 있습니다.');return false}
+}
+async function loadTransportFromSupabase(){
+ setTransportCloudStatus('loading');
+ try{
+  const {data,error}=await supabaseClient.from('travel_data').select('data_value,updated_at').eq('data_key','transport').maybeSingle();
+  if(error)throw error;
+  if(data&&data.data_value){transportState={items:Array.isArray(data.data_value.items)?data.data_value.items:[]};transportSaveLocal();transportRender();try{budgetRefresh()}catch(e){};try{applyAdminAccess()}catch(e){};setTransportCloudStatus('ok');return true}
+  setTransportCloudStatus(localStorage.getItem(TRANSPORT_STORAGE)?'local':'empty');transportRender();return false
+ }catch(e){console.error('[transport load]',e);setTransportCloudStatus(localStorage.getItem(TRANSPORT_STORAGE)?'local':'error');transportRender();return false}
+}
+function transportSave(){transportSaveLocal();transportRender();try{budgetRefresh()}catch(e){};try{saveTransportToSupabase(false)}catch(e){}}
+function transportAdd(){
+ if(!document.body.classList.contains('admin-mode'))return;
+ const day=document.getElementById('transportAddDay').value,mode=document.getElementById('transportAddMode').value,route=document.getElementById('transportAddRoute').value.trim(),yen=Number(document.getElementById('transportAddYen').value)||0,note=document.getElementById('transportAddNote').value.trim();
+ if(!route){alert('이동 구간을 입력해 주세요.');return}
+ transportState.items.push({id:transportUid(),day,mode,route,yen,note});
+ document.getElementById('transportAddRoute').value='';document.getElementById('transportAddYen').value='';document.getElementById('transportAddNote').value='';transportSave()
+}
+function transportDelete(id){if(!document.body.classList.contains('admin-mode'))return;if(!confirm('이 교통비 기록을 삭제할까요?'))return;transportState.items=transportState.items.filter(x=>x.id!==id);transportSave()}
+function transportUpdate(id,key,val){if(!document.body.classList.contains('admin-mode'))return;const it=transportState.items.find(x=>x.id===id);if(!it)return;it[key]=(key==='yen')?(Number(val)||0):val;transportSaveLocal();transportRenderTotals();try{budgetRefresh()}catch(e){};try{saveTransportToSupabase(false)}catch(e){}}
+function transportRenderTotals(){
+ const total=transportTotal(),y=document.getElementById('transportTotalYen'),k=document.getElementById('transportTotalKrw');if(y)y.textContent=transportFmtYen(total);if(k)k.textContent=transportFmtKrw(total);
+ document.querySelectorAll('[data-transport-day-total]').forEach(el=>{const d=el.dataset.transportDayTotal,v=transportState.items.filter(x=>String(x.day)===String(d)).reduce((s,x)=>s+(Number(x.yen)||0),0);el.textContent=transportFmtYen(v)})
+}
+function transportRender(){
+ const root=document.getElementById('transportList');if(!root)return;const items=[...(transportState.items||[])].sort((a,b)=>Number(a.day)-Number(b.day));let h='';
+ for(const day of ['1','2','3','4']){
+  const rows=items.filter(x=>String(x.day)===day);h+=`<div class="transport-day-head"><b>${day}일차</b><span data-transport-day-total="${day}">¥0</span></div>`;
+  if(!rows.length){h+=`<div class="transport-card"><div class="transport-note">등록된 교통비가 없습니다.</div></div>`;continue}
+  for(const it of rows){
+   h+=`<div class="transport-card"><div class="transport-card-top"><div class="transport-mode">${transportEscape(it.mode)}</div><div class="transport-route">${transportEscape(it.route)}</div><div class="transport-money">${transportFmtYen(it.yen)}<small>${transportFmtKrw(it.yen)}</small></div><button class="transport-delete" onclick="transportDelete('${transportEscape(it.id)}')">×</button></div>${it.note?`<div class="transport-note">${transportEscape(it.note)}</div>`:''}<div class="transport-editgrid"><select onchange="transportUpdate('${transportEscape(it.id)}','day',this.value)">${['1','2','3','4'].map(d=>`<option value="${d}" ${String(it.day)===d?'selected':''}>${d}일차</option>`).join('')}</select><select onchange="transportUpdate('${transportEscape(it.id)}','mode',this.value)">${['지하철','JR/철도','버스','택시','공항철도','기타'].map(m=>`<option ${it.mode===m?'selected':''}>${m}</option>`).join('')}</select><input value="${transportEscape(it.route)}" onchange="transportUpdate('${transportEscape(it.id)}','route',this.value)"><input type="number" min="0" value="${Number(it.yen)||0}" onchange="transportUpdate('${transportEscape(it.id)}','yen',this.value)"><input class="full" value="${transportEscape(it.note||'')}" placeholder="메모" onchange="transportUpdate('${transportEscape(it.id)}','note',this.value)"></div></div>`
+  }
+ }
+ root.innerHTML=h;transportRenderTotals();try{applyAdminAccess()}catch(e){}
+}
+transportLoadLocal();
+</script>
 
+<script>
 /* ===== 여행 예산 · 지출 요약 ===== */
 const BUDGET_STORAGE='osaka_trip_budget_v1';
 const BUDGET_PLAN={
@@ -5590,7 +5731,7 @@ function budgetRefresh(){
 
   const airfare=Number(budgetState.krw.airfare)||0;
   const lodging=Number(budgetState.yen.lodging)||0;
-  const transport=Number(budgetState.yen.transport)||0;
+  const transport=(typeof transportTotal==='function')?transportTotal():(Number(budgetState.yen.transport)||0);
   const food=budgetMealYen();
   const admission=Number(budgetState.yen.admission)||0;
   const shopping=budgetShoppingYen();
@@ -5614,6 +5755,7 @@ function budgetRefresh(){
   set('budgetPlanShoppingKrw',budgetFmtKrw(BUDGET_PLAN.shopping[0]*rate)+' ~ '+budgetFmtKrw(BUDGET_PLAN.shopping[1]*rate));
 
   set('budgetActualLodgingKrw',budgetFmtKrw(lodging*rate));
+  set('budgetActualTransportYen',budgetFmtYen(transport));
   set('budgetActualTransportKrw',budgetFmtKrw(transport*rate));
   set('budgetActualFoodYen',budgetFmtYen(food));
   set('budgetActualFoodKrw',budgetFmtKrw(food*rate));
@@ -5626,7 +5768,7 @@ function budgetRefresh(){
   set('budgetProgressText','지출 진행률 '+pct.toFixed(1)+'%');
 
   budgetStatusFor('lodging',lodging,BUDGET_PLAN.lodging[0],BUDGET_PLAN.lodging[1]);
-  budgetStatusFor('transport',transport,BUDGET_PLAN.transport[0],BUDGET_PLAN.transport[1]);
+  budgetStatusFor('transport',transport,BUDGET_PLAN.transport[0],BUDGET_PLAN.transport[1],true);
   budgetStatusFor('food',food,BUDGET_PLAN.food[0],BUDGET_PLAN.food[1],true);
   budgetStatusFor('admission',admission,BUDGET_PLAN.admission[0],BUDGET_PLAN.admission[1]);
   budgetStatusFor('shopping',shopping,BUDGET_PLAN.shopping[0],BUDGET_PLAN.shopping[1],true);
@@ -5643,7 +5785,7 @@ function budgetRefresh(){
     statusPrep.className='budget-badge '+(budgetState.paid.prep?'done':'');
   }
 
-  ['lodging','transport','admission'].forEach(key=>{
+  ['lodging','admission'].forEach(key=>{
     const id='budgetStatus'+key.charAt(0).toUpperCase()+key.slice(1);
     const el=document.getElementById(id);
     if(el && budgetState.paid[key] && (Number(budgetState.yen[key])||0)>0){
@@ -5653,11 +5795,11 @@ function budgetRefresh(){
 }
 function budgetRender(){
   const fx=document.getElementById('budgetFx');if(fx)fx.value=budgetState.rate;
-  const mapY={lodging:'budgetActualLodging',transport:'budgetActualTransport',admission:'budgetActualAdmission'};
+  const mapY={lodging:'budgetActualLodging',admission:'budgetActualAdmission'};
   Object.entries(mapY).forEach(([k,id])=>{const e=document.getElementById(id);if(e)e.value=budgetState.yen[k]??'';});
   const a=document.getElementById('budgetActualAirfare');if(a)a.value=budgetState.krw.airfare??'';
   const p=document.getElementById('budgetActualPrep');if(p)p.value=budgetState.krw.prep??'';
-  const paidIds={airfare:'budgetPaidAirfare',lodging:'budgetPaidLodging',transport:'budgetPaidTransport',admission:'budgetPaidAdmission',prep:'budgetPaidPrep'};
+  const paidIds={airfare:'budgetPaidAirfare',lodging:'budgetPaidLodging',admission:'budgetPaidAdmission',prep:'budgetPaidPrep'};
   Object.entries(paidIds).forEach(([k,id])=>{const e=document.getElementById(id);if(e)e.checked=!!budgetState.paid[k];});
   budgetRefresh();
   try{if(typeof applyAdminAccess==='function')applyAdminAccess();}catch(e){}
@@ -5810,6 +5952,11 @@ if ('serviceWorker' in navigator) {
       else el.removeAttribute('tabindex');
     });
 
+    document.querySelectorAll('#transport input, #transport select').forEach(el=>{
+      el.disabled=locked;
+      if(locked)el.setAttribute('tabindex','-1'); else el.removeAttribute('tabindex');
+    });
+
     if(locked){
       document.querySelectorAll('[data-editable="1"]').forEach(el=>{
         el.contentEditable='false';
@@ -5941,9 +6088,11 @@ if ('serviceWorker' in navigator) {
 
     const shopping = document.getElementById('shopping');
     const meals = document.getElementById('meals');
+    const transport = document.getElementById('transport');
     const budget = document.getElementById('budget');
     if(shopping) accessObserver.observe(shopping,{childList:true,subtree:true});
     if(meals) accessObserver.observe(meals,{childList:true,subtree:true});
+    if(transport) accessObserver.observe(transport,{childList:true,subtree:true});
     if(budget) accessObserver.observe(budget,{childList:true,subtree:true});
 
     /* 기존 로그인 세션이 있으면 자동으로 관리자 모드 복원 */
@@ -5958,6 +6107,7 @@ if ('serviceWorker' in navigator) {
     await loadGuideFromSupabase();
     await loadShoppingFromSupabase();
     await loadMealsFromSupabase();
+    await loadTransportFromSupabase();
     await loadBudgetFromSupabase();
   });
 
