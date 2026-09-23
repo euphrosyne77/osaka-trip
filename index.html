@@ -528,12 +528,68 @@ body:not(.admin-mode) #prep select:disabled{opacity:1;-webkit-text-fill-color:va
   margin-top:7px;
 }
 
+
+/* ===== 1일차 · 전체 일정 인포그래픽 ===== */
+.trip-overview{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:15px;
+  margin:0 0 10px;
+  overflow:hidden;
+}
+.trip-overview>summary{
+  list-style:none;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  padding:12px 13px;
+  font-weight:900;
+  color:var(--brand);
+}
+.trip-overview>summary::-webkit-details-marker{display:none}
+.trip-overview[open]>summary{
+  border-bottom:1px solid var(--line);
+  background:var(--soft);
+}
+.trip-overview-arrow{
+  font-size:20px;
+  color:var(--muted);
+  transition:.2s;
+}
+.trip-overview[open] .trip-overview-arrow{transform:rotate(90deg)}
+.trip-overview-body{padding:10px}
+.trip-overview-note{
+  font-size:10px;
+  color:var(--muted);
+  line-height:1.5;
+  margin:0 2px 8px;
+}
+.trip-overview-link{
+  display:block;
+  border:1px solid var(--line);
+  border-radius:12px;
+  overflow:hidden;
+  background:#fff;
+}
+.trip-overview-link img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+.trip-overview-zoom{
+  text-align:center;
+  font-size:10px;
+  color:var(--muted);
+  margin-top:7px;
+}
+
 </style>
 </head>
 <body class="">
 <header id="top">
   <h1>🇯🇵 오사카·교토 3박 4일</h1>
-  <p>전철·버스·택시·도보 선택 · 줄 추가/삭제 가능 · 오프라인 사용 · 한자 읽는 법 포함</p>
   <div class="tabs">
     <button id="tab0" class="active" onclick="showDay(0,this)">1일차</button>
     <button id="tab1" onclick="showDay(1,this)" class="">2일차</button>
@@ -579,6 +635,23 @@ body:not(.admin-mode) #prep select:disabled{opacity:1;-webkit-text-fill-color:va
         <b data-editable="1" contenteditable="false">1일차</b><span>9/26</span>
         <p data-editable="1" contenteditable="false">간사이공항 → 숙소 → 덴노지 → 아베노 큐즈몰 → MEGA 돈키호테 → 숙소</p>
       </div>
+
+      <details class="trip-overview">
+        <summary>
+          <span>🗺️ 3박 4일 전체 일정 한눈에 보기</span>
+          <span class="trip-overview-arrow">›</span>
+        </summary>
+        <div class="trip-overview-body">
+          <div class="trip-overview-note">
+            1~4일차 주요 방문지를 시간 순서대로 정리한 전체 일정 인포그래픽입니다.
+            이미지를 누르면 새 창에서 크게 볼 수 있습니다.
+          </div>
+          <a class="trip-overview-link" href="./trip-itinerary.png" target="_blank" rel="noopener">
+            <img src="./trip-itinerary.png" alt="오사카·교토 가족여행 3박 4일 전체 일정 인포그래픽">
+          </a>
+          <div class="trip-overview-zoom">🔍 이미지를 누르면 크게 열립니다.</div>
+        </div>
+      </details>
 
       <div class="foldbar">
         <button onclick="openAll(0)">모두 펼치기</button>
