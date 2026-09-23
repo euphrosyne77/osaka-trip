@@ -89,11 +89,11 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
   <h1>🇯🇵 오사카·교토 3박 4일</h1>
   <p>전철·버스·택시·도보 선택 · 줄 추가/삭제 가능 · 오프라인 사용 · 한자 읽는 법 포함</p>
   <div class="tabs">
-    <button id="tab0" class="" onclick="showDay(0,this)">1일차</button>
+    <button id="tab0" class="active" onclick="showDay(0,this)">1일차</button>
     <button id="tab1" onclick="showDay(1,this)" class="">2일차</button>
-    <button id="tab2" onclick="showDay(2,this)" class="active">3일차</button>
-    <button id="tab3" onclick="showDay(3,this)">4일차</button>
-    <button id="tabEmergency" onclick="showEmergency(this)">긴급</button>
+    <button id="tab2" onclick="showDay(2,this)" class="">3일차</button>
+    <button id="tab3" onclick="showDay(3,this)" class="">4일차</button>
+    <button id="tabEmergency" onclick="showEmergency(this)">주요 목적지</button>
   </div>
 </header>
 
@@ -121,7 +121,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
   </div>
 
   <div id="days">
-    <section class="day" data-day="0">
+    <section class="day active" data-day="0">
       <div class="day-head">
         <b data-editable="1" contenteditable="false">1일차</b><span>9/26</span>
         <p data-editable="1" contenteditable="false">간사이공항 → 숙소 → 덴노지 → 아베노 큐즈몰 → MEGA 돈키호테 → 숙소</p>
@@ -300,7 +300,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                     <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
                   </li>
                 
-              <li><span data-editable="1" contenteditable="false"><a href="https://maps.app.goo.gl/Qe427ZWgRxXLPgdT6?g_st=ic">https://maps.app.goo.gl/Qe427ZWgRxXLPgdT6?g_st=ic</a></span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li></ol>
+              <li><span data-editable="1" contenteditable="false"><a href="https://maps.app.goo.gl/Qe427ZWgRxXLPgdT6?g_st=ic">https://maps.app.goo.gl/8cxeE1ZYpDAZgvix7</a></span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li></ol>
               <div class="step-edit-tools">
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
@@ -393,7 +393,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                     <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
                   </li>
                 
-              <li><span data-editable="1" contenteditable="false"><a href="https://maps.app.goo.gl/edSTTa3gMB5P8Mhv8?g_st=ic">https://maps.app.goo.gl/edSTTa3gMB5P8Mhv8?g_st=ic</a></span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li></ol>
+              <li><span data-editable="1" contenteditable="false"><a href="https://maps.app.goo.gl/edSTTa3gMB5P8Mhv8?g_st=ic">https://maps.app.goo.gl/czCBb9XnvSBfWGMX6</a></span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li></ol>
               <div class="step-edit-tools">
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
@@ -562,7 +562,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                     <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
                   </li>
                 
-              <li><span data-editable="1" contenteditable="false">숙소에서 덴노지역 -&nbsp;<a href="https://maps.app.goo.gl/y7v341heF1pFQLLw8?g_st=ic">https://maps.app.goo.gl/y7v341heF1pFQLLw8?g_st=ic</a></span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li><li><span data-editable="1" contenteditable="false">덴노지 역에서 공원 -&nbsp;<a href="https://maps.app.goo.gl/P5geV2iemZJbCxUv7?g_st=ic">https://maps.app.goo.gl/P5geV2iemZJbCxUv7?g_st=ic</a>.</span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li></ol>
+              <li><span data-editable="1" contenteditable="false">숙소에서 덴노지역 -&nbsp;<a href="https://maps.app.goo.gl/y7v341heF1pFQLLw8?g_st=ic">https://maps.app.goo.gl/UyAp9ePeMS5Qekqx7</a></span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li><li><span data-editable="1" contenteditable="false">덴노지 역에서 공원 -&nbsp;<a href="https://maps.app.goo.gl/TRrFyqgToRxfqdv36" target="_blank" rel="noopener noreferrer">https://maps.app.goo.gl/TRrFyqgToRxfqdv36</a></span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li></ol>
               <div class="step-edit-tools">
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
@@ -708,7 +708,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                     <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
                   </li>
                 
-              <li><span data-editable="1" contenteditable="false"><a href="https://maps.app.goo.gl/LBxBrzmPvGHJMReSA?g_st=ic">https://maps.app.goo.gl/LBxBrzmPvGHJMReSA?g_st=ic</a></span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li></ol>
+              <li><span data-editable="1" contenteditable="false"><a href="https://maps.app.goo.gl/LBxBrzmPvGHJMReSA?g_st=ic">https://maps.app.goo.gl/4TNn4HWCNLdFML6r9</a></span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li></ol>
               <div class="step-edit-tools">
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
@@ -854,7 +854,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                     <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
                   </li>
                 
-              <li><span data-editable="1" contenteditable="false"><a href="https://maps.app.goo.gl/6aNpuawRTXEsHvrS9?g_st=ic">https://maps.app.goo.gl/6aNpuawRTXEsHvrS9?g_st=ic</a></span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li></ol>
+              <li><span data-editable="1" contenteditable="false"><a href="https://maps.app.goo.gl/6aNpuawRTXEsHvrS9?g_st=ic">https://maps.app.goo.gl/74KzqTf7hd1ZefdKA</a></span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li></ol>
               <div class="step-edit-tools">
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
@@ -1020,7 +1020,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                     <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
                   </li>
                 
-              <li><span data-editable="1" contenteditable="false"><a href="https://maps.app.goo.gl/YDWvfrR3h2PEKX4Z9?g_st=ic">https://maps.app.goo.gl/YDWvfrR3h2PEKX4Z9?g_st=ic</a></span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li></ol>
+              <li><span data-editable="1" contenteditable="false"><a href="https://maps.app.goo.gl/YDWvfrR3h2PEKX4Z9?g_st=ic">https://maps.app.goo.gl/qaudkeki6GbfX3YB6</a></span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li></ol>
               <div class="step-edit-tools">
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
@@ -1139,8 +1139,8 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
           </summary>
           <div class="modebar">
               <button class="mode-choice active" onclick="selectMode(this)">🚆 JR 오사카 순환선</button>
-              <button class="mode-choice " onclick="selectMode(this)">🚇 지하철</button>
-              <button class="mode-choice " onclick="selectMode(this)">🚕 택시</button>
+              <button class="mode-choice" onclick="selectMode(this)">🚇 지하철</button>
+              <button class="mode-choice" onclick="selectMode(this)">🚕 택시</button>
           </div>
 
             <div class="modepanel active">
@@ -1161,7 +1161,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
               <div class="step-edit-tools"><button type="button" onclick="addStep(this,event)">➕ 줄 추가</button></div>
               <div class="mode-delete-wrap"><button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button></div>
             </div>
-            <div class="modepanel ">
+            <div class="modepanel">
               <div class="meta" data-editable="1" contenteditable="false">환승 1회 · 약 40분 전후 · JR 이용이 어려울 때 대안</div>
               <ol>
                 <li><span data-editable="1" contenteditable="false">숙소에서 「大国町駅 M21」(다이코쿠초 에키 M21)로 간다.</span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li>
@@ -1179,7 +1179,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
               <div class="step-edit-tools"><button type="button" onclick="addStep(this,event)">➕ 줄 추가</button></div>
               <div class="mode-delete-wrap"><button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button></div>
             </div>
-            <div class="modepanel ">
+            <div class="modepanel">
               <div class="meta" data-editable="1" contenteditable="false">약 25~35분 예상 · 예상 택시비 약 2,300~3,000엔/대 · 비용 높음 · 컨디션 나쁠 때 대안</div>
               <ol>
                 
@@ -1427,7 +1427,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
           </div>
         </details>
       
-                <details class="segment" open="">
+                <details class="segment">
           <summary>
             <span data-editable="1" contenteditable="false">호코쿠 신사·구 육군 위수형무소터 → 한큐 우메다 본점</span>
             <span class="arrow">›</span>
@@ -1540,19 +1540,19 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
           </div>
         </details>
       
-                <details class="segment" open="">
+                <details class="segment">
           <summary>
             <span data-editable="1" contenteditable="false">한큐 우메다 본점 → HEP FIVE</span>
             <span class="arrow">›</span>
           </summary>
           <div class="modebar">
 
-              <button class="mode-choice" onclick="selectMode(this)">🚶 바로 HEP FIVE</button>
-              <button class="mode-choice active" onclick="selectMode(this)">🅱️ 리커 마운틴 경유</button>
+              <button class="mode-choice active" onclick="selectMode(this)">🚶 바로 HEP FIVE</button>
+              <button class="mode-choice" onclick="selectMode(this)">🅱️ 리커 마운틴 경유</button>
 
           </div>
 
-            <div class="modepanel">
+            <div class="modepanel active">
               <div class="meta" data-editable="1" contenteditable="false">약 7분 · 약 300m · 한큐에서 술 구입 성공 시 기본 추천</div>
               <ol>
                   <li>
@@ -1599,7 +1599,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                 <button type="button" class="danger-btn" onclick="deleteMode(this,event)">🗑 이 이동수단 삭제</button>
               </div>
             </div>
-            <div class="modepanel active">
+            <div class="modepanel">
               <div class="meta" data-editable="1" contenteditable="false">한큐에 원하는 술이 없을 때만 · 플랜 B</div>
               <ol>
                   <li>
@@ -1835,7 +1835,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
       </div>
     </section>
   
-    <section class="day active" data-day="2">
+    <section class="day" data-day="2">
       <div class="day-head">
         <b data-editable="1" contenteditable="false">3일차</b><span>9/28</span>
         <p data-editable="1" contenteditable="false">교토대 → 우토로 평화기념관 → 나니와 닛폰바시 식당 → 숙소</p>
@@ -2029,7 +2029,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
           </div>
         </details>
       
-        <details class="segment" open="">
+        <details class="segment">
           <summary>
             <span data-editable="1" contenteditable="false">교토역 → 교토대 정문</span>
             <span class="arrow">›</span>
@@ -2271,7 +2271,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
           </div>
         </details>
       
-        <details class="segment" open="">
+        <details class="segment">
           <summary>
             <span data-editable="1" contenteditable="false">교토대 → 교토역</span>
             <span class="arrow">›</span>
@@ -2437,7 +2437,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
           </div>
         </details>
       
-        <details class="segment" open="">
+        <details class="segment">
           <summary>
             <span data-editable="1" contenteditable="false">긴테쓰 교토역 → 이세다역</span>
             <span class="arrow">›</span>
@@ -2528,7 +2528,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
           </div>
         </details>
       
-        <details class="segment" open="">
+        <details class="segment">
           <summary>
             <span class="segment-title-wrap">
               <span data-editable="1" contenteditable="false">이세다역 → 우토로 평화기념관</span>
@@ -2697,7 +2697,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
           </div>
         </details>
       
-        <details class="segment" open="">
+        <details class="segment">
           <summary>
             <span data-editable="1" contenteditable="false">우토로 → 긴테쓰닛폰바시</span>
             <span class="arrow">›</span>
@@ -2788,7 +2788,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
           </div>
         </details>
       
-        <details class="segment" open="">
+        <details class="segment">
           <summary>
             <span data-editable="1" contenteditable="false">나니와 닛폰바시 식당 → 숙소</span>
             <span class="arrow">›</span>
@@ -2853,7 +2853,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                     <span data-editable="1" contenteditable="false">숙소 「エスリードホテル難波大国町アネックス」(에스리도 호텔 난바 다이코쿠초 아넥쿠스)에 도착한다.</span>
                     <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
                   </li>
-              </ol>
+              <li><span data-editable="1" contenteditable="false"><a href="https://maps.app.goo.gl/XHz7yfWC28nT3U3N8" target="_blank" rel="noopener noreferrer">https://maps.app.goo.gl/XHz7yfWC28nT3U3N8</a></span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li></ol>
               <div class="step-edit-tools">
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
@@ -2953,7 +2953,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
       </div>
     </section>
   
-    <section class="day " data-day="3">
+    <section class="day" data-day="3">
       <div class="day-head">
         <b data-editable="1" contenteditable="false">4일차</b><span>9/29</span>
         <p data-editable="1" contenteditable="false">다카시마야 → 도톤보리 → 짐 찾기 → 간사이공항 T2</p>
@@ -3043,7 +3043,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                     <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
                   </li>
                 
-              </ol>
+              <li><span data-editable="1" contenteditable="false"><a href="https://maps.app.goo.gl/qwt1XNeZUJTK1xrf7" target="_blank" rel="noopener noreferrer">https://maps.app.goo.gl/qwt1XNeZUJTK1xrf7</a></span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li></ol>
               <div class="step-edit-tools">
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
@@ -3209,7 +3209,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                     <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
                   </li>
                 
-              </ol>
+              <li><span data-editable="1" contenteditable="false"><a href="https://maps.app.goo.gl/x77X6Z4zdKGbizFu6" target="_blank" rel="noopener noreferrer">https://maps.app.goo.gl/x77X6Z4zdKGbizFu6</a></span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li></ol>
               <div class="step-edit-tools">
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
@@ -3373,7 +3373,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
                     <button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button>
                   </li>
                 
-              </ol>
+              <li><span data-editable="1" contenteditable="false"><a href="https://maps.app.goo.gl/5HyoY2D9LPSP6Yp46" target="_blank" rel="noopener noreferrer">https://maps.app.goo.gl/5HyoY2D9LPSP6Yp46</a></span><button type="button" class="step-delete" onclick="deleteStep(this,event)">삭제</button></li></ol>
               <div class="step-edit-tools">
                 <button type="button" onclick="addStep(this,event)">➕ 줄 추가</button>
               </div>
@@ -3494,7 +3494,7 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
 
   <section id="emergency" class="emergency">
     <div class="day-head">
-      <b>긴급 목적지</b>
+      <b>주요 목적지</b>
       <p>길을 잃었을 때 이 화면을 역무원·택시기사·편의점 직원에게 그대로 보여주세요.</p>
     </div>
     <div class="emcard">
@@ -4053,6 +4053,7 @@ if ('serviceWorker' in navigator) {
   });
 }
 </script>
+
 
 
 
