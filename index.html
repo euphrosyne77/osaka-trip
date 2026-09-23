@@ -20,7 +20,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,Bl
 header{position:sticky;top:0;z-index:50;background:linear-gradient(135deg,#0b6f69,#18586e);color:#fff;padding:15px 14px 12px;box-shadow:0 2px 12px #0002}
 header h1{font-size:20px;margin:0}
 header p{font-size:12px;margin:3px 0 8px;opacity:.92}
-.tabs{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.tabs{display:grid;grid-template-columns:repeat(8,1fr);gap:5px}
 .tabs button{border:0;border-radius:10px;padding:9px 2px;background:#ffffff22;color:#fff;font-weight:800;font-size:12px}
 .tabs button.active{background:#fff;color:var(--brand)}
 main{max-width:760px;margin:auto;padding:14px 12px 60px}
@@ -306,6 +306,72 @@ body:not(.admin-mode) .meal-group:disabled{
 }
 body.admin-mode #adminStatus{display:inline-flex}
 
+
+/* ===== 여행 예산 · 지출 요약 ===== */
+.budget{display:none}
+.budget.active{display:block}
+.budget-head{background:linear-gradient(135deg,#123f55,#0c6b67);color:#fff;border-radius:18px;padding:16px;margin-bottom:10px;box-shadow:0 8px 24px #0c6b6718}
+.budget-head h2{margin:0;font-size:24px;letter-spacing:-.4px}
+.budget-head p{margin:4px 0 0;font-size:12px;opacity:.92}
+.budget-top{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:10px 0}
+.budget-kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:11px;min-width:0}
+.budget-kpi span{display:block;font-size:9px;color:var(--muted);font-weight:850}
+.budget-kpi b{display:block;margin-top:3px;font-size:16px;color:var(--brand);line-height:1.25;word-break:keep-all}
+.budget-kpi small{display:block;margin-top:2px;font-size:9px;color:var(--muted)}
+.budget-kpi.strong{background:var(--soft)}
+.budget-fxbox{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:11px 12px;margin:9px 0}
+.budget-fxbox .label{font-size:11px;color:var(--muted);font-weight:800}
+.budget-fxline{display:flex;align-items:center;gap:6px;font-weight:900;white-space:nowrap}
+.budget-fxline input{width:88px;border:1px solid var(--line);border-radius:9px;padding:7px;text-align:right;background:var(--card);color:var(--ink);font-size:15px;font-weight:900}
+.budget-progress{height:9px;background:var(--line);border-radius:999px;overflow:hidden;margin:8px 0 3px}
+.budget-progress>i{display:block;height:100%;width:0;background:var(--brand);border-radius:999px;transition:.25s}
+.budget-progress-note{display:flex;justify-content:space-between;gap:8px;font-size:9px;color:var(--muted);font-weight:750}
+.budget-table{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-top:10px}
+.budget-row{display:grid;grid-template-columns:110px 115px 115px minmax(0,1fr) 90px;align-items:center;border-bottom:1px solid var(--line)}
+.budget-row:last-child{border-bottom:0}
+.budget-row.head{background:var(--brand);color:#fff;font-size:10px;font-weight:900}
+.budget-row>div{padding:9px 10px;min-width:0}
+.budget-cat{font-weight:900;font-size:12px}
+.budget-plan{font-size:11px;font-weight:800;line-height:1.4}
+.budget-plan small{display:block;color:var(--muted);font-size:9px;font-weight:650}
+.budget-actual-wrap{display:flex;align-items:center;gap:5px}
+.budget-actual-wrap input[type="number"]{min-width:0;width:100%;border:1px solid var(--line);border-radius:8px;padding:7px;background:var(--card);color:var(--ink);text-align:right;font-size:11px;font-weight:800}
+.budget-actual-wrap .unit{font-size:10px;color:var(--muted);font-weight:800;white-space:nowrap}
+.budget-auto{font-size:11px;font-weight:900;color:var(--brand)}
+.budget-note{font-size:10px;color:var(--muted);line-height:1.45}
+.budget-status{text-align:center}
+.budget-badge{display:inline-block;border-radius:999px;padding:4px 7px;font-size:9px;font-weight:900;background:var(--soft);color:var(--brand);white-space:nowrap}
+.budget-badge.warn{background:#fff1d5;color:#9a6412}
+.budget-badge.over{background:#ffe3df;color:#a33}
+.budget-badge.done{background:#e5f5ec;color:#236a47}
+.budget-paid{display:flex;justify-content:center;align-items:center;gap:4px;font-size:9px;color:var(--muted);font-weight:800;margin-top:5px}
+.budget-paid input{width:16px;height:16px;accent-color:var(--brand)}
+.budget-actions{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.budget-actions button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:8px 10px;font-weight:800;font-size:11px}
+.budget-actions .danger{color:#a33;background:var(--danger)}
+.budget-detail{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:8px 0;overflow:hidden}
+.budget-detail summary{cursor:pointer;list-style:none;padding:11px 12px;font-size:12px;font-weight:900}
+.budget-detail summary::-webkit-details-marker{display:none}
+.budget-detail[open] summary{background:#fbfdfd;border-bottom:1px solid var(--line)}
+.budget-detail-body{padding:10px 12px;font-size:10px;color:var(--muted);line-height:1.55}
+body:not(.admin-mode) .budget-admin-only{display:none!important}
+body:not(.admin-mode) #budget input:disabled{opacity:1;-webkit-text-fill-color:var(--ink);color:var(--ink);background:var(--soft)}
+@media(max-width:650px){
+  .budget-top{grid-template-columns:1fr 1fr}
+  .budget-fxbox{align-items:flex-start;flex-direction:column}
+  .budget-row.head{display:none}
+  .budget-row{display:block;padding:10px 11px}
+  .budget-row>div{padding:3px 0}
+  .budget-row>div:nth-child(2)::before{content:"계획 · ";color:var(--muted);font-weight:850}
+  .budget-row>div:nth-child(3)::before{content:"실제 · ";color:var(--muted);font-weight:850}
+  .budget-row>div:nth-child(5){text-align:left}
+  .budget-status{text-align:left}
+  .budget-paid{justify-content:flex-start}
+}
+@media(max-width:430px){
+  .budget-kpi b{font-size:14px}
+}
+
 </style>
 </head>
 <body class="">
@@ -320,6 +386,7 @@ body.admin-mode #adminStatus{display:inline-flex}
     <button id="tabEmergency" onclick="showEmergency(this)">주요 목적지</button>
     <button id="tabShopping" onclick="showShopping(this)">쇼핑·선물</button>
     <button id="tabMeals" onclick="showMeals(this)">식사</button>
+    <button id="tabBudget" onclick="showBudget(this)">예산</button>
   </div>
 </header>
 
@@ -3872,6 +3939,133 @@ body.admin-mode #adminStatus{display:inline-flex}
     </div>
   </section>
 
+
+  <section id="budget" class="budget">
+    <div class="budget-head">
+      <h2>💳 여행 예산 · 지출 요약</h2>
+      <p>계획한 돈 → 실제로 쓴 돈 → 남은 돈을 한눈에 확인합니다.</p>
+    </div>
+
+    <div class="budget-fxbox">
+      <div>
+        <div class="label">공통 적용 환율</div>
+        <div class="budget-fxline">1엔 = <input id="budgetFx" type="number" inputmode="decimal" min="0" step="0.01" value="8.78" oninput="budgetUpdateFx(this.value)"> 원</div>
+      </div>
+      <div class="label">쇼핑·선물 / 식사 / 예산에서 같은 환율을 사용합니다.</div>
+    </div>
+
+    <div class="budget-top">
+      <div class="budget-kpi">
+        <span>계획 하한</span>
+        <b id="budgetPlanLow">₩0</b>
+        <small id="budgetPlanLowYen">¥0 + 항공권</small>
+      </div>
+      <div class="budget-kpi">
+        <span>계획 상한</span>
+        <b id="budgetPlanHigh">₩0</b>
+        <small id="budgetPlanHighYen">¥0 + 항공권</small>
+      </div>
+      <div class="budget-kpi strong">
+        <span>현재 실제지출</span>
+        <b id="budgetActualTotal">₩0</b>
+        <small>입력·체크된 금액 기준</small>
+      </div>
+      <div class="budget-kpi strong">
+        <span>상한 기준 남은 예산</span>
+        <b id="budgetRemain">₩0</b>
+        <small id="budgetRemainNote">계획 상한 대비</small>
+      </div>
+    </div>
+
+    <div class="budget-progress"><i id="budgetProgressBar"></i></div>
+    <div class="budget-progress-note">
+      <span id="budgetProgressText">지출 진행률 0%</span>
+      <span>상한 예산 기준</span>
+    </div>
+
+    <div class="budget-table">
+      <div class="budget-row head">
+        <div>구분</div><div>계획</div><div>실제</div><div>비고</div><div>상태</div>
+      </div>
+
+      <div class="budget-row" data-budget-row="airfare">
+        <div class="budget-cat">✈️ 항공권</div>
+        <div class="budget-plan">₩1,773,950<small>제주항공 ICN T1 ↔ KIX T2</small></div>
+        <div><div class="budget-actual-wrap"><input class="budget-input" id="budgetActualAirfare" type="number" inputmode="numeric" min="0" step="1" value="1773950" oninput="budgetSetKrw('airfare',this.value)"><span class="unit">원</span></div></div>
+        <div class="budget-note">원화로 결제 완료.</div>
+        <div class="budget-status"><span class="budget-badge done" id="budgetStatusAirfare">결제완료</span><label class="budget-paid budget-admin-only"><input id="budgetPaidAirfare" type="checkbox" checked onchange="budgetSetPaid('airfare',this.checked)">완료</label></div>
+      </div>
+
+      <div class="budget-row" data-budget-row="lodging">
+        <div class="budget-cat">🏨 숙소</div>
+        <div class="budget-plan">¥28,500<small id="budgetPlanLodgingKrw">₩0</small></div>
+        <div><div class="budget-actual-wrap"><input class="budget-input" id="budgetActualLodging" type="number" inputmode="numeric" min="0" step="1" placeholder="실제 ¥" oninput="budgetSetYen('lodging',this.value)"><span class="unit">엔</span></div><div class="budget-auto" id="budgetActualLodgingKrw">₩0</div></div>
+        <div class="budget-note">에스리드 호텔 난바 다이코쿠초 아넥스 · 숙박비 ¥28,500 · 숙박세 0엔.</div>
+        <div class="budget-status"><span class="budget-badge" id="budgetStatusLodging">미입력</span><label class="budget-paid budget-admin-only"><input id="budgetPaidLodging" type="checkbox" onchange="budgetSetPaid('lodging',this.checked)">완료</label></div>
+      </div>
+
+      <div class="budget-row" data-budget-row="transport">
+        <div class="budget-cat">🚇 현지 교통</div>
+        <div class="budget-plan">¥60,000 ~ 80,000<small id="budgetPlanTransportKrw">₩0 ~ ₩0</small></div>
+        <div><div class="budget-actual-wrap"><input class="budget-input" id="budgetActualTransport" type="number" inputmode="numeric" min="0" step="1" placeholder="실제 ¥" oninput="budgetSetYen('transport',this.value)"><span class="unit">엔</span></div><div class="budget-auto" id="budgetActualTransportKrw">₩0</div></div>
+        <div class="budget-note">ICOCA 구입·충전, 난카이 공항급행, JR·지하철·버스, 택시 일부.</div>
+        <div class="budget-status"><span class="budget-badge" id="budgetStatusTransport">미입력</span><label class="budget-paid budget-admin-only"><input id="budgetPaidTransport" type="checkbox" onchange="budgetSetPaid('transport',this.checked)">완료</label></div>
+      </div>
+
+      <div class="budget-row" data-budget-row="food">
+        <div class="budget-cat">🍽 식비</div>
+        <div class="budget-plan">¥106,000 ~ 159,000<small id="budgetPlanFoodKrw">₩0 ~ ₩0</small></div>
+        <div><div class="budget-auto" id="budgetActualFoodYen">¥0</div><div class="budget-auto" id="budgetActualFoodKrw">₩0</div></div>
+        <div class="budget-note">식사 탭에서 ‘이용’ 체크한 실제 금액을 자동 합산합니다.</div>
+        <div class="budget-status"><span class="budget-badge" id="budgetStatusFood">자동연동</span></div>
+      </div>
+
+      <div class="budget-row" data-budget-row="admission">
+        <div class="budget-cat">🎟 입장·관람</div>
+        <div class="budget-plan">¥5,000 ~ 8,000<small id="budgetPlanAdmissionKrw">₩0 ~ ₩0</small></div>
+        <div><div class="budget-actual-wrap"><input class="budget-input" id="budgetActualAdmission" type="number" inputmode="numeric" min="0" step="1" placeholder="실제 ¥" oninput="budgetSetYen('admission',this.value)"><span class="unit">엔</span></div><div class="budget-auto" id="budgetActualAdmissionKrw">₩0</div></div>
+        <div class="budget-note">우토로 평화기념관, HEP FIVE 대관람차 등. 오사카성 천수각 내부 입장 제외.</div>
+        <div class="budget-status"><span class="budget-badge" id="budgetStatusAdmission">미입력</span><label class="budget-paid budget-admin-only"><input id="budgetPaidAdmission" type="checkbox" onchange="budgetSetPaid('admission',this.checked)">완료</label></div>
+      </div>
+
+      <div class="budget-row" data-budget-row="shopping">
+        <div class="budget-cat">🎁 쇼핑·선물</div>
+        <div class="budget-plan">¥130,000 ~ 150,000<small id="budgetPlanShoppingKrw">₩0 ~ ₩0</small></div>
+        <div><div class="budget-auto" id="budgetActualShoppingYen">¥0</div><div class="budget-auto" id="budgetActualShoppingKrw">₩0</div></div>
+        <div class="budget-note">쇼핑·선물 탭에서 구매 체크한 실구매 금액을 자동 합산합니다.</div>
+        <div class="budget-status"><span class="budget-badge" id="budgetStatusShopping">자동연동</span></div>
+      </div>
+
+      <div class="budget-row" data-budget-row="prep">
+        <div class="budget-cat">📱 eSIM·준비물</div>
+        <div class="budget-plan">국내 구매<small>별도 계획금액 없음</small></div>
+        <div><div class="budget-actual-wrap"><input class="budget-input" id="budgetActualPrep" type="number" inputmode="numeric" min="0" step="1" placeholder="실제 ₩" oninput="budgetSetKrw('prep',this.value)"><span class="unit">원</span></div></div>
+        <div class="budget-note">eSIM, 변환기, 우산 비옷, 보조배터리, 기타 준비물.</div>
+        <div class="budget-status"><span class="budget-badge" id="budgetStatusPrep">미입력</span><label class="budget-paid budget-admin-only"><input id="budgetPaidPrep" type="checkbox" onchange="budgetSetPaid('prep',this.checked)">완료</label></div>
+      </div>
+    </div>
+
+    <details class="budget-detail">
+      <summary>📌 예산 산정 메모 펼치기</summary>
+      <div class="budget-detail-body">
+        <b>현지 교통</b> · 1일차 난카이 공항급행, 2일차 일부 택시/현장 선택, 4일차 다카시마야 이동 등 여유분 포함.<br>
+        <b>식비</b> · 인천공항 식사, 마트, 1~4일차 점심·저녁, 간식 포함.<br>
+        <b>쇼핑·선물</b> · 다카시마야, 다이소, 가챠, 피규어, 의약품, 간식 선물 포함.<br>
+        <b>원화 합계</b> · 항공권은 원화 고정, 나머지 엔화 계획은 위 공통 환율로 자동 환산됩니다.
+      </div>
+    </details>
+
+    <div class="budget-actions budget-admin-only">
+      <button class="danger" onclick="budgetResetActual()">실제지출 입력 초기화</button>
+    </div>
+
+    <div class="pager">
+      <button onclick="showMeals(document.getElementById('tabMeals'))">‹ 식사</button>
+      <button onclick="scrollTopNow()">맨 위로 ↑</button>
+      <button onclick="showDayByIndex(0)">1일차 ›</button>
+    </div>
+  </section>
+
   <p class="small">※ 이 파일은 외부 지도·글꼴·인터넷을 사용하지 않아 오프라인에서도 내용을 볼 수 있습니다.</p>
 </main>
 
@@ -3975,6 +4169,7 @@ function showDay(i,btn){
   document.getElementById('emergency').classList.remove('active');
   document.getElementById('shopping').classList.remove('active');
   document.getElementById('meals').classList.remove('active');
+  document.getElementById('budget').classList.remove('active');
   document.querySelectorAll('.day').forEach((d,n)=>d.classList.toggle('active',n===i));
   document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
   if(btn)btn.classList.add('active'); else setActiveTab(i);
@@ -3990,6 +4185,7 @@ function showEmergency(btn){
   document.querySelectorAll('.day').forEach(d=>d.classList.remove('active'));
   document.getElementById('shopping').classList.remove('active');
   document.getElementById('meals').classList.remove('active');
+  document.getElementById('budget').classList.remove('active');
   document.getElementById('emergency').classList.add('active');
   document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
   (btn||document.getElementById('tabEmergency')).classList.add('active');
@@ -4001,6 +4197,7 @@ function showShopping(btn){
   document.querySelectorAll('.day').forEach(d=>d.classList.remove('active'));
   document.getElementById('emergency').classList.remove('active');
   document.getElementById('meals').classList.remove('active');
+  document.getElementById('budget').classList.remove('active');
   document.getElementById('shopping').classList.add('active');
   document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
   (btn||document.getElementById('tabShopping')).classList.add('active');
@@ -4012,12 +4209,26 @@ function showMeals(btn){
   document.querySelectorAll('.day').forEach(d=>d.classList.remove('active'));
   document.getElementById('emergency').classList.remove('active');
   document.getElementById('shopping').classList.remove('active');
+  document.getElementById('budget').classList.remove('active');
   document.getElementById('meals').classList.add('active');
   document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
   (btn||document.getElementById('tabMeals')).classList.add('active');
   mealRender();
   scrollTopNow();
 }
+
+function showBudget(btn){
+  document.querySelectorAll('.day').forEach(d=>d.classList.remove('active'));
+  document.getElementById('emergency').classList.remove('active');
+  document.getElementById('shopping').classList.remove('active');
+  document.getElementById('meals').classList.remove('active');
+  document.getElementById('budget').classList.add('active');
+  document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
+  (btn||document.getElementById('tabBudget')).classList.add('active');
+  budgetRender();
+  scrollTopNow();
+}
+
 
 
 function openAll(dayIndex){
@@ -4493,7 +4704,14 @@ function shopUid(prefix){return prefix+'-'+Date.now().toString(36)+'-'+Math.rand
 function shopItems(){return SHOP_ITEMS.filter(x=>!shopState.deletedItems[x.id]).concat(shopState.customItems||[]);}
 function shopGifts(){return SHOP_GIFTS.filter(x=>!shopState.deletedGifts[x.id]).concat(shopState.customGifts||[]);}
 function shopInvalidate(pane){const el=document.getElementById(pane);if(el){delete el.dataset.rendered;el.innerHTML='';}}
-function shopUpdateFx(v){const n=parseFloat(v);if(Number.isFinite(n)&&n>0){shopState.fx=n;shopSaveState();shopRefreshMoney();}}
+function shopUpdateFx(v){
+  const n=parseFloat(v);
+  if(Number.isFinite(n)&&n>0){
+    shopState.fx=n;shopSaveState();shopRefreshMoney();
+    try{mealState.rate=n;mealSave();const mf=document.getElementById('mealFx');if(mf)mf.value=n;}catch(e){}
+    try{budgetState.rate=n;budgetSave();const bf=document.getElementById('budgetFx');if(bf)bf.value=n;budgetRefresh();}catch(e){}
+  }
+}
 function shopToggleBought(id,checked){shopState.bought[id]=!!checked;shopSaveState();shopRefreshStats();}
 function shopSetActual(id,v){const n=parseFloat(String(v).replace(/,/g,''));shopState.actual[id]=Number.isFinite(n)&&n>=0?n:'';shopSaveState();shopRefreshMoney();shopRefreshStats();}
 function shopToggleGiven(id,checked){shopState.given[id]=!!checked;shopSaveState();shopRefreshStats();}
@@ -4549,6 +4767,7 @@ function shopRefreshMoney(){
     const dtotal=items.filter(it=>it.day===day&&shopState.bought[it.id]).reduce((a,it)=>a+shopActualValue(it),0);
     el.textContent='구매 합계 '+shopFmtYen(dtotal)+' · '+shopFmtKrw(dtotal*shopState.fx);
   });
+  try{if(typeof budgetRefresh==='function')budgetRefresh();}catch(e){}
 }
 function shopRefreshStats(){
   const items=shopItems(), gifts=shopGifts();
@@ -4720,9 +4939,16 @@ function mealUpdateFx(v){
   mealState.rate=n; mealSave();
   try{
     if(typeof shopState!=='undefined'){
-      shopState.rate=n; shopSave();
+      shopState.fx=n; shopSaveState();
       const sf=document.getElementById('shopFx'); if(sf)sf.value=n;
       shopRefreshMoney();
+    }
+  }catch(e){}
+  try{
+    if(typeof budgetState!=='undefined'){
+      budgetState.rate=n; budgetSave();
+      const bf=document.getElementById('budgetFx'); if(bf)bf.value=n;
+      budgetRefresh();
     }
   }catch(e){}
   mealRefreshTotals();
@@ -4749,6 +4975,7 @@ function mealRefreshTotals(){
     const d=el.getAttribute('data-meal-day-total'), t=mealDayTotal(d);
     el.textContent=`${mealFmtYen(t)} · ${mealFmtKrw(t*rate)}`;
   });
+  try{if(typeof budgetRefresh==='function')budgetRefresh();}catch(e){}
 }
 function mealAdd(){
   const day=document.getElementById('mealAddDay').value;
@@ -4869,6 +5096,158 @@ mealLoad();
 </script>
 
 <script>
+
+/* ===== 여행 예산 · 지출 요약 ===== */
+const BUDGET_STORAGE='osaka_trip_budget_v1';
+const BUDGET_PLAN={
+  airfareKrw:1773950,
+  lodging:[28500,28500],
+  transport:[60000,80000],
+  food:[106000,159000],
+  admission:[5000,8000],
+  shopping:[130000,150000]
+};
+let budgetState={
+  rate:8.78,
+  yen:{lodging:'',transport:'',admission:''},
+  krw:{airfare:'1773950',prep:''},
+  paid:{airfare:true,lodging:false,transport:false,admission:false,prep:false}
+};
+
+function budgetFmtYen(v){return '¥'+Math.round(Number(v)||0).toLocaleString('ko-KR');}
+function budgetFmtKrw(v){return '₩'+Math.round(Number(v)||0).toLocaleString('ko-KR');}
+function budgetSave(){try{localStorage.setItem(BUDGET_STORAGE,JSON.stringify(budgetState));}catch(e){}}
+function budgetLoad(){
+  try{
+    const raw=localStorage.getItem(BUDGET_STORAGE);
+    if(raw)budgetState={...budgetState,...JSON.parse(raw)};
+  }catch(e){}
+  try{if(typeof shopState!=='undefined' && Number(shopState.fx)>0)budgetState.rate=Number(shopState.fx);}catch(e){}
+  try{if(typeof mealState!=='undefined' && Number(mealState.rate)>0)budgetState.rate=Number(mealState.rate);}catch(e){}
+}
+function budgetMealYen(){
+  try{
+    return mealState.items.filter(x=>mealState.used[x.id]).reduce((s,x)=>s+(Number(mealState.actual[x.id])||0),0);
+  }catch(e){return 0;}
+}
+function budgetShoppingYen(){
+  try{
+    const items=shopItems();
+    return items.reduce((s,it)=>s+(shopState.bought[it.id]?shopActualValue(it):0),0);
+  }catch(e){return 0;}
+}
+function budgetSetYen(key,val){budgetState.yen[key]=String(val??'');budgetSave();budgetRefresh();}
+function budgetSetKrw(key,val){budgetState.krw[key]=String(val??'');budgetSave();budgetRefresh();}
+function budgetSetPaid(key,val){budgetState.paid[key]=!!val;budgetSave();budgetRefresh();}
+function budgetUpdateFx(v){
+  const n=Number(v);if(!(n>0))return;
+  budgetState.rate=n;budgetSave();
+  try{shopState.fx=n;shopSaveState();const sf=document.getElementById('shopFx');if(sf)sf.value=n;shopRefreshMoney();}catch(e){}
+  try{mealState.rate=n;mealSave();const mf=document.getElementById('mealFx');if(mf)mf.value=n;mealRefreshTotals();}catch(e){}
+  budgetRefresh();
+}
+function budgetStatusFor(key,actualYen,low,high,auto=false){
+  const el=document.getElementById('budgetStatus'+key.charAt(0).toUpperCase()+key.slice(1));
+  if(!el)return;
+  el.className='budget-badge';
+  if(auto && !(actualYen>0)){el.textContent='자동연동';return;}
+  if(!(actualYen>0)){el.textContent='미입력';return;}
+  if(high>0 && actualYen>high){el.textContent='상한 초과';el.classList.add('over');return;}
+  if(low>0 && actualYen>=low*.9){el.textContent='예산 범위';el.classList.add('warn');return;}
+  el.textContent='예산 내';el.classList.add('done');
+}
+function budgetRefresh(){
+  const rate=Number(budgetState.rate)||8.78;
+  const planLowYen=BUDGET_PLAN.lodging[0]+BUDGET_PLAN.transport[0]+BUDGET_PLAN.food[0]+BUDGET_PLAN.admission[0]+BUDGET_PLAN.shopping[0];
+  const planHighYen=BUDGET_PLAN.lodging[1]+BUDGET_PLAN.transport[1]+BUDGET_PLAN.food[1]+BUDGET_PLAN.admission[1]+BUDGET_PLAN.shopping[1];
+  const planLow=BUDGET_PLAN.airfareKrw+planLowYen*rate;
+  const planHigh=BUDGET_PLAN.airfareKrw+planHighYen*rate;
+
+  const airfare=Number(budgetState.krw.airfare)||0;
+  const lodging=Number(budgetState.yen.lodging)||0;
+  const transport=Number(budgetState.yen.transport)||0;
+  const food=budgetMealYen();
+  const admission=Number(budgetState.yen.admission)||0;
+  const shopping=budgetShoppingYen();
+  const prep=Number(budgetState.krw.prep)||0;
+  const actual=airfare+(lodging+transport+food+admission+shopping)*rate+prep;
+  const remain=planHigh-actual;
+
+  const set=(id,txt)=>{const e=document.getElementById(id);if(e)e.textContent=txt;};
+  set('budgetPlanLow',budgetFmtKrw(planLow));
+  set('budgetPlanHigh',budgetFmtKrw(planHigh));
+  set('budgetPlanLowYen',budgetFmtYen(planLowYen)+' + 항공권');
+  set('budgetPlanHighYen',budgetFmtYen(planHighYen)+' + 항공권');
+  set('budgetActualTotal',budgetFmtKrw(actual));
+  set('budgetRemain',budgetFmtKrw(Math.abs(remain)));
+  set('budgetRemainNote',remain>=0?'계획 상한 대비 남음':'계획 상한 초과');
+
+  set('budgetPlanLodgingKrw',budgetFmtKrw(BUDGET_PLAN.lodging[0]*rate));
+  set('budgetPlanTransportKrw',budgetFmtKrw(BUDGET_PLAN.transport[0]*rate)+' ~ '+budgetFmtKrw(BUDGET_PLAN.transport[1]*rate));
+  set('budgetPlanFoodKrw',budgetFmtKrw(BUDGET_PLAN.food[0]*rate)+' ~ '+budgetFmtKrw(BUDGET_PLAN.food[1]*rate));
+  set('budgetPlanAdmissionKrw',budgetFmtKrw(BUDGET_PLAN.admission[0]*rate)+' ~ '+budgetFmtKrw(BUDGET_PLAN.admission[1]*rate));
+  set('budgetPlanShoppingKrw',budgetFmtKrw(BUDGET_PLAN.shopping[0]*rate)+' ~ '+budgetFmtKrw(BUDGET_PLAN.shopping[1]*rate));
+
+  set('budgetActualLodgingKrw',budgetFmtKrw(lodging*rate));
+  set('budgetActualTransportKrw',budgetFmtKrw(transport*rate));
+  set('budgetActualFoodYen',budgetFmtYen(food));
+  set('budgetActualFoodKrw',budgetFmtKrw(food*rate));
+  set('budgetActualAdmissionKrw',budgetFmtKrw(admission*rate));
+  set('budgetActualShoppingYen',budgetFmtYen(shopping));
+  set('budgetActualShoppingKrw',budgetFmtKrw(shopping*rate));
+
+  const pct=planHigh>0?Math.max(0,Math.min(100,(actual/planHigh)*100)):0;
+  const bar=document.getElementById('budgetProgressBar');if(bar)bar.style.width=pct.toFixed(1)+'%';
+  set('budgetProgressText','지출 진행률 '+pct.toFixed(1)+'%');
+
+  budgetStatusFor('lodging',lodging,BUDGET_PLAN.lodging[0],BUDGET_PLAN.lodging[1]);
+  budgetStatusFor('transport',transport,BUDGET_PLAN.transport[0],BUDGET_PLAN.transport[1]);
+  budgetStatusFor('food',food,BUDGET_PLAN.food[0],BUDGET_PLAN.food[1],true);
+  budgetStatusFor('admission',admission,BUDGET_PLAN.admission[0],BUDGET_PLAN.admission[1]);
+  budgetStatusFor('shopping',shopping,BUDGET_PLAN.shopping[0],BUDGET_PLAN.shopping[1],true);
+
+  const statusAir=document.getElementById('budgetStatusAirfare');
+  if(statusAir){
+    statusAir.textContent=budgetState.paid.airfare?'결제완료':'미완료';
+    statusAir.className='budget-badge '+(budgetState.paid.airfare?'done':'warn');
+  }
+  const statusPrep=document.getElementById('budgetStatusPrep');
+  if(statusPrep){
+    const pv=Number(budgetState.krw.prep)||0;
+    statusPrep.textContent=pv>0?(budgetState.paid.prep?'완료':'입력됨'):'미입력';
+    statusPrep.className='budget-badge '+(budgetState.paid.prep?'done':'');
+  }
+
+  ['lodging','transport','admission'].forEach(key=>{
+    const id='budgetStatus'+key.charAt(0).toUpperCase()+key.slice(1);
+    const el=document.getElementById(id);
+    if(el && budgetState.paid[key] && (Number(budgetState.yen[key])||0)>0){
+      el.textContent='결제완료';el.className='budget-badge done';
+    }
+  });
+}
+function budgetRender(){
+  const fx=document.getElementById('budgetFx');if(fx)fx.value=budgetState.rate;
+  const mapY={lodging:'budgetActualLodging',transport:'budgetActualTransport',admission:'budgetActualAdmission'};
+  Object.entries(mapY).forEach(([k,id])=>{const e=document.getElementById(id);if(e)e.value=budgetState.yen[k]??'';});
+  const a=document.getElementById('budgetActualAirfare');if(a)a.value=budgetState.krw.airfare??'';
+  const p=document.getElementById('budgetActualPrep');if(p)p.value=budgetState.krw.prep??'';
+  const paidIds={airfare:'budgetPaidAirfare',lodging:'budgetPaidLodging',transport:'budgetPaidTransport',admission:'budgetPaidAdmission',prep:'budgetPaidPrep'};
+  Object.entries(paidIds).forEach(([k,id])=>{const e=document.getElementById(id);if(e)e.checked=!!budgetState.paid[k];});
+  budgetRefresh();
+  try{if(typeof applyAdminAccess==='function')applyAdminAccess();}catch(e){}
+}
+function budgetResetActual(){
+  if(!confirm('항공권 결제완료 금액은 유지하고, 나머지 실제지출 입력과 완료 체크를 초기화할까요?'))return;
+  const rate=budgetState.rate;
+  budgetState={rate,yen:{lodging:'',transport:'',admission:''},krw:{airfare:'1773950',prep:''},paid:{airfare:true,lodging:false,transport:false,admission:false,prep:false}};
+  budgetSave();budgetRender();
+}
+budgetLoad();
+
+</script>
+
+<script>
 /* PWA 서비스워커 등록: 온라인에서는 최신 GitHub 파일 우선, 오프라인에서는 캐시 사용 */
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
@@ -4916,6 +5295,15 @@ if ('serviceWorker' in navigator) {
       else el.removeAttribute('tabindex');
     });
 
+    /* 예산: 환율 / 실제지출 / 완료 체크 */
+    document.querySelectorAll(
+      '#budgetFx, #budget .budget-input, #budget .budget-paid input'
+    ).forEach(el => {
+      el.disabled = locked;
+      if(locked) el.setAttribute('tabindex','-1');
+      else el.removeAttribute('tabindex');
+    });
+
     /* 혹시 관리자 종료 시 수정모드가 남아있지 않도록 보장 */
     if(locked){
       document.querySelectorAll('[data-editable="1"]').forEach(el=>{
@@ -4938,7 +5326,7 @@ if ('serviceWorker' in navigator) {
     document.getElementById('adminTools').style.display = 'flex';
     applyAdminAccess();
 
-    alert('관리자 모드입니다. 일정·쇼핑·선물·식사 정보를 수정할 수 있습니다.');
+    alert('관리자 모드입니다. 일정·쇼핑·선물·식사·예산 정보를 수정할 수 있습니다.');
   }
 
   function leaveAdminMode(){
@@ -4970,11 +5358,14 @@ if ('serviceWorker' in navigator) {
     if(adminLoginBtn) adminLoginBtn.style.display = '';
 
     applyAdminAccess();
+    try{budgetRender();}catch(e){}
 
     const shopping = document.getElementById('shopping');
     const meals = document.getElementById('meals');
+    const budget = document.getElementById('budget');
     if(shopping) accessObserver.observe(shopping,{childList:true,subtree:true});
     if(meals) accessObserver.observe(meals,{childList:true,subtree:true});
+    if(budget) accessObserver.observe(budget,{childList:true,subtree:true});
   });
 </script>
 
