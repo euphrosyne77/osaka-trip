@@ -16,7 +16,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,Bl
 header{position:sticky;top:0;z-index:50;background:linear-gradient(135deg,#0b6f69,#18586e);color:#fff;padding:15px 14px 12px;box-shadow:0 2px 12px #0002}
 header h1{font-size:20px;margin:0}
 header p{font-size:12px;margin:3px 0 8px;opacity:.92}
-.tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}
+.tabs{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
 .tabs button{border:0;border-radius:10px;padding:9px 2px;background:#ffffff22;color:#fff;font-weight:800;font-size:12px}
 .tabs button.active{background:#fff;color:var(--brand)}
 main{max-width:760px;margin:auto;padding:14px 12px 60px}
@@ -70,6 +70,88 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
 .kr{color:#17645e;font-weight:750;font-size:14px;margin-top:2px}
 .addr{margin-top:9px;font-size:15px;word-break:break-word}
 .small{font-size:12px;color:var(--muted);margin-top:10px}
+
+/* 쇼핑·선물 체크리스트 */
+.shopping{display:none}
+.shopping.active{display:block}
+.shop-head{background:linear-gradient(135deg,#0c6b67,#174f68);color:#fff;border-radius:18px;padding:16px;margin-bottom:10px;box-shadow:0 8px 24px #0c6b6718}
+.shop-head h2{margin:0;font-size:24px;letter-spacing:-.4px}
+.shop-head p{margin:4px 0 0;font-size:12px;opacity:.9}
+.shop-toolbar{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:9px;margin:10px 0}
+.shop-box{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:12px}
+.shop-box-title{font-size:12px;color:var(--muted);font-weight:800;margin-bottom:6px}
+.fx-line{display:flex;align-items:center;gap:7px;flex-wrap:wrap;font-weight:850}
+.fx-line input{width:92px;border:1px solid var(--line);border-radius:9px;padding:8px;font-size:16px;font-weight:850;background:var(--card);color:var(--ink);text-align:right}
+.fx-help{font-size:11px;color:var(--muted);margin-top:5px}
+.shop-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.shop-stat{background:var(--soft);border-radius:10px;padding:8px;text-align:center}
+.shop-stat b{display:block;font-size:16px;color:var(--brand)}
+.shop-stat span{font-size:10px;color:var(--muted);font-weight:750}
+.shop-switch{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:10px 0}
+.shop-switch button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:11px;padding:10px 5px;font-weight:850;font-size:12px}
+.shop-switch button.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+.shop-pane{display:none}.shop-pane.active{display:block}
+.shop-day-head{display:flex;align-items:baseline;gap:7px;margin:18px 2px 7px;padding:0 2px 7px;border-bottom:2px solid var(--brand)}
+.shop-day-head:first-child{margin-top:6px}
+.shop-day-head b{font-size:19px;color:var(--brand);letter-spacing:-.3px}
+.shop-day-head span{font-size:11px;color:var(--muted);font-weight:800}
+.shop-place{background:var(--card);border:1px solid var(--line);border-radius:15px;margin:9px 0;overflow:hidden}
+.shop-place>summary{list-style:none;cursor:pointer;padding:12px 13px;font-weight:850;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.shop-place>summary::-webkit-details-marker{display:none}
+.shop-place[open]>summary{background:#fbfdfd;border-bottom:1px solid var(--line)}
+.shop-place small{display:block;color:var(--muted);font-size:10px;font-weight:650;margin-top:2px}
+.shop-list{padding:7px 10px 11px}
+.shop-row{display:grid;grid-template-columns:30px minmax(0,1fr) 88px 88px;gap:7px;align-items:center;padding:9px 2px;border-bottom:1px solid var(--line)}
+.shop-row:last-child{border-bottom:0}
+.shop-check{width:21px;height:21px;accent-color:var(--brand);cursor:pointer}
+.shop-item{min-width:0}
+.shop-item strong{display:block;font-size:13px;line-height:1.35}
+.shop-item span{display:block;color:var(--muted);font-size:10px;line-height:1.35;margin-top:2px}
+.yen-input{width:100%;border:1px solid var(--line);border-radius:8px;padding:7px 5px;text-align:right;background:var(--card);color:var(--ink);font-size:12px;font-weight:750}
+.krw-cell{text-align:right;font-size:11px;font-weight:800;white-space:nowrap}
+.shop-colhead{display:grid;grid-template-columns:30px minmax(0,1fr) 88px 88px;gap:7px;padding:7px 2px;color:var(--muted);font-size:9px;font-weight:800;border-bottom:1px solid var(--line)}
+.shop-colhead span:nth-child(3),.shop-colhead span:nth-child(4){text-align:right}
+.gift-row{display:grid;grid-template-columns:minmax(0,1fr) 38px;gap:7px;align-items:start;padding:10px 2px;border-bottom:1px solid var(--line)}
+.gift-row:last-child{border-bottom:0}
+.gift-person{font-weight:900;font-size:13px}.gift-detail{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.4}
+.gift-done-label{display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--muted);font-size:9px;font-weight:800}
+.budget-grid{display:grid;grid-template-columns:minmax(0,1fr) 85px 95px;gap:6px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line);font-size:12px}
+.budget-grid:last-child{border-bottom:0}.budget-grid b:nth-child(2),.budget-grid b:nth-child(3){text-align:right}.budget-muted{color:var(--muted);font-size:10px}
+.planb-row{padding:10px;border-bottom:1px solid var(--line)}.planb-row:last-child{border-bottom:0}.planb-tag{display:inline-block;background:var(--warn);border-radius:999px;padding:3px 7px;font-size:9px;font-weight:850;margin-bottom:4px}.planb-main{font-size:12px;font-weight:850}.planb-sub{font-size:10px;color:var(--muted);margin-top:2px}
+.shop-actions{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}.shop-actions button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:8px 10px;font-weight:800;font-size:11px}.shop-actions .danger{color:#a33;background:var(--danger)}
+
+/* 쇼핑·선물 직접 추가/삭제 + 합계 */
+.shop-totalbar{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:8px}
+.shop-totalcell{background:var(--soft);border-radius:10px;padding:9px 10px}
+.shop-totalcell span{display:block;font-size:9px;color:var(--muted);font-weight:800}
+.shop-totalcell b{display:block;margin-top:2px;font-size:14px;color:var(--brand)}
+.shop-addbox{background:var(--card);border:1px dashed var(--brand);border-radius:15px;padding:11px;margin:9px 0 12px}
+.shop-addtitle{font-size:12px;font-weight:900;color:var(--brand);margin-bottom:7px}
+.shop-addgrid{display:grid;grid-template-columns:105px 1fr 1fr 95px;gap:6px}
+.shop-addgrid.gift{grid-template-columns:160px 1fr auto}
+.shop-addgrid input,.shop-addgrid select{min-width:0;width:100%;border:1px solid var(--line);border-radius:9px;padding:8px;background:var(--card);color:var(--ink);font-size:12px}
+.shop-addgrid button{border:0;border-radius:9px;padding:8px 11px;background:var(--brand);color:#fff;font-weight:850;white-space:nowrap}
+.shop-delete-item{border:0;background:transparent;color:#b13c33;font-size:15px;font-weight:900;cursor:pointer;padding:3px 5px;line-height:1}
+.shop-row{grid-template-columns:30px minmax(0,1fr) 88px 88px 28px}
+.shop-colhead{grid-template-columns:30px minmax(0,1fr) 88px 88px 28px}
+.shop-day-head{justify-content:space-between;flex-wrap:wrap}
+.shop-day-title{display:flex;align-items:baseline;gap:7px}
+.shop-day-total{font-size:10px!important;color:var(--brand)!important;background:var(--soft);border-radius:999px;padding:3px 7px}
+.gift-row{grid-template-columns:minmax(0,1fr) 38px 28px}
+@media(max-width:650px){
+  .shop-addgrid{grid-template-columns:1fr 1fr}.shop-addgrid .shop-add-wide{grid-column:1/-1}
+  .shop-addgrid.gift{grid-template-columns:1fr}.shop-addgrid.gift button{width:100%}
+  .shop-row,.shop-colhead{grid-template-columns:28px minmax(0,1fr) 70px 72px 24px}
+  .shop-totalbar{grid-template-columns:1fr}
+}
+
+@media(max-width:650px){
+  .tabs{grid-template-columns:repeat(4,1fr)}
+  .shop-toolbar{grid-template-columns:1fr}
+  .shop-row,.shop-colhead{grid-template-columns:28px minmax(0,1fr) 75px 77px}
+  .shop-stats{grid-template-columns:repeat(3,1fr)}
+}
+
 @media(max-width:430px){
   .tabs button{font-size:11px;padding:9px 1px}
   .pager button{font-size:12px}
@@ -82,6 +164,90 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
  body.editing [data-editable="1"]:focus{background:#173b37!important;outline-color:#55c5b7!important}
  .step-edit-tools button{background:#16302d}
 }
+
+/* ===== 식사 정보 · Plan B 식당 목록 ===== */
+.meals{display:none}
+.meals.active{display:block}
+.meal-head{background:linear-gradient(135deg,#173f52,#0c6b67);color:#fff;border-radius:18px;padding:16px;margin-bottom:10px;box-shadow:0 8px 24px #0c6b6718}
+.meal-head h2{margin:0;font-size:24px;letter-spacing:-.4px}
+.meal-head p{margin:4px 0 0;font-size:12px;opacity:.9}
+.meal-toolbar{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:9px;margin:10px 0}
+.meal-box{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:12px}
+.meal-box-title{font-size:12px;color:var(--muted);font-weight:850;margin-bottom:6px}
+.meal-fx{display:flex;align-items:center;gap:7px;flex-wrap:wrap;font-weight:850}
+.meal-fx input{width:92px;border:1px solid var(--line);border-radius:9px;padding:8px;font-size:16px;font-weight:850;background:var(--card);color:var(--ink);text-align:right}
+.meal-totalgrid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.meal-totalcell{background:var(--soft);border-radius:10px;padding:9px 10px}
+.meal-totalcell span{display:block;font-size:9px;color:var(--muted);font-weight:800}
+.meal-totalcell b{display:block;margin-top:2px;font-size:16px;color:var(--brand)}
+.meal-switch{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:10px 0}
+.meal-switch button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:11px;padding:10px 6px;font-weight:850;font-size:12px}
+.meal-switch button.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+.meal-pane{display:none}.meal-pane.active{display:block}
+.meal-addbox{background:var(--card);border:1px dashed var(--brand);border-radius:15px;padding:11px;margin:9px 0 12px}
+.meal-addtitle{font-size:12px;font-weight:900;color:var(--brand);margin-bottom:7px}
+.meal-addgrid{display:grid;grid-template-columns:90px 90px minmax(0,1fr) minmax(0,1fr);gap:6px}
+.meal-addgrid .span2{grid-column:span 2}
+.meal-addgrid .full{grid-column:1/-1}
+.meal-addgrid input,.meal-addgrid select,.meal-addgrid textarea{min-width:0;width:100%;border:1px solid var(--line);border-radius:9px;padding:8px;background:var(--card);color:var(--ink);font-size:12px}
+.meal-addgrid textarea{min-height:62px;resize:vertical}
+.meal-addgrid button{border:0;border-radius:9px;padding:9px 12px;background:var(--brand);color:#fff;font-weight:850}
+.meal-day-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:18px 2px 7px;padding:0 2px 7px;border-bottom:2px solid var(--brand)}
+.meal-day-head:first-child{margin-top:6px}
+.meal-day-head b{font-size:19px;color:var(--brand)}
+.meal-day-total{font-size:10px;color:var(--brand);background:var(--soft);border-radius:999px;padding:4px 8px;font-weight:850;white-space:nowrap}
+.meal-card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:12px;margin:8px 0;box-shadow:0 2px 6px #00000008}
+.meal-card-top{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.meal-titleline{min-width:0}
+.meal-kind{display:inline-block;background:var(--soft);color:var(--brand);border-radius:999px;padding:3px 7px;font-size:9px;font-weight:900;margin-bottom:5px}
+.meal-name{font-size:14px;font-weight:900;line-height:1.35}
+.meal-place{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.4}
+.meal-actions{display:flex;gap:4px;flex:0 0 auto}
+.meal-actions button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:4px 7px;font-size:10px;font-weight:850;cursor:pointer}
+.meal-actions button.danger{color:#a33;background:var(--danger);border-color:#e7c4c0}
+.meal-meta{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:9px}
+.meal-meta > div{background:var(--soft);border-radius:9px;padding:7px 8px;min-width:0}
+.meal-meta span{display:block;font-size:8px;color:var(--muted);font-weight:800}
+.meal-meta b{display:block;font-size:11px;margin-top:1px;line-height:1.35}
+.meal-desc{font-size:11px;line-height:1.5;margin-top:8px;color:var(--muted)}
+.meal-actual{display:grid;grid-template-columns:58px 1fr 98px 95px;gap:6px;align-items:center;margin-top:10px;padding-top:9px;border-top:1px solid var(--line)}
+.meal-use{display:flex;align-items:center;gap:4px;font-size:10px;font-weight:850;color:var(--brand)}
+.meal-use input{width:19px;height:19px;accent-color:var(--brand)}
+.meal-group,.meal-yen{width:100%;border:1px solid var(--line);border-radius:8px;padding:7px;background:var(--card);color:var(--ink);font-size:11px;font-weight:750}
+.meal-krw{text-align:right;font-size:11px;font-weight:900;white-space:nowrap}
+.meal-editbox{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
+.meal-actionsbar{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.meal-actionsbar button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:8px 10px;font-weight:800;font-size:11px}
+.meal-actionsbar .danger{color:#a33;background:var(--danger)}
+.planb-table{background:var(--card);border:1px solid var(--line);border-radius:15px;overflow:hidden}
+.planb-headrow,.planb-food-row{display:grid;grid-template-columns:minmax(0,1.25fr) 105px minmax(0,1fr) minmax(0,1.15fr);gap:0}
+.planb-headrow{background:var(--brand);color:#fff;font-size:10px;font-weight:900}
+.planb-headrow div,.planb-food-row>div{padding:9px 10px;border-right:1px solid var(--line)}
+.planb-headrow div:last-child,.planb-food-row>div:last-child{border-right:0}
+.planb-food-row{border-bottom:1px solid var(--line);font-size:11px;line-height:1.45;transition:.15s ease;cursor:default}
+.planb-food-row:last-child{border-bottom:0}
+.planb-food-row:hover,.planb-food-row.selected{background:#e5f4f1;box-shadow:inset 4px 0 0 var(--brand)}
+.planb-food-row:hover .planb-food-name,.planb-food-row.selected .planb-food-name{color:var(--brand)}
+.planb-food-name{font-weight:900;transition:.15s}
+.planb-food-budget{font-weight:850;white-space:nowrap}
+.planb-note{font-size:10px;color:var(--muted);margin:7px 2px 0}
+@media(max-width:650px){
+  .meal-toolbar{grid-template-columns:1fr}
+  .meal-addgrid{grid-template-columns:1fr 1fr}
+  .meal-addgrid .span2,.meal-addgrid .full{grid-column:1/-1}
+  .meal-meta{grid-template-columns:1fr 1fr}
+  .meal-actual{grid-template-columns:54px minmax(0,1fr) 82px 78px}
+  .planb-headrow{display:none}
+  .planb-food-row{display:block;padding:10px 11px}
+  .planb-food-row>div{padding:2px 0;border:0}
+  .planb-food-row>div:nth-child(2)::before{content:"예산 · ";font-weight:850;color:var(--muted)}
+  .planb-food-row>div:nth-child(3)::before{content:"메뉴 · ";font-weight:850;color:var(--muted)}
+  .planb-food-row>div:nth-child(4)::before{content:"주의 · ";font-weight:850;color:var(--muted)}
+}
+@media(prefers-color-scheme:dark){
+  .planb-food-row:hover,.planb-food-row.selected{background:#173b37}
+}
+
 </style>
 </head>
 <body class="">
@@ -94,6 +260,8 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
     <button id="tab2" onclick="showDay(2,this)" class="">3일차</button>
     <button id="tab3" onclick="showDay(3,this)" class="">4일차</button>
     <button id="tabEmergency" onclick="showEmergency(this)">주요 목적지</button>
+    <button id="tabShopping" onclick="showShopping(this)">쇼핑·선물</button>
+    <button id="tabMeals" onclick="showMeals(this)">식사</button>
   </div>
 </header>
 
@@ -3546,6 +3714,98 @@ body.editing [data-editable="1"]:focus{outline:3px solid var(--brand)!important;
     </div>
   </section>
 
+  <section id="shopping" class="shopping">
+    <div class="shop-head">
+      <h2>🛍 쇼핑 · 선물 체크</h2>
+      <p>살 것은 현장에서 체크하고, 귀국 후 선물 전달까지 한 화면에서 관리합니다.</p>
+    </div>
+
+    <div class="shop-toolbar">
+      <div class="shop-box">
+        <div class="shop-box-title">환율 계산</div>
+        <div class="fx-line">1엔 = <input id="shopFx" type="number" inputmode="decimal" min="0" step="0.01" value="8.78" oninput="shopUpdateFx(this.value)"> 원</div>
+        <div class="fx-help">환율은 직접 바꿀 수 있습니다. 엔화 금액을 입력하면 원화가 자동 계산됩니다.</div>
+      </div>
+      <div class="shop-box">
+        <div class="shop-box-title">진행 현황</div>
+        <div class="shop-stats">
+          <div class="shop-stat"><b id="shopBoughtStat">0/0</b><span>구매 완료</span></div>
+          <div class="shop-stat"><b id="shopGivenStat">0/0</b><span>선물 전달</span></div>
+          <div class="shop-stat"><b id="shopActualTotal">¥0</b><span>실구매 합계</span></div>
+        </div>
+        <div class="shop-totalbar">
+          <div class="shop-totalcell"><span>구매 체크 합계 · 엔화</span><b id="shopActualTotalYenBig">¥0</b></div>
+          <div class="shop-totalcell"><span>구매 체크 합계 · 원화</span><b id="shopActualTotalKrwBig">₩0</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="shop-switch">
+      <button id="shopBtnBuy" class="active" onclick="shopShowPane('buy',this)">✓ 구매 체크</button>
+      <button id="shopBtnGive" onclick="shopShowPane('give',this)">🎁 선물 배분</button>
+      <button id="shopBtnBudget" onclick="shopShowPane('budget',this)">¥ 예산 · Plan B</button>
+    </div>
+
+    <div id="shopPaneBuy" class="shop-pane active"></div>
+    <div id="shopPaneGive" class="shop-pane"></div>
+    <div id="shopPaneBudget" class="shop-pane"></div>
+
+    <div class="shop-actions">
+      <button onclick="shopOpenAll()">모두 펼치기</button>
+      <button onclick="shopCloseAll()">모두 접기</button>
+      <button class="danger" onclick="shopResetChecks()">체크·실구매금액 초기화</button>
+      <button class="danger" onclick="shopRestoreOriginalLists()">추가·삭제 목록 원본 복원</button>
+    </div>
+
+    <div class="pager">
+      <button onclick="showEmergency(document.getElementById('tabEmergency'))">‹ 주요 목적지</button>
+      <button onclick="scrollTopNow()">맨 위로 ↑</button>
+      <button onclick="showDayByIndex(0)">1일차 ›</button>
+    </div>
+  </section>
+
+
+  <section id="meals" class="meals">
+    <div class="meal-head">
+      <h2>🍽 식사 정보</h2>
+      <p>확정·후보 식당은 일차별로 관리하고, 실제 이용 금액과 가족별 식사를 기록합니다.</p>
+    </div>
+
+    <div class="meal-toolbar">
+      <div class="meal-box">
+        <div class="meal-box-title">환율 계산</div>
+        <div class="meal-fx">1엔 = <input id="mealFx" type="number" inputmode="decimal" min="0" step="0.01" value="8.78" oninput="mealUpdateFx(this.value)"> 원</div>
+        <div class="fx-help">쇼핑·선물 환율과 함께 맞춰 사용할 수 있습니다.</div>
+      </div>
+      <div class="meal-box">
+        <div class="meal-box-title">실제 식비 합계</div>
+        <div class="meal-totalgrid">
+          <div class="meal-totalcell"><span>이용 체크 합계 · 엔화</span><b id="mealTotalYen">¥0</b></div>
+          <div class="meal-totalcell"><span>원화 환산</span><b id="mealTotalKrw">₩0</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-switch">
+      <button id="mealBtnPlan" class="active" onclick="mealShowPane('plan',this)">✓ 식사 계획 · 실제금액</button>
+      <button id="mealBtnPlanB" onclick="mealShowPane('planb',this)">Plan B 식당 목록</button>
+    </div>
+
+    <div id="mealPanePlan" class="meal-pane active"></div>
+    <div id="mealPanePlanB" class="meal-pane"></div>
+
+    <div class="meal-actionsbar">
+      <button onclick="mealResetActual()">이용체크·실제금액 초기화</button>
+      <button class="danger" onclick="mealRestoreOriginal()">식사 계획 원본 복원</button>
+    </div>
+
+    <div class="pager">
+      <button onclick="showShopping(document.getElementById('tabShopping'))">‹ 쇼핑·선물</button>
+      <button onclick="scrollTopNow()">맨 위로 ↑</button>
+      <button onclick="showDayByIndex(0)">1일차 ›</button>
+    </div>
+  </section>
+
   <p class="small">※ 이 파일은 외부 지도·글꼴·인터넷을 사용하지 않아 오프라인에서도 내용을 볼 수 있습니다.</p>
 </main>
 
@@ -3647,6 +3907,8 @@ function setActiveTab(index){
 function showDay(i,btn){
   currentDay=i;
   document.getElementById('emergency').classList.remove('active');
+  document.getElementById('shopping').classList.remove('active');
+  document.getElementById('meals').classList.remove('active');
   document.querySelectorAll('.day').forEach((d,n)=>d.classList.toggle('active',n===i));
   document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
   if(btn)btn.classList.add('active'); else setActiveTab(i);
@@ -3660,11 +3922,37 @@ function showDayByIndex(i){
 
 function showEmergency(btn){
   document.querySelectorAll('.day').forEach(d=>d.classList.remove('active'));
+  document.getElementById('shopping').classList.remove('active');
+  document.getElementById('meals').classList.remove('active');
   document.getElementById('emergency').classList.add('active');
   document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
   (btn||document.getElementById('tabEmergency')).classList.add('active');
   scrollTopNow();
 }
+
+
+function showShopping(btn){
+  document.querySelectorAll('.day').forEach(d=>d.classList.remove('active'));
+  document.getElementById('emergency').classList.remove('active');
+  document.getElementById('meals').classList.remove('active');
+  document.getElementById('shopping').classList.add('active');
+  document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
+  (btn||document.getElementById('tabShopping')).classList.add('active');
+  shopRender();
+  scrollTopNow();
+}
+
+function showMeals(btn){
+  document.querySelectorAll('.day').forEach(d=>d.classList.remove('active'));
+  document.getElementById('emergency').classList.remove('active');
+  document.getElementById('shopping').classList.remove('active');
+  document.getElementById('meals').classList.add('active');
+  document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
+  (btn||document.getElementById('tabMeals')).classList.add('active');
+  mealRender();
+  scrollTopNow();
+}
+
 
 function openAll(dayIndex){
   const day=document.querySelector(`.day[data-day="${dayIndex}"]`);
@@ -4027,12 +4315,492 @@ function resetEdits(){
   location.reload();
 }
 
+
+/* ===== 쇼핑·선물 체크리스트 ===== */
+const SHOP_STORAGE='osaka_trip_shopping_v1';
+const SHOP_DEFAULT_FX=8.78;
+const SHOP_ITEMS=[
+  {id:'d1-drug-roihi',day:'1일차',place:'아베노 큐즈몰 · 마츠모토키요시/코쿠민드럭',item:'로이히츠보코 156매',qty:'7상자',plan:10164,note:'의약품'},
+  {id:'d1-drug-lycee',day:'1일차',place:'아베노 큐즈몰 · 마츠모토키요시/코쿠민드럭',item:'ROHTO Lycee 8ml',qty:'9개',plan:6930,note:'안약'},
+  {id:'d1-drug-ota45',day:'1일차',place:'아베노 큐즈몰 · 마츠모토키요시/코쿠민드럭',item:'오타이산A 정제 45정',qty:'6개',plan:4488,note:'소화불량·과식·더부룩함'},
+  {id:'d1-drug-ota120',day:'1일차',place:'아베노 큐즈몰 · 마츠모토키요시/코쿠민드럭',item:'오타이산A 정제 120정',qty:'2개',plan:2640,note:''},
+  {id:'d1-drug-tsururi-gel',day:'1일차',place:'아베노 큐즈몰 · 마츠모토키요시/코쿠민드럭',item:'츠루리 모공 오염 분해젤 15g',qty:'2개',plan:1980,note:''},
+  {id:'d1-drug-tsururi-pack',day:'1일차',place:'아베노 큐즈몰 · 마츠모토키요시/코쿠민드럭',item:'츠루리 각질·피지 용해 코팩 AZ+',qty:'3개',plan:2310,note:''},
+  {id:'d1-drug-pitas',day:'1일차',place:'아베노 큐즈몰 · 마츠모토키요시/코쿠민드럭',item:'PITAS 기침 트로치',qty:'1개',plan:633,note:'선택 구입'},
+  {id:'d1-drug-pair',day:'1일차',place:'아베노 큐즈몰 · 마츠모토키요시/코쿠민드럭',item:'페어 아크네 크림 W',qty:'2개',plan:2298,note:'여드름 치료제'},
+  {id:'d1-drug-loxo',day:'1일차',place:'아베노 큐즈몰 · 마츠모토키요시/코쿠민드럭',item:'로키소닌 EX 테이프',qty:'2개',plan:4356,note:''},
+  {id:'d1-drug-cabagin',day:'1일차',place:'아베노 큐즈몰 · 마츠모토키요시/코쿠민드럭',item:'카베진 코와 α플러스',qty:'2개',plan:2376,note:'위점막 보호·위통·메스꺼움'},
+  {id:'d1-drug-sharon',day:'1일차',place:'아베노 큐즈몰 · 마츠모토키요시/코쿠민드럭',item:'샤론 파스 80매',qty:'4개',plan:4752,note:''},
+  {id:'d1-kaldi-orange',day:'1일차',place:'KALDI · 아베노 큐즈몰',item:'KALDI 오렌지커피 50g',qty:'2병',plan:858,note:'본인용'},
+  {id:'d1-kaldi-mild',day:'1일차',place:'KALDI · 아베노 큐즈몰',item:'카페 칼디 드립 마일드 칼디 10P',qty:'2팩',plan:1468,note:''},
+  {id:'d1-kaldi-italian',day:'1일차',place:'KALDI · 아베노 큐즈몰',item:'카페 칼디 드립 이탈리안 로스트 10P',qty:'2팩',plan:1598,note:''},
+  {id:'d1-kaldi-mocha',day:'1일차',place:'KALDI · 아베노 큐즈몰',item:'카페 칼디 드립 모카 블렌드 10P',qty:'2팩',plan:1792,note:''},
+  {id:'d1-standard-hand',day:'1일차',place:'Standard Products · 아베노 큐즈몰 B1',item:'이마바리제 문직 손수건',qty:'3장',plan:990,note:'남편 회사 팀장 3명'},
+  {id:'d1-junyong-clothes',day:'1일차',place:'GU → GLOBAL WORK/AZUL BY MOUSSY → tk.TAKEO KIKUCHI → BRING',item:'준용이 옷',qty:'예산',plan:8000,note:'GU 우선'},
+  {id:'d1-gacha-son',day:'1일차',place:'아베노 큐즈몰 · 다이소/가챠샵',item:'아들 친구용 캐릭터 문구 또는 작은 가챠',qty:'3명',plan:2400,note:'1인 약 ¥500~800'},
+  {id:'d1-gacha-daughter',day:'1일차',place:'아베노 큐즈몰 · 다이소/가챠샵',item:'딸 친구용 문구·스티커·키링',qty:'3명',plan:2400,note:'1인 약 ¥500~800'},
+  {id:'d1-gacha-family',day:'1일차',place:'아베노 큐즈몰 · 다이소/가챠샵',item:'아이들 개인 가챠·캐릭터 굿즈',qty:'잔액 내',plan:3600,note:'선물 사고 남은 돈 기준'},
+  {id:'d1-gacha-husband',day:'1일차',place:'아베노 큐즈몰 · 다이소/가챠샵',item:'남편 가챠샵 투어',qty:'예산',plan:3000,note:''},
+  {id:'d1-donki-alfort',day:'1일차',place:'MEGA 돈키호테 신세카이점',item:'BOURBON 알포트 미니초콜릿 패밀리팩',qty:'2봉',plan:800,note:'회사 나눔용'},
+  {id:'d1-donki-karamucho',day:'1일차',place:'MEGA 돈키호테 신세카이점',item:'코이케야 스틱 카라무쵸 4연팩',qty:'5팩',plan:1000,note:'회사 나눔용'},
+  {id:'d1-donki-moonlight',day:'1일차',place:'MEGA 돈키호테 신세카이점',item:'모리나가 미니 문라이트 대봉 129g',qty:'1봉',plan:500,note:'큰아가씨네'},
+  {id:'d1-donki-powder',day:'1일차',place:'MEGA 돈키호테 신세카이점',item:'슷핀 파우더',qty:'1개',plan:1980,note:'화장품'},
+  {id:'d1-donki-breath',day:'1일차',place:'MEGA 돈키호테 신세카이점',item:'코바야시 브레스케어',qty:'1개',plan:590,note:'입냄새 제거'},
+  {id:'d1-donki-other',day:'1일차',place:'MEGA 돈키호테 신세카이점',item:'기타',qty:'예산',plan:400,note:''},
+  {id:'d1-donki-family',day:'1일차',place:'MEGA 돈키호테 신세카이점',item:'아이들 및 남편 개인 쇼핑',qty:'예산',plan:4000,note:''},
+  {id:'d2-liquor-dassai',day:'2일차',place:'한큐 우메다 B2 주류 매장 · 없으면 리커 마운틴',item:'닷사이23 獺祭 純米大吟醸 磨き二割三分 720ml',qty:'1병',plan:7000,note:'기본 1순위'},
+  {id:'d2-liquor-kubota',day:'2일차',place:'한큐 우메다 B2 주류 매장 · 없으면 리커 마운틴',item:'쿠보타 만쥬 久保田 萬寿 純米大吟醸 720ml',qty:'1병',plan:4472,note:'닷사이23 품절 시 대체 1순위'},
+  {id:'d2-liquor-asakura',day:'2일차',place:'한큐 우메다 B2 주류 매장 · 없으면 리커 마운틴',item:'아사쿠라 Sherry Cask Finish 500ml',qty:'1병',plan:4350,note:'기본 1순위'},
+  {id:'d2-liquor-brandy',day:'2일차',place:'한큐 우메다 B2 주류 매장 · 없으면 리커 마운틴',item:'아사쿠라 Brandy Cask Finish 500ml',qty:'1병',plan:4158,note:'Sherry Cask 품절 시 대체 1순위'},
+  {id:'d2-liquor-sakura',day:'2일차',place:'한큐 우메다 B2 주류 매장 · 없으면 리커 마운틴',item:'아사쿠라 SAKURA CASK BLENDED 500ml',qty:'1병',plan:4158,note:'Sherry Cask 품절 시 대체 2순위'},
+  {id:'d2-liquor-hyakunen',day:'2일차',place:'한큐 우메다 B2 주류 매장 · 없으면 리커 마운틴',item:'백년의 고독 百年の孤独 720ml',qty:'1병',plan:0,note:'아사쿠라 전 제품 품절 시 대체 3순위 · 가격 현장 확인'},
+  {id:'d3-agf',day:'3일차',place:'난바·닛폰바시 주변 마트/드럭스토어',item:'AGF 스틱커피',qty:'1~2박스',plan:2000,note:'가족 먹거리'},
+  {id:'d3-ochazuke',day:'3일차',place:'난바·닛폰바시 주변 마트/드럭스토어',item:'永谷園 오차즈케',qty:'1~3개',plan:1200,note:'가족 먹거리'},
+  {id:'d4-mary',day:'4일차',place:'오사카 다카시마야',item:'메리 초콜릿 쿠키 컬렉션 12개입',qty:'3개',plan:3900,note:'가족 선물'},
+  {id:'d4-ogawa',day:'4일차',place:'오사카 다카시마야',item:'오가와커피 드립백 7봉입',qty:'4팩',plan:3200,note:'지인 선물'},
+  {id:'d4-fukujuen',day:'4일차',place:'오사카 다카시마야',item:'후쿠주엔 티백 스탠드팩',qty:'3개',plan:2700,note:'선물'},
+  {id:'d4-malebranche',day:'4일차',place:'오사카 다카시마야',item:'MALEBRANCHE 오濃茶 퐁당쇼콜라 9개입',qty:'1개',plan:2883,note:'남편 회사 이사님'},
+  {id:'trip-snack',day:'여행 중',place:'편의점·마트',item:'푸딩·롤케이크·멜론빵 등 디저트',qty:'여행 중',plan:3000,note:'예산 범위 ¥1,000~3,000'},
+  {id:'trip-meal',day:'여행 중',place:'편의점·마트',item:'오니기리·계란샌드·편의점 치킨',qty:'여행 중',plan:5000,note:'예산 범위 ¥2,000~5,000'},
+  {id:'trip-mintia',day:'여행 중',place:'편의점·마트',item:'민티아 VOiCE',qty:'1~2개',plan:0,note:''},
+  {id:'trip-tokusui',day:'여행 중',place:'편의점·마트',item:'산토리 特水(토쿠스이)',qty:'1병',plan:0,note:'일본에서 마실 용도'},
+  {id:'trip-breakfast',day:'여행 중',place:'편의점·마트',item:'아침 식사·생수·커피',qty:'여행 중',plan:4700,note:''}
+];
+
+const SHOP_GIFTS=[
+  {id:'g-parents-inlaw',person:'시부모님',detail:'로이히츠보코 156매 + 샤론파스 80매 + ROHTO Lycee 8ml + 오타이산A 45정 + 후쿠주엔 티백 스탠드팩'},
+  {id:'g-mother',person:'친정엄마',detail:'로키소닌 EX 테이프 + 샤론파스 80매 + ROHTO Lycee 8ml + 오타이산A 120정 + 후쿠주엔 티백 스탠드팩'},
+  {id:'g-jeongeun',person:'정은언니네',detail:'로이히츠보코 156매 + ROHTO Lycee 8ml + 카베진 코와 α플러스 + 메리 초콜릿 쿠키 컬렉션 12개입'},
+  {id:'g-jieun',person:'지은이네',detail:'로이히츠보코 156매 + ROHTO Lycee 8ml + 오타이산A 45정 + 메리 초콜릿 쿠키 컬렉션 12개입'},
+  {id:'g-big-sis',person:'큰아가씨네',detail:'샤론파스 80매 + ROHTO Lycee 8ml + 오타이산A 45정 + 모리나가 미니 문라이트 129g'},
+  {id:'g-small-sis',person:'작은아가씨네',detail:'로이히츠보코 156매 + ROHTO Lycee 8ml + 오타이산A 45정 + 메리 초콜릿 쿠키 컬렉션 12개입'},
+  {id:'g-friend1',person:'내 지인 1명',detail:'로이히츠보코 156매 + ROHTO Lycee 8ml + 오가와커피 드립백 7봉입'},
+  {id:'g-friend2',person:'내 지인 2명',detail:'오가와커피 드립백 7봉입 · 1인 1팩'},
+  {id:'g-director',person:'남편 회사 이사님',detail:'MALEBRANCHE 퐁당쇼콜라 나마차노하 + 후쿠주엔 티백 스탠드팩'},
+  {id:'g-leads',person:'남편 회사 팀장 3명',detail:'이마바리제 문직 손수건 · 1인 1장'},
+  {id:'g-team',person:'남편 회사 팀원 20명',detail:'BOURBON 알포트 미니초콜릿 + 코이케야 스틱 카라무쵸 · 사무실 나눔용'},
+  {id:'g-son-friends',person:'아들 친구 3명',detail:'캐릭터 문구 또는 작은 가챠 · 1인 약 ¥500~800'},
+  {id:'g-daughter-friends',person:'딸 친구 3명',detail:'캐릭터 문구·스티커·키링 · 1인 약 ¥500~800'}
+];
+
+const SHOP_BUDGET=[
+  ['선물비',44613,'가족·지인·회사·아이 친구 선물 전체'],
+  ['우리 가족용 의약품·화장품',18287,'선물 배분 후 남은 약·화장품'],
+  ['커피 개인음료',1658,'KALDI 오렌지커피 + 오가와커피 개인용 1팩'],
+  ['개인 쇼핑',20970,'준용 옷 + 다이소·가챠샵 + MEGA 돈키호테 개인쇼핑'],
+  ['술',11350,'닷사이23 + 아사쿠라 셰리 캐스크'],
+  ['가족 먹거리',3200,'AGF 스틱커피 + 오차즈케'],
+  ['여행 중 소비',12700,'편의점·간식·아침식사·생수·커피'],
+  ['예비비',4858,'KALDI 드립커피 6팩·오가와커피 못 살 경우']
+];
+
+const SHOP_PLANB=[
+  ['품절','이마바리 손수건','Ora2 me 스테인 클리어 페이스트 130g 3개',1200,'팀장 3명 선물 대체'],
+  ['일부 품절','큐즈몰 드럭스토어','로이히츠보코·ROHTO Lycee·오타이산A·츠루리 등 부족분만',0,'부족분만 보충 구입'],
+  ['닷사이23 품절','獺祭 純米大吟醸 磨き二割三分','쿠보타 만쥬 久保田 萬寿 純米大吟醸 720ml',4472,'대체 1순위 · 너무 비싸면 ¥5,000~7,000대 추천 요청'],
+  ['아사쿠라 셰리 품절','朝倉 SHERRY CASK FINISH','아사쿠라 Brandy Cask Finish 500ml',4158,'대체 1순위'],
+  ['아사쿠라 셰리 품절','朝倉 SHERRY CASK FINISH','아사쿠라 SAKURA CASK BLENDED 500ml',4158,'대체 2순위'],
+  ['아사쿠라 전 제품 품절','朝倉 계열','백년의 고독 百年の孤独 720ml',0,'대체 3순위 · 가격 현장 확인'],
+  ['품절 혹은 시내에서 못 살 경우','시내 닷사이23','닷사이23 中取り KIX Limited Edition 720ml',10000,'공항 대체'],
+  ['못 갈 경우','오가와커피','KALDI 드립커피 10P 총 6팩',4858,'커피 대체']
+];
+
+let shopState={fx:SHOP_DEFAULT_FX,bought:{},actual:{},given:{},customItems:[],deletedItems:{},customGifts:[],deletedGifts:{}};
+function shopLoadState(){
+  try{
+    const raw=localStorage.getItem(SHOP_STORAGE);
+    if(raw){
+      const x=JSON.parse(raw);
+      shopState={...shopState,...x,
+        bought:x.bought||{},actual:x.actual||{},given:x.given||{},
+        customItems:Array.isArray(x.customItems)?x.customItems:[],deletedItems:x.deletedItems||{},
+        customGifts:Array.isArray(x.customGifts)?x.customGifts:[],deletedGifts:x.deletedGifts||{}
+      };
+    }
+  }catch(e){}
+}
+function shopSaveState(){try{localStorage.setItem(SHOP_STORAGE,JSON.stringify(shopState));}catch(e){}}
+function shopFmtYen(n){n=Number(n)||0;return '¥'+Math.round(n).toLocaleString('ko-KR');}
+function shopFmtKrw(n){n=Number(n)||0;return '₩'+Math.round(n).toLocaleString('ko-KR');}
+function shopEscape(v){return String(v??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function shopUid(prefix){return prefix+'-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,7);}
+function shopItems(){return SHOP_ITEMS.filter(x=>!shopState.deletedItems[x.id]).concat(shopState.customItems||[]);}
+function shopGifts(){return SHOP_GIFTS.filter(x=>!shopState.deletedGifts[x.id]).concat(shopState.customGifts||[]);}
+function shopInvalidate(pane){const el=document.getElementById(pane);if(el){delete el.dataset.rendered;el.innerHTML='';}}
+function shopUpdateFx(v){const n=parseFloat(v);if(Number.isFinite(n)&&n>0){shopState.fx=n;shopSaveState();shopRefreshMoney();}}
+function shopToggleBought(id,checked){shopState.bought[id]=!!checked;shopSaveState();shopRefreshStats();}
+function shopSetActual(id,v){const n=parseFloat(String(v).replace(/,/g,''));shopState.actual[id]=Number.isFinite(n)&&n>=0?n:'';shopSaveState();shopRefreshMoney();shopRefreshStats();}
+function shopToggleGiven(id,checked){shopState.given[id]=!!checked;shopSaveState();shopRefreshStats();}
+function shopActualValue(it){const v=shopState.actual[it.id];return (v===''||v===undefined||v===null)?it.plan:Number(v)||0;}
+function shopAddItem(){
+  const day=document.getElementById('shopAddDay')?.value||'1일차';
+  const place=(document.getElementById('shopAddPlace')?.value||'').trim();
+  const item=(document.getElementById('shopAddItem')?.value||'').trim();
+  const qty=(document.getElementById('shopAddQty')?.value||'').trim()||'현장 구입';
+  const planRaw=(document.getElementById('shopAddPlan')?.value||'').trim();
+  const plan=Math.max(0,parseFloat(planRaw)||0);
+  if(!place){alert('구매 장소를 입력해 주세요.');document.getElementById('shopAddPlace')?.focus();return;}
+  if(!item){alert('상품명을 입력해 주세요.');document.getElementById('shopAddItem')?.focus();return;}
+  const id=shopUid('custom-item');
+  shopState.customItems.push({id,day,place,item,qty,plan,note:'현장에서 추가'});
+  shopSaveState();shopInvalidate('shopPaneBuy');shopRender();
+}
+function shopDeleteItem(id){
+  const items=shopItems();const it=items.find(x=>x.id===id);if(!it)return;
+  if(!confirm('「'+it.item+'」을 쇼핑 목록에서 삭제할까요?'))return;
+  const ci=(shopState.customItems||[]).findIndex(x=>x.id===id);
+  if(ci>=0)shopState.customItems.splice(ci,1);else shopState.deletedItems[id]=true;
+  delete shopState.bought[id];delete shopState.actual[id];
+  shopSaveState();shopInvalidate('shopPaneBuy');shopRender();
+}
+function shopAddGift(){
+  const person=(document.getElementById('shopAddGiftPerson')?.value||'').trim();
+  const detail=(document.getElementById('shopAddGiftDetail')?.value||'').trim();
+  if(!person){alert('선물 받을 사람을 입력해 주세요.');document.getElementById('shopAddGiftPerson')?.focus();return;}
+  if(!detail){alert('선물 내용을 입력해 주세요.');document.getElementById('shopAddGiftDetail')?.focus();return;}
+  shopState.customGifts.push({id:shopUid('custom-gift'),person,detail});
+  shopSaveState();shopInvalidate('shopPaneGive');shopRender();
+}
+function shopDeleteGift(id){
+  const gifts=shopGifts();const g=gifts.find(x=>x.id===id);if(!g)return;
+  if(!confirm('「'+g.person+'」 선물 배분 항목을 삭제할까요?'))return;
+  const ci=(shopState.customGifts||[]).findIndex(x=>x.id===id);
+  if(ci>=0)shopState.customGifts.splice(ci,1);else shopState.deletedGifts[id]=true;
+  delete shopState.given[id];shopSaveState();shopInvalidate('shopPaneGive');shopRender();
+}
+function shopRefreshMoney(){
+  const items=shopItems();
+  document.querySelectorAll('[data-shop-krw]').forEach(el=>{const id=el.getAttribute('data-shop-krw');const it=items.find(x=>x.id===id);if(it)el.textContent=shopFmtKrw(shopActualValue(it)*shopState.fx);});
+  document.querySelectorAll('[data-budget-krw]').forEach(el=>{el.textContent=shopFmtKrw((Number(el.getAttribute('data-budget-krw'))||0)*shopState.fx);});
+  const total=items.reduce((a,it)=>a+(shopState.bought[it.id]?shopActualValue(it):0),0);
+  const st=document.getElementById('shopActualTotal');if(st)st.textContent=shopFmtYen(total);
+  const bigY=document.getElementById('shopActualTotalYenBig');if(bigY)bigY.textContent=shopFmtYen(total);
+  const bigK=document.getElementById('shopActualTotalKrwBig');if(bigK)bigK.textContent=shopFmtKrw(total*shopState.fx);
+  const mirror=document.getElementById('shopActualTotalMirror');if(mirror)mirror.textContent=shopFmtYen(total);
+  const totalKrw=document.getElementById('shopActualTotalKrw');if(totalKrw)totalKrw.textContent=shopFmtKrw(total*shopState.fx);
+  document.querySelectorAll('[data-shop-day-total]').forEach(el=>{
+    const day=el.getAttribute('data-shop-day-total');
+    const dtotal=items.filter(it=>it.day===day&&shopState.bought[it.id]).reduce((a,it)=>a+shopActualValue(it),0);
+    el.textContent='구매 합계 '+shopFmtYen(dtotal)+' · '+shopFmtKrw(dtotal*shopState.fx);
+  });
+}
+function shopRefreshStats(){
+  const items=shopItems(), gifts=shopGifts();
+  const bought=items.filter(it=>shopState.bought[it.id]).length;
+  const given=gifts.filter(g=>shopState.given[g.id]).length;
+  const b=document.getElementById('shopBoughtStat');if(b)b.textContent=`${bought}/${items.length}`;
+  const g=document.getElementById('shopGivenStat');if(g)g.textContent=`${given}/${gifts.length}`;
+  shopRefreshMoney();
+}
+function shopRender(){
+  const fx=document.getElementById('shopFx');if(fx)fx.value=shopState.fx;
+  const items=shopItems(), gifts=shopGifts();
+  const buy=document.getElementById('shopPaneBuy');
+  if(buy && !buy.dataset.rendered){
+    const add=`<div class="shop-addbox"><div class="shop-addtitle">＋ 현장에서 쇼핑 품목 추가</div><div class="shop-addgrid"><select id="shopAddDay"><option>1일차</option><option>2일차</option><option>3일차</option><option>4일차</option><option>여행 중</option></select><input id="shopAddPlace" class="shop-add-wide" placeholder="구매 장소"><input id="shopAddItem" class="shop-add-wide" placeholder="상품명"><input id="shopAddQty" placeholder="수량/메모"><input id="shopAddPlan" type="number" inputmode="numeric" min="0" placeholder="예상 ¥"><button onclick="shopAddItem()">추가</button></div><div class="fx-help">품절 대체품이나 현장에서 발견한 상품을 바로 추가할 수 있습니다. 기존 상품은 오른쪽 ×로 삭제합니다.</div></div>`;
+    const groups=[];const map=new Map();
+    items.forEach(it=>{const key=it.day+'||'+it.place;if(!map.has(key)){const g={day:it.day,place:it.place,items:[]};map.set(key,g);groups.push(g);}map.get(key).items.push(it);});
+    const dayDates={'1일차':'9/26','2일차':'9/27','3일차':'9/28','4일차':'9/29','여행 중':'상시'};
+    let buyHtml=add;let lastDay='';
+    groups.forEach((g,idx)=>{
+      if(g.day!==lastDay){buyHtml+=`<div class="shop-day-head"><div class="shop-day-title"><b>${shopEscape(g.day)}</b><span>${shopEscape(dayDates[g.day]||'')}</span></div><span class="shop-day-total" data-shop-day-total="${shopEscape(g.day)}"></span></div>`;lastDay=g.day;}
+      buyHtml+=`<details class="shop-place" ${idx<2?'open':''}><summary><span>${shopEscape(g.place)}<small>${g.items.length}개 항목</small></span><span>›</span></summary><div class="shop-list"><div class="shop-colhead"><span>구매</span><span>품목</span><span>실구매 ¥</span><span>원화</span><span></span></div>${g.items.map(it=>`<div class="shop-row"><input class="shop-check" type="checkbox" ${shopState.bought[it.id]?'checked':''} onchange="shopToggleBought('${it.id}',this.checked)"><div class="shop-item"><strong>${shopEscape(it.item)}</strong><span>${shopEscape(it.qty)}${it.note?' · '+shopEscape(it.note):''} · 예상 ${shopFmtYen(it.plan)}</span></div><input class="yen-input" type="number" inputmode="numeric" min="0" step="1" value="${shopState.actual[it.id]!==undefined&&shopState.actual[it.id]!==''?shopState.actual[it.id]:it.plan}" onchange="shopSetActual('${it.id}',this.value)" oninput="shopSetActual('${it.id}',this.value)"><div class="krw-cell" data-shop-krw="${it.id}"></div><button type="button" class="shop-delete-item" onclick="shopDeleteItem('${it.id}')" title="삭제">×</button></div>`).join('')}</div></details>`;
+    });
+    buy.innerHTML=buyHtml;buy.dataset.rendered='1';
+  }
+  const give=document.getElementById('shopPaneGive');
+  if(give && !give.dataset.rendered){
+    const addGift=`<div class="shop-addbox"><div class="shop-addtitle">＋ 선물 배분 대상 추가</div><div class="shop-addgrid gift"><input id="shopAddGiftPerson" placeholder="받을 사람"><input id="shopAddGiftDetail" placeholder="선물 내용"><button onclick="shopAddGift()">추가</button></div></div>`;
+    give.innerHTML=addGift+`<div class="shop-box"><div class="shop-box-title">귀국 후 선물 전달 체크</div>${gifts.map(g=>`<div class="gift-row"><div><div class="gift-person">${shopEscape(g.person)}</div><div class="gift-detail">${shopEscape(g.detail)}</div></div><label class="gift-done-label"><input class="shop-check" type="checkbox" ${shopState.given[g.id]?'checked':''} onchange="shopToggleGiven('${g.id}',this.checked)"><span>전달</span></label><button type="button" class="shop-delete-item" onclick="shopDeleteGift('${g.id}')" title="삭제">×</button></div>`).join('')}</div>`;
+    give.dataset.rendered='1';
+  }
+  const budget=document.getElementById('shopPaneBudget');
+  if(budget && !budget.dataset.rendered){
+    const total=SHOP_BUDGET.reduce((a,x)=>a+x[1],0);const noReserve=total-4858;
+    budget.innerHTML=`<div class="shop-box"><div class="shop-box-title">쇼핑·선물 예산안</div>${SHOP_BUDGET.map(x=>`<div class="budget-grid"><div><b>${shopEscape(x[0])}</b><div class="budget-muted">${shopEscape(x[2])}</div></div><b>${shopFmtYen(x[1])}</b><b data-budget-krw="${x[1]}"></b></div>`).join('')}<div class="budget-grid"><div><b>합계 (예비비 포함)</b></div><b>${shopFmtYen(total)}</b><b data-budget-krw="${total}"></b></div><div class="budget-grid"><div><b>합계 (예비비 미포함)</b></div><b>${shopFmtYen(noReserve)}</b><b data-budget-krw="${noReserve}"></b></div><div class="budget-grid"><div><b>체크된 실구매 합계</b><div class="budget-muted">구매 체크된 항목만 합산</div></div><b id="shopActualTotalMirror">-</b><b id="shopActualTotalKrw">-</b></div></div><details class="shop-place"><summary><span>Plan B<small>품절·동선 변경 시 대체안</small></span><span>›</span></summary><div class="shop-list">${SHOP_PLANB.map(x=>`<div class="planb-row"><span class="planb-tag">${shopEscape(x[0])}</span><div class="planb-main">${shopEscape(x[1])} → ${shopEscape(x[2])}</div><div class="planb-sub">${x[3]?shopFmtYen(x[3])+' · ':''}${shopEscape(x[4])}</div></div>`).join('')}</div></details>`;
+    budget.dataset.rendered='1';
+  }
+  shopRefreshStats();
+}
+function shopShowPane(name,btn){
+  ['Buy','Give','Budget'].forEach(x=>document.getElementById('shopPane'+x)?.classList.remove('active'));
+  document.querySelectorAll('.shop-switch button').forEach(b=>b.classList.remove('active'));
+  const p=document.getElementById('shopPane'+name.charAt(0).toUpperCase()+name.slice(1));if(p)p.classList.add('active');
+  if(btn)btn.classList.add('active');shopRender();
+}
+function shopOpenAll(){document.querySelectorAll('#shopping details').forEach(d=>d.open=true);}
+function shopCloseAll(){document.querySelectorAll('#shopping details').forEach(d=>d.open=false);}
+function shopResetChecks(){
+  if(!confirm('구매 체크, 실구매 금액, 선물 전달 체크만 초기화할까요? 직접 추가·삭제한 목록과 환율은 유지됩니다.'))return;
+  shopState.bought={};shopState.actual={};shopState.given={};shopSaveState();
+  ['shopPaneBuy','shopPaneGive','shopPaneBudget'].forEach(shopInvalidate);shopRender();
+}
+function shopRestoreOriginalLists(){
+  if(!confirm('직접 추가한 쇼핑·선물 항목과 삭제 기록을 없애고 처음 목록으로 되돌릴까요? 구매/전달 체크와 환율은 유지됩니다.'))return;
+  shopState.customItems=[];shopState.deletedItems={};shopState.customGifts=[];shopState.deletedGifts={};shopSaveState();
+  ['shopPaneBuy','shopPaneGive'].forEach(shopInvalidate);shopRender();
+}
+shopLoadState();
+
 loadEdits();
 ensureStepDeleteHandlers();
 autoLinkEditableUrls();
 </script>
 
 
+
+<script>
+
+/* ===== 식사 정보 · 실제금액 · Plan B 식당 목록 ===== */
+const MEAL_STORAGE='osaka_trip_meals_v1';
+
+const MEAL_BASE=[
+  {id:'m1',day:'1일차',date:'9/26',kind:'아침',name:'인천공항 식당',place:'인천공항 식당',budget:'',last:'',desc:''},
+  {id:'m2',day:'1일차',date:'9/26',kind:'점심',name:'인천공항 식당 포장 (기내식)',place:'인천공항',budget:'',last:'',desc:'기내에서 먹을 음식으로 포장.'},
+  {id:'m3',day:'1일차',date:'9/26',kind:'저녁 1순위',name:'OBON DE GOHAN',place:'おぼんdeごはん / 아베노 큐즈몰 4층',budget:'¥1,100 ~ ¥1,800',last:'21:30',desc:'일본 가정식 정식. 생선구이·두부 요리·닭고기 조림 등 선택 가능. 밥(흰밥 또는 히지키 오코와 선택 가능)과 미소국이 포함.'},
+  {id:'m4',day:'1일차',date:'9/26',kind:'저녁 2순위',name:'100시간카레',place:'100時間カレー / 아베노 큐즈몰 3층 Q’s kitchen',budget:'¥700 ~ ¥1,200',last:'21:30',desc:'카레 전문점. 양파·과일·향신료를 100시간 동안 푹 고아 풍미를 낸 깊은 맛의 카레.'},
+  {id:'m5',day:'1일차',date:'9/26',kind:'저녁 3순위',name:'마루가메제면',place:'丸亀製麺 あべのキューズモール店 / 아베노 큐즈몰 3층',budget:'¥500 ~ ¥1,000',last:'21:30',desc:'매장에서 직접 면을 뽑는 사누키 우동 전문점. 국물 없는 붓카케 우동이나 가케 우동과 튀김 조합.'},
+
+  {id:'m6',day:'2일차',date:'9/27',kind:'아침',name:'마트 또는 편의점 간편식',place:'숙소 주변',budget:'',last:'',desc:''},
+  {id:'m7',day:'2일차',date:'9/27',kind:'점심',name:"sumigg’s",place:'타마츠쿠리성당 근처',budget:'',last:'',desc:''},
+  {id:'m8',day:'2일차',date:'9/27',kind:'저녁 1순위',name:'Hamburg Kitchen Maruburg (햄버그 키친 마루바그)',place:'HEP FIVE 7층 TAMLO / 탐로',budget:'¥1,300 ~ ¥1,800',last:'21:30',desc:'젓가락으로 먹을 수 있는 수제 함박스테이크 전문점.'},
+  {id:'m9',day:'2일차',date:'9/27',kind:'저녁 2순위',name:'오다시몬 (Odashimon / おだしもん)',place:'HEP FIVE 7층 TAMLO / 탐로',budget:'¥1,200 ~ ¥1,600',last:'21:00',desc:'가쓰오부시나 곤부 다시마 베이스 육수를 베이스로 한 일본식 파스타 전문점.'},
+  {id:'m10',day:'2일차',date:'9/27',kind:'저녁 3순위',name:'우메요시 (UMEYOSHI / 梅よし)',place:'HEP FIVE 7층 TAMLO / 탐로',budget:'¥1,000 ~ ¥1,600',last:'21:30',desc:'일본식 정식(定食, 테이쇼쿠). 바삭하게 튀겨낸 돈카츠와 에비프라이 등이 메인.'},
+
+  {id:'m11',day:'3일차',date:'9/28',kind:'아침',name:'마트 또는 편의점 간편식',place:'숙소 주변',budget:'',last:'',desc:''},
+  {id:'m12',day:'3일차',date:'9/28',kind:'점심',name:'교토대 학생식당',place:'교토대',budget:'',last:'',desc:''},
+  {id:'m13',day:'3일차',date:'9/28',kind:'저녁',name:'나니와 닛폰바시 식당',place:'긴테쓰닛폰바시역 근처',budget:'',last:'',desc:''},
+
+  {id:'m14',day:'4일차',date:'9/29',kind:'아침',name:'마트 또는 편의점 간편식',place:'숙소 주변',budget:'',last:'',desc:''},
+  {id:'m15',day:'4일차',date:'9/29',kind:'점심 1순위',name:'나니와 소바 (Naniwa Soba / 浪花そば)',place:'다카시마야 오사카점 7층',budget:'¥1,500 ~ ¥2,500',last:'22:00',desc:'정갈한 소바(메밀국수) 정식, 덴푸라 세트. 맑은 육수의 스키야키 소바 찌개.'},
+  {id:'m16',day:'4일차',date:'9/29',kind:'점심 2순위',name:'에비스 케이테이 (Keitei / 恵亭)',place:'다카시마야 오사카점 7층',budget:'¥2,000 ~ ¥3,500',last:'22:00',desc:'엄선한 흑돼지 돈카츠 정식. 양배추와 밥, 미소국, 절임 반찬이 정갈한 일본 가정식 형태.'},
+  {id:'m17',day:'4일차',date:'9/29',kind:'점심 3순위',name:'오봉 식당 16 (Obon Shokudo 16 / おぼんちゅうぼう)',place:'다카시마야 오사카점 7층',budget:'¥1,500 ~ ¥2,200',last:'21:30',desc:'한 달 주기로 바뀌는 제철 건강 가정식 정식. 쟁반 하나에 여러 정갈한 반찬과 메인 요리.'},
+  {id:'m18',day:'4일차',date:'9/29',kind:'점심 4순위',name:'카키야스 다이닝 (소고기덮밥/스테이크)',place:'다카시마야 오사카점 지하1층',budget:'¥1,300 ~ ¥2,400',last:'19:30',desc:'흑모와규 소고기덮밥(규메시), 스키야키 정식.'},
+  {id:'m19',day:'4일차',date:'9/29',kind:'점심 5순위',name:'이에데타베루 수프 스톡 도쿄',place:'다카시마야 오사카점 지하1층',budget:'¥1,100 ~ ¥1,400',last:'19:00',desc:'정갈한 수프 2종 + 밥/빵 세트. 자극 없는 야채·해산물 베이스의 담백한 식사.'},
+  {id:'m20',day:'4일차',date:'9/29',kind:'점심 6순위',name:'구로몬 엔도키',place:'다카시마야 오사카점 지하1층',budget:'¥1,600 ~ ¥2,700',last:'19:00',desc:'생참치 덮밥(마구로동), 신선 해산물 덮밥.'},
+  {id:'m21',day:'4일차',date:'9/29',kind:'저녁',name:'인천공항 식당',place:'인천공항',budget:'',last:'',desc:''}
+];
+
+const MEAL_PLANB=[
+  ['인천공항 제1터미널 푸드코트','16,000~24,000원','김밥, 샌드위치, 볶음밥, 음료','기내에서 먹을 음식으로 포장. 국물류, 냄새 강한 음식, 흘리기 쉬운 음식은 피하기'],
+  ['本格讃岐うどん まるちゃん 新世界店 / 본격 사누키우동 마루짱 신세카이점','4,000~6,500엔','사누키우동, 튀김우동, 자루우동, 덴푸라류','정확한 메뉴가 확인되지 않아 우동집 평균보다 여유 있게 산정. 튀김 추가 시 비용 증가'],
+  ['麺屋 青空 通天閣店 / 멘야 아오조라 츠텐카쿠점','4,500~6,800엔','라멘, 차슈라멘, 교자','라멘 4그릇 + 교자/토핑 일부 기준. 우동집이 휴무이거나 대기 길 때 선택'],
+  ['京都大学 学生食堂 / 교토대 시계탑 프렌치레스토랑','10,000엔','정식, 카레, 우동, 덮밥류','1순위 학생식당은 저렴한 편. 메뉴 여러 개와 음료를 추가해도 4인 5,000엔 안팎으로 예상'],
+  ['Kenya / 케냐','6,000~10,000엔','정식류, 카페식 식사, 음료','시계탑 건물 프렌치 레스토랑 2순위'],
+  ['Hiragankan / 히라간칸','6,000~10,000엔','함박고 정식, 치킨 정식, 일본식 양식','일단 후보 유지. 정확한 메뉴가 확정되지 않아 1인 1,500~2,500엔 기준'],
+  ['MAHA CURRY Main Shop / 마하 커리 본점','6,000~10,000엔','커리, 난, 치킨커리, 세트메뉴','일단 후보 유지. 세트·음료 추가 여부에 따라 변동'],
+  ['Okonomiyaki AT THE 21 Namba / 오코노미야키 앳 더 21 난바','7,000~10,000엔','오코노미야키, 야키소바, 철판요리','오코노미야키 3~4개 + 야키소바/음료 일부 기준. 대기 가능성 있음'],
+  ['なにわ日本橋食堂 / 나니와 닛폰바시 식당','4,000~8,000엔','일본 가정식 정식, 생선구이 정식, 돈카츠 정식, 덮밥류','1인 1,000~1,999엔 예상대. 카드 불가로 안내되므로 현금 또는 QR 결제 확인'],
+  ['돈카츠 뉴베이브','11,000~17,000엔','돈카츠, 로스카츠, 히레카츠, 카츠정식','고급 돈카츠라 비쌈. 1인 2,600~4,300엔대 가능. 기존 16,000~28,000엔은 너무 높지만 저렴한 식당은 아님'],
+  ['라멘 츠지','4,500~8,000엔','라멘, 차슈라멘, 교자','라멘 4그릇 + 토핑/밥 일부 기준. 특제 메뉴를 고르면 1인 1,700엔대 가능'],
+  ['Hamburg Kitchen Maruburg / 햄버그 키친 마루바그, HEP FIVE 7층 TAMLO / 탐로','5,000~8,000엔','햄버그스테이크, 세트메뉴','HEP FIVE 안내 평균예산 1,200엔. 넉넉히 잡아도 4인 8,000엔 전후'],
+  ['UMEYOSHI / 우메요시, HEP FIVE','5,000~8,000엔','돈카츠, 카츠동, 돈카츠 정식','HEP FIVE 안내 평균예산 900~1,500엔. 점심에 돈카츠를 먹었다면 중복 주의'],
+  ['cafe&bar Hush / 카페 앤 바 허쉬, HEP FIVE 7층 TAMLO / 탐로','6,000~9,000엔','파스타, 베이커리, 카페 메뉴, 음료','식사+음료 또는 디저트 기준. 식사량이 부족할 수 있음'],
+  ['KOREAN KITCHEN K-LOVERS / 코리안 키친 케이러버스, HEP FIVE 7층 TAMLO / 탐로','6,000~10,000엔','한식, 비빔밥, 찌개류, 치킨류','일본 음식에 지쳤을 때 예비. 메뉴 선택에 따라 비용 변동'],
+  ['高島屋大阪店 食堂街 또는 なんばCITY / 다카시마야 오사카점 식당가 또는 난바시티 현장 선택','5,000~10,000엔','우동, 덮밥, 정식, 카페식 식사','출국일 예비안. 백화점·난바역 주변에서 대기 짧은 곳 우선'],
+  ['関西空港 第2ターミナル / 간사이공항 제2터미널 간단식','4,000~8,000엔','샌드위치, 주먹밥, 빵, 음료, 간단한 면류','12:30까지 난바에서 식사 시작 못 하면 공항 이동 우선'],
+  ['とんかつ和幸 LINKS UMEDA / 돈카츠 와코 링크스 우메다','6,000~9,000엔','돈카츠 정식, 로스카츠, 히레카츠','완료 메뉴 기준 정식류 1인 약 1,500~2,000엔 전후. LINKS UMEDA 8층'],
+  ['さち福や CAFE LINKS UMEDA / 사치후쿠야 카페 링크스 우메다','5,000~8,000엔','생선구이 정식, 일본 가정식 정식','1인 1,000~1,999엔 예상대. 정식류라 가족 식사로 무난'],
+  ['つるとんたん TOP CHEFS / 츠루톤탄 우메다','12,000~22,000엔','우니동, 우나쥬, 히츠마부시','장어라 비쌈. 우나동 2,850엔, 히츠마부시 3,900엔 이상 가능'],
+  ['丸亀製麺 あべのキューズモール店 / 마루가메제면 아베노 큐즈몰점','3,500~5,000엔','우동, 튀김, 주먹밥','1일차 저녁 1순위. 아베노 큐즈몰 3층 Q’s kitchen. 가성비 좋고 아이들이 먹기 쉬움'],
+  ['大起水産 海鮮丼と干物定食専門店 / 다이키수산 해산물덮밥·말린생선 정식','4,500~6,500엔','해산물덮밥, 생선구이 정식','1일차 저녁 2순위. 일본식 느낌은 좋지만 아이들이 생선을 싫어하면 만족도가 떨어질 수 있음'],
+  ['僕とうどんとカツオだし / 보쿠토 우동토 가츠오다시','5,000~8,000엔','우동, 가쓰오다시, 정식류','1일차 저녁 3순위. 제대로 앉아서 먹고 싶을 때 선택. 비용과 대기 가능성 있음'],
+  ["sumigg’s / 스미그스",'6,000~9,000엔','오므라이스, 치킨 데리야키 덮밥, 오야코동, 치킨 카레','2일차 점심 1순위. 성마리아 대성당과 오사카성 사이 동선. 영어 메뉴가 있어 주문 쉬움'],
+  ['札幌スープカレーJACK 森ノ宮店 / 삿포로 스프카레 JACK 모리노미야점','5,500~10,000엔','치킨카레, 치킨베지카레, 베지터블카레, 시푸드 베지카레','2일차 점심 예비. 모리노미야역 근처. 아이들은 맵지 않게 주문 필요'],
+  ['白狐 なんばCITY店 / 시로키츠네 난바CITY점','5,000~8,000엔','우동, 덴동, 덮밥류','4일차 점심 1순위 후보. 난바CITY 안이라 공항 이동 전 식사로 무난'],
+  ['The Burg','¥1,000~2,000','',''],
+  ['웬디스 퍼스트키친 난바 에비스바시점','¥1,000~2,000','',''],
+  ['수제 우동과 대하 텐동 시로키츠네 난바시티점','¥1,000~2,000','',''],
+  ['데마치 후타바','¥1,000~2,000','','일본 전통 디저트'],
+  ['스키야키 샤브샤브 니혼바시 츠루야','¥1,000~2,000','',''],
+  ['잇푸도 우메다점','¥1,000~2,000','',''],
+  ['551호라이 덴노지역','4,000~8,000엔','부타만, 중화요리, 만두류','4일차 점심 또는 간식 후보. 매장 대기 가능성 있음. 공항 이동 시간 밀리지 않게 주의'],
+  ['쓰케카모우동 가모긴 에비스점','¥1~1,000','',''],
+  ['오사카 니시나리 식당 (Osaka Nishinari Shokudo / 大阪西成食堂)','', '돈가스, 카레, 정식류','덴노지 동물원앞역 2번 출구에서 도보 약 1분'],
+  ['무한라멘 신이마미야역앞점','1,000~2,000엔','우육 백탕 계열 라멘과 비빔면류','다이소 바로 아래쪽, 신이마미야역 앞'],
+  ['키타노야(北野屋 / きたのや)','1,000~2,000엔','가라아게, 돈가스, 정식류','MEGA 돈키호테와도 같은 에비스히가시 3초메 권역']
+];
+
+let mealState={items:JSON.parse(JSON.stringify(MEAL_BASE)),used:{},actual:{},group:{},rate:8.78};
+let mealEditingId=null;
+
+function mealEscape(v){return String(v??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
+function mealFmtYen(v){const n=Number(v)||0;return '¥'+Math.round(n).toLocaleString('ko-KR');}
+function mealFmtKrw(v){const n=Number(v)||0;return '₩'+Math.round(n).toLocaleString('ko-KR');}
+function mealUid(){return 'meal-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,7);}
+function mealSave(){try{localStorage.setItem(MEAL_STORAGE,JSON.stringify(mealState));}catch(e){}}
+function mealLoad(){
+  try{
+    const raw=localStorage.getItem(MEAL_STORAGE);
+    if(raw){
+      const obj=JSON.parse(raw);
+      mealState={...mealState,...obj};
+      if(!Array.isArray(mealState.items))mealState.items=JSON.parse(JSON.stringify(MEAL_BASE));
+    }
+  }catch(e){}
+  try{
+    if(typeof shopState!=='undefined' && Number(shopState.rate)>0)mealState.rate=Number(shopState.rate);
+  }catch(e){}
+}
+function mealDayOrder(day){return {'1일차':1,'2일차':2,'3일차':3,'4일차':4}[day]||99;}
+function mealShowPane(which,btn){
+  document.getElementById('mealPanePlan').classList.toggle('active',which==='plan');
+  document.getElementById('mealPanePlanB').classList.toggle('active',which==='planb');
+  document.querySelectorAll('.meal-switch button').forEach(b=>b.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+}
+function mealUpdateFx(v){
+  const n=Number(v); if(!(n>0))return;
+  mealState.rate=n; mealSave();
+  try{
+    if(typeof shopState!=='undefined'){
+      shopState.rate=n; shopSave();
+      const sf=document.getElementById('shopFx'); if(sf)sf.value=n;
+      shopRefreshMoney();
+    }
+  }catch(e){}
+  mealRefreshTotals();
+}
+function mealToggleUsed(id,val){mealState.used[id]=!!val;mealSave();mealRefreshTotals();}
+function mealSetActual(id,val){mealState.actual[id]=String(val??'');mealSave();mealRefreshTotals();}
+function mealSetGroup(id,val){mealState.group[id]=val;mealSave();}
+function mealGroupOptions(id){
+  const cur=mealState.group[id]||'가족 4명';
+  return ['가족 4명','남편·아들','나·딸','남편','나','아들','딸','기타'].map(x=>`<option ${x===cur?'selected':''}>${x}</option>`).join('');
+}
+function mealDayTotal(day){
+  return mealState.items.filter(x=>x.day===day && mealState.used[x.id]).reduce((s,x)=>s+(Number(mealState.actual[x.id])||0),0);
+}
+function mealRefreshTotals(){
+  const rate=Number(mealState.rate)||0;
+  const total=mealState.items.filter(x=>mealState.used[x.id]).reduce((s,x)=>s+(Number(mealState.actual[x.id])||0),0);
+  const y=document.getElementById('mealTotalYen');if(y)y.textContent=mealFmtYen(total);
+  const k=document.getElementById('mealTotalKrw');if(k)k.textContent=mealFmtKrw(total*rate);
+  document.querySelectorAll('[data-meal-krw]').forEach(el=>{
+    const id=el.getAttribute('data-meal-krw');el.textContent=mealFmtKrw((Number(mealState.actual[id])||0)*rate);
+  });
+  document.querySelectorAll('[data-meal-day-total]').forEach(el=>{
+    const d=el.getAttribute('data-meal-day-total'), t=mealDayTotal(d);
+    el.textContent=`${mealFmtYen(t)} · ${mealFmtKrw(t*rate)}`;
+  });
+}
+function mealAdd(){
+  const day=document.getElementById('mealAddDay').value;
+  const kind=document.getElementById('mealAddKind').value.trim();
+  const name=document.getElementById('mealAddName').value.trim();
+  const place=document.getElementById('mealAddPlace').value.trim();
+  const budget=document.getElementById('mealAddBudget').value.trim();
+  const last=document.getElementById('mealAddLast').value.trim();
+  const desc=document.getElementById('mealAddDesc').value.trim();
+  const group=document.getElementById('mealAddGroup').value;
+  if(!name){alert('식당 이름을 입력해 주세요.');return;}
+  const dates={'1일차':'9/26','2일차':'9/27','3일차':'9/28','4일차':'9/29'};
+  const id=mealUid();
+  mealState.items.push({id,day,date:dates[day]||'',kind:kind||'식사',name,place,budget,last,desc});
+  mealState.group[id]=group;
+  mealSave();mealRender();
+}
+function mealDelete(id){
+  const x=mealState.items.find(v=>v.id===id);if(!x)return;
+  if(!confirm(`「${x.name}」 식사 항목을 삭제할까요?`))return;
+  mealState.items=mealState.items.filter(v=>v.id!==id);
+  delete mealState.used[id];delete mealState.actual[id];delete mealState.group[id];
+  mealSave();mealRender();
+}
+function mealEdit(id){mealEditingId=id;mealRender();}
+function mealCancelEdit(){mealEditingId=null;mealRender();}
+function mealApplyEdit(id){
+  const x=mealState.items.find(v=>v.id===id);if(!x)return;
+  const g=s=>document.getElementById(s+id);
+  const day=g('meday-').value;
+  const dates={'1일차':'9/26','2일차':'9/27','3일차':'9/28','4일차':'9/29'};
+  x.day=day;x.date=dates[day]||'';
+  x.kind=g('mekind-').value.trim();
+  x.name=g('mename-').value.trim();
+  x.place=g('meplace-').value.trim();
+  x.budget=g('mebudget-').value.trim();
+  x.last=g('melast-').value.trim();
+  x.desc=g('medesc-').value.trim();
+  if(!x.name){alert('식당 이름을 입력해 주세요.');return;}
+  mealEditingId=null;mealSave();mealRender();
+}
+function mealEditForm(x){
+  const days=['1일차','2일차','3일차','4일차'];
+  return `<div class="meal-editbox"><div class="meal-addgrid">
+    <select id="meday-${x.id}">${days.map(d=>`<option ${d===x.day?'selected':''}>${d}</option>`).join('')}</select>
+    <input id="mekind-${x.id}" value="${mealEscape(x.kind)}" placeholder="아침/점심/저녁">
+    <input id="mename-${x.id}" class="span2" value="${mealEscape(x.name)}" placeholder="식당 이름">
+    <input id="meplace-${x.id}" class="span2" value="${mealEscape(x.place)}" placeholder="위치">
+    <input id="mebudget-${x.id}" value="${mealEscape(x.budget)}" placeholder="예상 금액">
+    <input id="melast-${x.id}" value="${mealEscape(x.last)}" placeholder="라스트오더">
+    <textarea id="medesc-${x.id}" class="full" placeholder="설명">${mealEscape(x.desc)}</textarea>
+    <button onclick="mealApplyEdit('${x.id}')">저장</button><button onclick="mealCancelEdit()">취소</button>
+  </div></div>`;
+}
+function mealCard(x){
+  return `<div class="meal-card">
+    <div class="meal-card-top">
+      <div class="meal-titleline"><span class="meal-kind">${mealEscape(x.kind)}</span><div class="meal-name">${mealEscape(x.name)}</div><div class="meal-place">${mealEscape(x.place)}</div></div>
+      <div class="meal-actions"><button onclick="mealEdit('${x.id}')">✎ 수정</button><button class="danger" onclick="mealDelete('${x.id}')">× 삭제</button></div>
+    </div>
+    <div class="meal-meta">
+      <div><span>예상 1인 금액</span><b>${mealEscape(x.budget||'-')}</b></div>
+      <div><span>라스트 오더</span><b>${mealEscape(x.last||'-')}</b></div>
+      <div><span>식사 그룹</span><b>${mealEscape(mealState.group[x.id]||'가족 4명')}</b></div>
+    </div>
+    ${x.desc?`<div class="meal-desc">${mealEscape(x.desc)}</div>`:''}
+    <div class="meal-actual">
+      <label class="meal-use"><input type="checkbox" ${mealState.used[x.id]?'checked':''} onchange="mealToggleUsed('${x.id}',this.checked)"> 이용</label>
+      <select class="meal-group" onchange="mealSetGroup('${x.id}',this.value)">${mealGroupOptions(x.id)}</select>
+      <input class="meal-yen" type="number" inputmode="numeric" min="0" step="1" placeholder="실제 ¥" value="${mealEscape(mealState.actual[x.id]||'')}" oninput="mealSetActual('${x.id}',this.value)">
+      <div class="meal-krw" data-meal-krw="${x.id}">₩0</div>
+    </div>
+    ${mealEditingId===x.id?mealEditForm(x):''}
+  </div>`;
+}
+function mealRenderPlan(){
+  const root=document.getElementById('mealPanePlan');if(!root)return;
+  const days=[['1일차','9/26'],['2일차','9/27'],['3일차','9/28'],['4일차','9/29']];
+  const add=`<div class="meal-addbox"><div class="meal-addtitle">＋ 식사 / 식당 직접 추가</div><div class="meal-addgrid">
+    <select id="mealAddDay">${days.map(d=>`<option>${d[0]}</option>`).join('')}</select>
+    <input id="mealAddKind" placeholder="아침/점심/저녁">
+    <input id="mealAddName" class="span2" placeholder="식당 이름">
+    <input id="mealAddPlace" class="span2" placeholder="위치">
+    <input id="mealAddBudget" placeholder="예상 1인 금액">
+    <input id="mealAddLast" placeholder="라스트 오더">
+    <select id="mealAddGroup"><option>가족 4명</option><option>남편·아들</option><option>나·딸</option><option>기타</option></select>
+    <button onclick="mealAdd()">추가</button>
+    <textarea id="mealAddDesc" class="full" placeholder="대표메뉴·설명·주의사항"></textarea>
+  </div></div>`;
+  root.innerHTML=add+days.map(([d,date])=>{
+    const items=mealState.items.filter(x=>x.day===d);
+    return `<div class="meal-day-head"><div><b>${d}</b> <span>${date}</span></div><span class="meal-day-total" data-meal-day-total="${d}">¥0 · ₩0</span></div>${items.map(mealCard).join('')||'<div class="meal-card"><div class="meal-desc">등록된 식사 정보가 없습니다.</div></div>'}`;
+  }).join('');
+}
+function mealRenderPlanB(){
+  const root=document.getElementById('mealPanePlanB');if(!root)return;
+  root.innerHTML=`<div class="planb-table">
+    <div class="planb-headrow"><div>식당명</div><div>예상비용 4인</div><div>대표메뉴</div><div>주의사항</div></div>
+    ${MEAL_PLANB.map((x,i)=>`<div class="planb-food-row" onclick="this.classList.toggle('selected')" title="마우스를 올리거나 클릭하면 강조됩니다."><div class="planb-food-name">${mealEscape(x[0])}</div><div class="planb-food-budget">${mealEscape(x[1])}</div><div>${mealEscape(x[2])}</div><div>${mealEscape(x[3])}</div></div>`).join('')}
+  </div><div class="planb-note">※ Plan B 목록은 참고용입니다. PC에서는 마우스를 올리면, 휴대폰에서는 행을 한 번 누르면 강조됩니다.</div>`;
+}
+function mealRender(){
+  const fx=document.getElementById('mealFx');if(fx)fx.value=mealState.rate;
+  mealRenderPlan();mealRenderPlanB();mealRefreshTotals();
+}
+function mealResetActual(){
+  if(!confirm('식당 목록은 유지하고 이용 체크와 실제 금액만 초기화할까요?'))return;
+  mealState.used={};mealState.actual={};mealSave();mealRender();
+}
+function mealRestoreOriginal(){
+  if(!confirm('추가·삭제·수정한 식사 계획을 모두 지우고 처음 식사 계획으로 되돌릴까요? 실제금액과 그룹 기록도 초기화됩니다.'))return;
+  const rate=mealState.rate;
+  mealState={items:JSON.parse(JSON.stringify(MEAL_BASE)),used:{},actual:{},group:{},rate};
+  mealEditingId=null;mealSave();mealRender();
+}
+mealLoad();
+
+</script>
 
 <script>
 /* PWA 서비스워커 등록: 온라인에서는 최신 GitHub 파일 우선, 오프라인에서는 캐시 사용 */
@@ -4053,8 +4821,5 @@ if ('serviceWorker' in navigator) {
   });
 }
 </script>
-
-
-
-
-</body></html>
+</body>
+</html>
