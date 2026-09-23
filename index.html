@@ -413,6 +413,17 @@ body:not(.admin-mode) #budget input:disabled{opacity:1;-webkit-text-fill-color:v
 #cloudSyncStatus.warn{color:#9a6412;background:#fff5d6}
 #cloudSyncStatus.error{color:#a33;background:var(--danger)}
 
+
+#shopCloudSyncStatus{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:11px;font-weight:800;color:var(--muted);
+  background:var(--card);border:1px solid var(--line);
+  border-radius:999px;padding:6px 9px;
+}
+#shopCloudSyncStatus.ok{color:var(--brand);background:var(--soft)}
+#shopCloudSyncStatus.warn{color:#9a6412;background:#fff5d6}
+#shopCloudSyncStatus.error{color:#a33;background:var(--danger)}
+
 </style>
 </head>
 <body class="">
@@ -448,11 +459,13 @@ body:not(.admin-mode) #budget input:disabled{opacity:1;-webkit-text-fill-color:v
     <button id="adminLoginBtn" class="primary" onclick="enterAdminMode()">🔒 관리자 로그인</button>
     <span id="adminStatus">● 관리자 수정 가능</span>
     <span id="cloudSyncStatus">☁️ 일정 불러오는 중…</span>
+    <span id="shopCloudSyncStatus">🛍️ 쇼핑 동기화 대기</span>
 
     <div id="adminTools" style="display:none; gap:6px; flex-wrap:wrap;">
       <button id="editBtn" class="primary" onclick="toggleEdit()">✏️ 수정모드</button>
       <button class="cancel" onclick="cancelEdit()">✖️ 취소</button>
       <button onclick="saveEdits()">💾 저장</button>
+      <button onclick="saveShoppingToSupabase(true)">🛍️ 쇼핑 온라인 저장</button>
       <button onclick="exportBackup()">⬇️ 백업</button>
       <button onclick="exportHTML()">📄 HTML 내보내기</button>
       <label>⬆️ 불러오기
@@ -4772,7 +4785,110 @@ function shopLoadState(){
     }
   }catch(e){}
 }
-function shopSaveState(){try{localStorage.setItem(SHOP_STORAGE,JSON.stringify(shopState));}catch(e){}}
+function setShopCloudStatus(state){
+  const el=document.getElementById('shopCloudSyncStatus');
+  if(!el)return;
+  el.classList.remove('ok','warn','error');
+  if(state==='loading'){el.textContent='🛍️ 쇼핑 불러오는 중…';}
+  else if(state==='saving'){el.textContent='🛍️ 쇼핑 저장 중…';}
+  else if(state==='ok'){el.textContent='🛍️ 쇼핑 온라인 최신';el.classList.add('ok');}
+  else if(state==='local'){el.textContent='🛍️ 기기 저장 쇼핑';el.classList.add('warn');}
+  else if(state==='empty'){el.textContent='🛍️ 온라인 쇼핑 미등록';el.classList.add('warn');}
+  else{el.textContent='🛍️ 쇼핑 온라인 연결 실패';el.classList.add('error');}
+}
+
+function shopSaveLocal(){
+  try{localStorage.setItem(SHOP_STORAGE,JSON.stringify(shopState));}catch(e){}
+}
+
+async function saveShoppingToSupabase(showAlert=false){
+  shopSaveLocal();
+  try{
+    if(typeof supabaseClient==='undefined')throw new Error('Supabase client not ready');
+    const {data:{session}}=await supabaseClient.auth.getSession();
+    if(!session){
+      setShopCloudStatus('local');
+      if(showAlert)alert('관리자 로그인이 필요합니다.');
+      return false;
+    }
+    setShopCloudStatus('saving');
+    const {error}=await supabaseClient
+      .from('travel_data')
+      .upsert(
+        {
+          data_key:'shopping',
+          data_value:shopState,
+          updated_at:new Date().toISOString()
+        },
+        {onConflict:'data_key'}
+      );
+    if(error)throw error;
+    setShopCloudStatus('ok');
+    if(showAlert)alert('쇼핑·선물 내용을 온라인에 저장했습니다.');
+    return true;
+  }catch(e){
+    console.error('[shopping save]',e);
+    setShopCloudStatus('error');
+    if(showAlert)alert('쇼핑·선물 온라인 저장에 실패했습니다. 현재 기기에는 저장되어 있습니다.');
+    return false;
+  }
+}
+
+function shopSaveState(){
+  shopSaveLocal();
+  /* 관리자 로그인 상태라면 변경 즉시 온라인에도 반영 */
+  try{saveShoppingToSupabase(false);}catch(e){}
+}
+
+async function loadShoppingFromSupabase(){
+  setShopCloudStatus('loading');
+  try{
+    const {data,error}=await supabaseClient
+      .from('travel_data')
+      .select('data_value,updated_at')
+      .eq('data_key','shopping')
+      .maybeSingle();
+
+    if(error)throw error;
+
+    if(data && data.data_value){
+      shopState={...shopState,...data.data_value};
+      if(!Array.isArray(shopState.customItems))shopState.customItems=[];
+      if(!Array.isArray(shopState.customGifts))shopState.customGifts=[];
+      if(!shopState.deletedItems)shopState.deletedItems={};
+      if(!shopState.deletedGifts)shopState.deletedGifts={};
+      if(!shopState.bought)shopState.bought={};
+      if(!shopState.actualYen)shopState.actualYen={};
+      if(!shopState.giftDone)shopState.giftDone={};
+
+      shopSaveLocal();
+
+      /* 화면 다시 그리기 */
+      ['shopChecklist','shopGifts','shopBudget','shopPlanB'].forEach(id=>{
+        const el=document.getElementById(id);
+        if(el){delete el.dataset.rendered;el.innerHTML='';}
+      });
+      try{renderShopChecklist();}catch(e){}
+      try{renderShopGifts();}catch(e){}
+      try{renderShopBudget();}catch(e){}
+      try{renderShopPlanB();}catch(e){}
+      try{shopRefreshMoney();}catch(e){}
+      try{applyAdminAccess();}catch(e){}
+
+      setShopCloudStatus('ok');
+      return true;
+    }
+
+    const hasLocal=!!localStorage.getItem(SHOP_STORAGE);
+    setShopCloudStatus(hasLocal?'local':'empty');
+    return false;
+  }catch(e){
+    console.error('[shopping load]',e);
+    const hasLocal=!!localStorage.getItem(SHOP_STORAGE);
+    setShopCloudStatus(hasLocal?'local':'error');
+    return false;
+  }
+}
 function shopFmtYen(n){n=Number(n)||0;return '¥'+Math.round(n).toLocaleString('ko-KR');}
 function shopFmtKrw(n){n=Number(n)||0;return '₩'+Math.round(n).toLocaleString('ko-KR');}
 function shopEscape(v){return String(v??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
@@ -5607,6 +5723,7 @@ if ('serviceWorker' in navigator) {
 
     /* 로그인 여부와 상관없이 가족도 최신 온라인 일정을 읽음 */
     await loadGuideFromSupabase();
+    await loadShoppingFromSupabase();
   });
 
   supabaseClient.auth.onAuthStateChange((_event, session) => {
