@@ -435,6 +435,17 @@ body:not(.admin-mode) #budget input:disabled{opacity:1;-webkit-text-fill-color:v
 #mealCloudSyncStatus.warn{color:#9a6412;background:#fff5d6}
 #mealCloudSyncStatus.error{color:#a33;background:var(--danger)}
 
+
+#budgetCloudSyncStatus{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:11px;font-weight:800;color:var(--muted);
+  background:var(--card);border:1px solid var(--line);
+  border-radius:999px;padding:6px 9px;
+}
+#budgetCloudSyncStatus.ok{color:var(--brand);background:var(--soft)}
+#budgetCloudSyncStatus.warn{color:#9a6412;background:#fff5d6}
+#budgetCloudSyncStatus.error{color:#a33;background:var(--danger)}
+
 </style>
 </head>
 <body class="">
@@ -454,11 +465,6 @@ body:not(.admin-mode) #budget input:disabled{opacity:1;-webkit-text-fill-color:v
 </header>
 
 <main>
-  <div class="map-note">
-    <b>📱 Google Maps가 다른 경로를 보여줄 때</b><br>
-    단순히 몇 분 빠른 복잡한 환승이면 저장해 둔 쉬운 경로를 이용해도 됩니다.
-    다만 <b>운행 중단·큰 지연·공사·환승 불가</b>가 표시되면 당일 운행정보를 우선 확인하세요.
-  </div>
   <div class="map-note admin-help">
     <b>✏️ 수정 방법</b><br>
     수정모드에서 문장을 직접 고칠 수 있습니다. <b>➕ 큰 경로 추가</b>로 이동구간을 만들고,
@@ -472,6 +478,7 @@ body:not(.admin-mode) #budget input:disabled{opacity:1;-webkit-text-fill-color:v
     <span id="cloudSyncStatus">☁️ 일정 불러오는 중…</span>
     <span id="shopCloudSyncStatus">🛍️ 쇼핑 동기화 대기</span>
     <span id="mealCloudSyncStatus">🍽️ 식사 동기화 대기</span>
+    <span id="budgetCloudSyncStatus">💳 예산 동기화 대기</span>
 
     <div id="adminTools" style="display:none; gap:6px; flex-wrap:wrap;">
       <button id="editBtn" class="primary" onclick="toggleEdit()">✏️ 수정모드</button>
@@ -479,6 +486,7 @@ body:not(.admin-mode) #budget input:disabled{opacity:1;-webkit-text-fill-color:v
       <button onclick="saveEdits()">💾 저장</button>
       <button onclick="saveShoppingToSupabase(true)">🛍️ 쇼핑 온라인 저장</button>
       <button onclick="saveMealsToSupabase(true)">🍽️ 식사 온라인 저장</button>
+      <button onclick="saveBudgetToSupabase(true)">💳 예산 온라인 저장</button>
       <button onclick="exportBackup()">⬇️ 백업</button>
       <button onclick="exportHTML()">📄 HTML 내보내기</button>
       <label>⬆️ 불러오기
@@ -5421,7 +5429,119 @@ let budgetState={
 
 function budgetFmtYen(v){return '¥'+Math.round(Number(v)||0).toLocaleString('ko-KR');}
 function budgetFmtKrw(v){return '₩'+Math.round(Number(v)||0).toLocaleString('ko-KR');}
-function budgetSave(){try{localStorage.setItem(BUDGET_STORAGE,JSON.stringify(budgetState));}catch(e){}}
+function setBudgetCloudStatus(state){
+  const el=document.getElementById('budgetCloudSyncStatus');
+  if(!el)return;
+  el.classList.remove('ok','warn','error');
+
+  if(state==='loading'){el.textContent='💳 예산 불러오는 중…';}
+  else if(state==='saving'){el.textContent='💳 예산 저장 중…';}
+  else if(state==='ok'){el.textContent='💳 예산 온라인 최신';el.classList.add('ok');}
+  else if(state==='local'){el.textContent='💳 기기 저장 예산';el.classList.add('warn');}
+  else if(state==='empty'){el.textContent='💳 온라인 예산 미등록';el.classList.add('warn');}
+  else{el.textContent='💳 예산 온라인 연결 실패';el.classList.add('error');}
+}
+
+function budgetSaveLocal(){
+  try{localStorage.setItem(BUDGET_STORAGE,JSON.stringify(budgetState));}catch(e){}
+}
+
+async function saveBudgetToSupabase(showAlert=false){
+  budgetSaveLocal();
+
+  try{
+    if(typeof supabaseClient==='undefined')throw new Error('Supabase client not ready');
+
+    const {data:{session}}=await supabaseClient.auth.getSession();
+
+    if(!session){
+      setBudgetCloudStatus('local');
+      if(showAlert)alert('관리자 로그인이 필요합니다.');
+      return false;
+    }
+
+    setBudgetCloudStatus('saving');
+
+    const {error}=await supabaseClient
+      .from('travel_data')
+      .upsert(
+        {
+          data_key:'budget',
+          data_value:budgetState,
+          updated_at:new Date().toISOString()
+        },
+        {onConflict:'data_key'}
+      );
+
+    if(error)throw error;
+
+    setBudgetCloudStatus('ok');
+    if(showAlert)alert('예산 내용을 온라인에 저장했습니다.');
+    return true;
+
+  }catch(e){
+    console.error('[budget save]',e);
+    setBudgetCloudStatus('error');
+
+    if(showAlert){
+      alert('예산 온라인 저장에 실패했습니다. 현재 기기에는 저장되어 있습니다.');
+    }
+
+    return false;
+  }
+}
+
+function budgetSave(){
+  budgetSaveLocal();
+
+  /* 관리자 로그인 상태라면 변경 즉시 Supabase에도 반영 */
+  try{saveBudgetToSupabase(false);}catch(e){}
+}
+
+async function loadBudgetFromSupabase(){
+  setBudgetCloudStatus('loading');
+
+  try{
+    const {data,error}=await supabaseClient
+      .from('travel_data')
+      .select('data_value,updated_at')
+      .eq('data_key','budget')
+      .maybeSingle();
+
+    if(error)throw error;
+
+    if(data && data.data_value){
+      const remote=data.data_value;
+
+      budgetState={
+        ...budgetState,
+        ...remote,
+        yen:{...budgetState.yen,...(remote.yen||{})},
+        krw:{...budgetState.krw,...(remote.krw||{})},
+        paid:{...budgetState.paid,...(remote.paid||{})}
+      };
+
+      budgetSaveLocal();
+
+      try{budgetRender();}catch(e){}
+      try{applyAdminAccess();}catch(e){}
+
+      setBudgetCloudStatus('ok');
+      return true;
+    }
+
+    const hasLocal=!!localStorage.getItem(BUDGET_STORAGE);
+    setBudgetCloudStatus(hasLocal?'local':'empty');
+    return false;
+
+  }catch(e){
+    console.error('[budget load]',e);
+
+    const hasLocal=!!localStorage.getItem(BUDGET_STORAGE);
+    setBudgetCloudStatus(hasLocal?'local':'error');
+    return false;
+  }
+}
 function budgetLoad(){
   try{
     const raw=localStorage.getItem(BUDGET_STORAGE);
@@ -5838,6 +5958,7 @@ if ('serviceWorker' in navigator) {
     await loadGuideFromSupabase();
     await loadShoppingFromSupabase();
     await loadMealsFromSupabase();
+    await loadBudgetFromSupabase();
   });
 
   supabaseClient.auth.onAuthStateChange((_event, session) => {
