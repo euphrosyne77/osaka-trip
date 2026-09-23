@@ -424,6 +424,17 @@ body:not(.admin-mode) #budget input:disabled{opacity:1;-webkit-text-fill-color:v
 #shopCloudSyncStatus.warn{color:#9a6412;background:#fff5d6}
 #shopCloudSyncStatus.error{color:#a33;background:var(--danger)}
 
+
+#mealCloudSyncStatus{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:11px;font-weight:800;color:var(--muted);
+  background:var(--card);border:1px solid var(--line);
+  border-radius:999px;padding:6px 9px;
+}
+#mealCloudSyncStatus.ok{color:var(--brand);background:var(--soft)}
+#mealCloudSyncStatus.warn{color:#9a6412;background:#fff5d6}
+#mealCloudSyncStatus.error{color:#a33;background:var(--danger)}
+
 </style>
 </head>
 <body class="">
@@ -460,12 +471,14 @@ body:not(.admin-mode) #budget input:disabled{opacity:1;-webkit-text-fill-color:v
     <span id="adminStatus">● 관리자 수정 가능</span>
     <span id="cloudSyncStatus">☁️ 일정 불러오는 중…</span>
     <span id="shopCloudSyncStatus">🛍️ 쇼핑 동기화 대기</span>
+    <span id="mealCloudSyncStatus">🍽️ 식사 동기화 대기</span>
 
     <div id="adminTools" style="display:none; gap:6px; flex-wrap:wrap;">
       <button id="editBtn" class="primary" onclick="toggleEdit()">✏️ 수정모드</button>
       <button class="cancel" onclick="cancelEdit()">✖️ 취소</button>
       <button onclick="saveEdits()">💾 저장</button>
       <button onclick="saveShoppingToSupabase(true)">🛍️ 쇼핑 온라인 저장</button>
+      <button onclick="saveMealsToSupabase(true)">🍽️ 식사 온라인 저장</button>
       <button onclick="exportBackup()">⬇️ 백업</button>
       <button onclick="exportHTML()">📄 HTML 내보내기</button>
       <label>⬆️ 불러오기
@@ -5105,7 +5118,107 @@ function mealEscape(v){return String(v??'').replace(/[&<>"']/g,ch=>({'&':'&amp;'
 function mealFmtYen(v){const n=Number(v)||0;return '¥'+Math.round(n).toLocaleString('ko-KR');}
 function mealFmtKrw(v){const n=Number(v)||0;return '₩'+Math.round(n).toLocaleString('ko-KR');}
 function mealUid(){return 'meal-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,7);}
-function mealSave(){try{localStorage.setItem(MEAL_STORAGE,JSON.stringify(mealState));}catch(e){}}
+function setMealCloudStatus(state){
+  const el=document.getElementById('mealCloudSyncStatus');
+  if(!el)return;
+  el.classList.remove('ok','warn','error');
+  if(state==='loading'){el.textContent='🍽️ 식사 불러오는 중…';}
+  else if(state==='saving'){el.textContent='🍽️ 식사 저장 중…';}
+  else if(state==='ok'){el.textContent='🍽️ 식사 온라인 최신';el.classList.add('ok');}
+  else if(state==='local'){el.textContent='🍽️ 기기 저장 식사';el.classList.add('warn');}
+  else if(state==='empty'){el.textContent='🍽️ 온라인 식사 미등록';el.classList.add('warn');}
+  else{el.textContent='🍽️ 식사 온라인 연결 실패';el.classList.add('error');}
+}
+
+function mealSaveLocal(){
+  try{localStorage.setItem(MEAL_STORAGE,JSON.stringify(mealState));}catch(e){}
+}
+
+async function saveMealsToSupabase(showAlert=false){
+  mealSaveLocal();
+  try{
+    if(typeof supabaseClient==='undefined')throw new Error('Supabase client not ready');
+    const {data:{session}}=await supabaseClient.auth.getSession();
+    if(!session){
+      setMealCloudStatus('local');
+      if(showAlert)alert('관리자 로그인이 필요합니다.');
+      return false;
+    }
+
+    setMealCloudStatus('saving');
+
+    const {error}=await supabaseClient
+      .from('travel_data')
+      .upsert(
+        {
+          data_key:'meals',
+          data_value:mealState,
+          updated_at:new Date().toISOString()
+        },
+        {onConflict:'data_key'}
+      );
+
+    if(error)throw error;
+
+    setMealCloudStatus('ok');
+    if(showAlert)alert('식사 내용을 온라인에 저장했습니다.');
+    return true;
+  }catch(e){
+    console.error('[meals save]',e);
+    setMealCloudStatus('error');
+    if(showAlert)alert('식사 온라인 저장에 실패했습니다. 현재 기기에는 저장되어 있습니다.');
+    return false;
+  }
+}
+
+function mealSave(){
+  mealSaveLocal();
+  try{saveMealsToSupabase(false);}catch(e){}
+}
+
+async function loadMealsFromSupabase(){
+  setMealCloudStatus('loading');
+  try{
+    const {data,error}=await supabaseClient
+      .from('travel_data')
+      .select('data_value,updated_at')
+      .eq('data_key','meals')
+      .maybeSingle();
+
+    if(error)throw error;
+
+    if(data && data.data_value){
+      mealState={...mealState,...data.data_value};
+
+      if(!Array.isArray(mealState.items)){
+        mealState.items=JSON.parse(JSON.stringify(MEAL_BASE));
+      }
+      if(!mealState.used)mealState.used={};
+      if(!mealState.group)mealState.group={};
+      if(!mealState.actual)mealState.actual={};
+
+      mealSaveLocal();
+
+      try{renderMealFixed();}catch(e){}
+      try{renderMealPlanB();}catch(e){}
+      try{mealRefreshTotals();}catch(e){}
+      try{applyAdminAccess();}catch(e){}
+
+      setMealCloudStatus('ok');
+      return true;
+    }
+
+    const hasLocal=!!localStorage.getItem(MEAL_STORAGE);
+    setMealCloudStatus(hasLocal?'local':'empty');
+    return false;
+
+  }catch(e){
+    console.error('[meals load]',e);
+    const hasLocal=!!localStorage.getItem(MEAL_STORAGE);
+    setMealCloudStatus(hasLocal?'local':'error');
+    return false;
+  }
+}
 function mealLoad(){
   try{
     const raw=localStorage.getItem(MEAL_STORAGE);
@@ -5724,6 +5837,7 @@ if ('serviceWorker' in navigator) {
     /* 로그인 여부와 상관없이 가족도 최신 온라인 일정을 읽음 */
     await loadGuideFromSupabase();
     await loadShoppingFromSupabase();
+    await loadMealsFromSupabase();
   });
 
   supabaseClient.auth.onAuthStateChange((_event, session) => {
