@@ -8,6 +8,7 @@
 <link rel="apple-touch-icon" sizes="192x192" href="./icon-192.png">
 <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <title>Osaka Trip Guide</title>
 <style>
 :root {
@@ -372,6 +373,34 @@ body:not(.admin-mode) #budget input:disabled{opacity:1;-webkit-text-fill-color:v
   .budget-kpi b{font-size:14px}
 }
 
+
+/* ===== Supabase 관리자 로그인 ===== */
+.admin-login-overlay{
+  display:none;position:fixed;inset:0;z-index:2000;
+  background:#0008;align-items:center;justify-content:center;padding:18px;
+}
+.admin-login-overlay.open{display:flex}
+.admin-login-card{
+  width:min(420px,100%);background:var(--card);color:var(--ink);
+  border:1px solid var(--line);border-radius:18px;padding:18px;
+  box-shadow:0 18px 55px #0005;
+}
+.admin-login-card h3{margin:0 0 5px;color:var(--brand);font-size:20px}
+.admin-login-card p{margin:0 0 14px;color:var(--muted);font-size:12px;line-height:1.5}
+.admin-login-card label{display:block;font-size:11px;font-weight:850;color:var(--muted);margin:9px 0 4px}
+.admin-login-card input{
+  width:100%;border:1px solid var(--line);border-radius:10px;
+  background:var(--card);color:var(--ink);padding:11px 12px;font-size:15px;
+}
+.admin-login-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:14px}
+.admin-login-actions button{
+  border:1px solid var(--line);border-radius:10px;padding:10px 8px;
+  font-weight:850;background:var(--card);color:var(--ink);cursor:pointer;
+}
+.admin-login-actions .primary{background:var(--brand);color:#fff;border-color:var(--brand)}
+.admin-login-error{min-height:18px;margin-top:8px;color:#b13c33;font-size:11px;font-weight:750}
+#adminStatus.admin-user{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
 </style>
 </head>
 <body class="">
@@ -404,7 +433,7 @@ body:not(.admin-mode) #budget input:disabled{opacity:1;-webkit-text-fill-color:v
   </div>
 
   <div class="editbar">
-    <button id="adminLoginBtn" class="primary" onclick="enterAdminMode()">🔒 관리자 모드</button>
+    <button id="adminLoginBtn" class="primary" onclick="enterAdminMode()">🔒 관리자 로그인</button>
     <span id="adminStatus">● 관리자 수정 가능</span>
 
     <div id="adminTools" style="display:none; gap:6px; flex-wrap:wrap;">
@@ -5268,7 +5297,21 @@ if ('serviceWorker' in navigator) {
 </script>
 
 <script>
-  const ADMIN_PASSWORD = '0009';
+  /* ===== Supabase 연결: 1단계(관리자 로그인) ===== */
+  const SUPABASE_URL = 'https://ipyhtmgswpfabxektxih.supabase.co';
+  const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_90W0SqF-8_6BeYEW5DrJKw_seN-jePL';
+
+  const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY,
+    {
+      auth: {
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: true
+      }
+    }
+  );
 
   function isAdminMode(){
     return document.body.classList.contains('admin-mode');
@@ -5277,7 +5320,6 @@ if ('serviceWorker' in navigator) {
   function applyAdminAccess(){
     const locked = !isAdminMode();
 
-    /* 쇼핑·선물: 환율 / 구매체크 / 실구매금액 / 전달체크 */
     document.querySelectorAll(
       '#shopFx, #shopping .shop-check, #shopping .yen-input'
     ).forEach(el => {
@@ -5286,7 +5328,6 @@ if ('serviceWorker' in navigator) {
       else el.removeAttribute('tabindex');
     });
 
-    /* 식사: 환율 / 이용체크 / 식사그룹 / 실제금액 */
     document.querySelectorAll(
       '#mealFx, #meals .meal-use input, #meals .meal-group, #meals .meal-yen'
     ).forEach(el => {
@@ -5295,7 +5336,6 @@ if ('serviceWorker' in navigator) {
       else el.removeAttribute('tabindex');
     });
 
-    /* 예산: 환율 / 실제지출 / 완료 체크 */
     document.querySelectorAll(
       '#budgetFx, #budget .budget-input, #budget .budget-paid input'
     ).forEach(el => {
@@ -5304,7 +5344,6 @@ if ('serviceWorker' in navigator) {
       else el.removeAttribute('tabindex');
     });
 
-    /* 혹시 관리자 종료 시 수정모드가 남아있지 않도록 보장 */
     if(locked){
       document.querySelectorAll('[data-editable="1"]').forEach(el=>{
         el.contentEditable='false';
@@ -5312,24 +5351,96 @@ if ('serviceWorker' in navigator) {
     }
   }
 
-  function enterAdminMode(){
-    const pw = prompt('관리자 비밀번호를 입력하세요.');
-    if(pw === null) return;
+  function setAdminUi(user){
+    const loggedIn = !!user;
+    document.body.classList.toggle('admin-mode', loggedIn);
 
-    if(pw !== ADMIN_PASSWORD){
-      alert('비밀번호가 올바르지 않습니다.');
+    const loginBtn = document.getElementById('adminLoginBtn');
+    const tools = document.getElementById('adminTools');
+    const status = document.getElementById('adminStatus');
+
+    if(loginBtn) loginBtn.style.display = loggedIn ? 'none' : '';
+    if(tools) tools.style.display = loggedIn ? 'flex' : 'none';
+
+    if(status){
+      if(loggedIn){
+        status.textContent = '● 관리자 로그인 · ' + (user.email || '');
+        status.classList.add('admin-user');
+      }else{
+        status.textContent = '● 관리자 수정 가능';
+        status.classList.remove('admin-user');
+      }
+    }
+
+    applyAdminAccess();
+  }
+
+  function enterAdminMode(){
+    const overlay = document.getElementById('adminLoginOverlay');
+    const error = document.getElementById('adminLoginError');
+    const pw = document.getElementById('adminPassword');
+    if(error) error.textContent = '';
+    if(pw) pw.value = '';
+    if(overlay){
+      overlay.classList.add('open');
+      overlay.setAttribute('aria-hidden','false');
+    }
+    setTimeout(()=>{
+      const email = document.getElementById('adminEmail');
+      if(email) email.focus();
+    },0);
+  }
+
+  function closeAdminLogin(){
+    const overlay = document.getElementById('adminLoginOverlay');
+    const error = document.getElementById('adminLoginError');
+    const pw = document.getElementById('adminPassword');
+    if(overlay){
+      overlay.classList.remove('open');
+      overlay.setAttribute('aria-hidden','true');
+    }
+    if(error) error.textContent = '';
+    if(pw) pw.value = '';
+  }
+
+  async function submitAdminLogin(){
+    const emailEl = document.getElementById('adminEmail');
+    const pwEl = document.getElementById('adminPassword');
+    const errorEl = document.getElementById('adminLoginError');
+    const btn = document.getElementById('adminLoginSubmitBtn');
+
+    const email = (emailEl?.value || '').trim();
+    const password = pwEl?.value || '';
+
+    if(!email || !password){
+      if(errorEl) errorEl.textContent = '이메일과 비밀번호를 모두 입력해 주세요.';
       return;
     }
 
-    document.body.classList.add('admin-mode');
-    document.getElementById('adminLoginBtn').style.display = 'none';
-    document.getElementById('adminTools').style.display = 'flex';
-    applyAdminAccess();
+    if(btn){ btn.disabled = true; btn.textContent = '로그인 중…'; }
+    if(errorEl) errorEl.textContent = '';
 
-    alert('관리자 모드입니다. 일정·쇼핑·선물·식사·예산 정보를 수정할 수 있습니다.');
+    try{
+      const { data, error } = await supabaseClient.auth.signInWithPassword({
+        email,
+        password
+      });
+
+      if(error) throw error;
+
+      closeAdminLogin();
+      setAdminUi(data.user);
+      alert('관리자 로그인에 성공했습니다.');
+    }catch(err){
+      if(errorEl){
+        errorEl.textContent = '로그인에 실패했습니다. 이메일 또는 비밀번호를 확인해 주세요.';
+      }
+    }finally{
+      if(btn){ btn.disabled = false; btn.textContent = '로그인'; }
+    }
   }
 
-  function leaveAdminMode(){
+  async function leaveAdminMode(){
     if(typeof editMode !== 'undefined' && editMode){
       setEditable(false);
       editMode = false;
@@ -5339,19 +5450,21 @@ if ('serviceWorker' in navigator) {
       if(btn) btn.textContent = '✏️ 수정모드';
     }
 
-    document.body.classList.remove('admin-mode');
-    document.getElementById('adminTools').style.display = 'none';
-    document.getElementById('adminLoginBtn').style.display = '';
-    applyAdminAccess();
+    try{
+      /* 이 기기의 세션만 로그아웃 */
+      await supabaseClient.auth.signOut({ scope: 'local' });
+    }catch(e){}
+
+    setAdminUi(null);
   }
 
-  /* 쇼핑/식사 화면은 JS로 다시 그려지므로 새 컨트롤이 생길 때마다 잠금 재적용 */
   const accessObserver = new MutationObserver(() => {
     applyAdminAccess();
   });
 
-  window.addEventListener('DOMContentLoaded', () => {
+  window.addEventListener('DOMContentLoaded', async () => {
     document.body.classList.remove('admin-mode');
+
     const adminTools = document.getElementById('adminTools');
     const adminLoginBtn = document.getElementById('adminLoginBtn');
     if(adminTools) adminTools.style.display = 'none';
@@ -5366,8 +5479,41 @@ if ('serviceWorker' in navigator) {
     if(shopping) accessObserver.observe(shopping,{childList:true,subtree:true});
     if(meals) accessObserver.observe(meals,{childList:true,subtree:true});
     if(budget) accessObserver.observe(budget,{childList:true,subtree:true});
+
+    /* 기존 로그인 세션이 있으면 자동으로 관리자 모드 복원 */
+    try{
+      const { data } = await supabaseClient.auth.getSession();
+      setAdminUi(data?.session?.user || null);
+    }catch(e){
+      setAdminUi(null);
+    }
+  });
+
+  supabaseClient.auth.onAuthStateChange((_event, session) => {
+    setAdminUi(session?.user || null);
   });
 </script>
+
+<div id="adminLoginOverlay" class="admin-login-overlay" aria-hidden="true">
+  <div class="admin-login-card" role="dialog" aria-modal="true" aria-labelledby="adminLoginTitle">
+    <h3 id="adminLoginTitle">🔒 관리자 로그인</h3>
+    <p>여행 일정 수정 권한이 있는 Supabase 관리자 계정으로 로그인합니다.<br>가족은 로그인 없이 보기만 할 수 있습니다.</p>
+
+    <label for="adminEmail">이메일</label>
+    <input id="adminEmail" type="email" autocomplete="username" placeholder="관리자 이메일">
+
+    <label for="adminPassword">비밀번호</label>
+    <input id="adminPassword" type="password" autocomplete="current-password" placeholder="비밀번호"
+           onkeydown="if(event.key==='Enter') submitAdminLogin()">
+
+    <div id="adminLoginError" class="admin-login-error"></div>
+
+    <div class="admin-login-actions">
+      <button type="button" onclick="closeAdminLogin()">취소</button>
+      <button type="button" class="primary" id="adminLoginSubmitBtn" onclick="submitAdminLogin()">로그인</button>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
