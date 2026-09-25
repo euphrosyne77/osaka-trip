@@ -5389,7 +5389,103 @@ function shopFmtYen(n){n=Number(n)||0;return '¥'+Math.round(n).toLocaleString('
 function shopFmtKrw(n){n=Number(n)||0;return '₩'+Math.round(n).toLocaleString('ko-KR');}
 function shopEscape(v){return String(v??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
 function shopUid(prefix){return prefix+'-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,7);}
-function shopItems(){return SHOP_ITEMS.filter(x=>!shopState.deletedItems[x.id]).concat(shopState.customItems||[]);}
+/* 쇼핑 항목 표시 위치 보정
+   - 웹에서 추가한 customItems의 ID/체크/실구매 금액은 그대로 유지
+   - 품목명에 따라 기존 장소 그룹으로 합쳐서 표시
+   - 일차/장소 순서를 실제 쇼핑 동선에 맞춰 정렬
+*/
+const SHOP_DAY_ORDER={
+  '1일차':1,
+  '2일차':2,
+  '3일차':3,
+  '4일차':4,
+  '여행 중':5
+};
+
+const SHOP_GROUP_ORDER={
+  /* 1일차: B1 일부 → 옷 → 드럭 → 가챠/다이소 → 마지막 이토요카도 → 돈키 Plan B */
+  '1일차||Standard Products · 아베노 큐즈몰 B1':10,
+  '1일차||KALDI · 아베노 큐즈몰':20,
+  '1일차||GU → GLOBAL WORK/AZUL BY MOUSSY → tk.TAKEO KIKUCHI → BRING':30,
+  '1일차||아베노 큐즈몰 · 마츠모토키요시/코쿠민드럭':40,
+  '1일차||아베노 큐즈몰 · 다이소/가챠샵':50,
+  '1일차||이토요카도 푸드마켓':60,
+  '1일차||MEGA 돈키호테 신세카이점(대체)':70,
+
+  /* 2일차 */
+  '2일차||한큐 우메다':10,
+  '2일차||HEP FIVE':20
+};
+
+function shopNormalizeCustomItem(it){
+  const x={...it};
+  const name=String(x.item||'').trim();
+
+  /* 의약품: 돈키에 추가했어도 큐즈몰 드럭스토어 항목으로 합침 */
+  if(
+    name.includes('트란시노 화이트C 프리미엄') ||
+    name.includes('トランシーノ ホワイトC') ||
+    name.includes('페락쿠T정') ||
+    name.includes('ペラックT')
+  ){
+    x.day='1일차';
+    x.place='아베노 큐즈몰 · 마츠모토키요시/코쿠민드럭';
+  }
+
+  /* 잡화: 다이소/가챠샵 그룹으로 합침 */
+  if(name==='잡화' || name.includes('잡화')){
+    x.day='1일차';
+    x.place='아베노 큐즈몰 · 다이소/가챠샵';
+  }
+
+  /* HEP FIVE 옷 쇼핑: 웹에서 추가한 층별 항목을 한 장소로 합침 */
+  if(
+    name.includes('adidas Originals') ||
+    name.includes('XLARGE') ||
+    name.includes('stussy') ||
+    name.includes('HUF') ||
+    name.includes('WEGO') ||
+    name.includes('RAGEBLUE') ||
+    name.includes('9090') ||
+    name.includes('ALAND OSAKA') ||
+    name.includes('SUPER SPINNS') ||
+    name.includes('WHO’S WHO') ||
+    name.includes("WHO'S WHO") ||
+    name.includes('LOWRYS FARM')
+  ){
+    x.day='2일차';
+    x.place='HEP FIVE';
+  }
+
+  return x;
+}
+
+function shopItems(){
+  const base=SHOP_ITEMS
+    .filter(x=>!shopState.deletedItems[x.id])
+    .map(x=>({...x}));
+
+  const custom=(shopState.customItems||[])
+    .map(shopNormalizeCustomItem);
+
+  return base.concat(custom)
+    .map((it,index)=>({it,index}))
+    .sort((a,b)=>{
+      const ad=SHOP_DAY_ORDER[a.it.day]??99;
+      const bd=SHOP_DAY_ORDER[b.it.day]??99;
+      if(ad!==bd)return ad-bd;
+
+      const ak=a.it.day+'||'+a.it.place;
+      const bk=b.it.day+'||'+b.it.place;
+      const ap=SHOP_GROUP_ORDER[ak]??999;
+      const bp=SHOP_GROUP_ORDER[bk]??999;
+      if(ap!==bp)return ap-bp;
+
+      /* 같은 장소 안에서는 기존 코드/웹 추가 순서를 유지 */
+      return a.index-b.index;
+    })
+    .map(x=>x.it);
+}
 function shopGifts(){return SHOP_GIFTS.filter(x=>!shopState.deletedGifts[x.id]).concat(shopState.customGifts||[]);}
 function shopInvalidate(pane){const el=document.getElementById(pane);if(el){delete el.dataset.rendered;el.innerHTML='';}}
 function shopUpdateFx(v){
