@@ -5196,16 +5196,12 @@ const SHOP_ITEMS=[
   {id:'d1-gacha-daughter',day:'1일차',place:'아베노 큐즈몰 · 다이소/가챠샵',item:'딸 친구용 문구·스티커·키링',qty:'3명',plan:2400,note:'1인 약 ¥500~800'},
   {id:'d1-gacha-family',day:'1일차',place:'아베노 큐즈몰 · 다이소/가챠샵',item:'아이들 개인 가챠·캐릭터 굿즈',qty:'잔액 내',plan:3600,note:'선물 사고 남은 돈 기준'},
   {id:'d1-gacha-husband',day:'1일차',place:'아베노 큐즈몰 · 다이소/가챠샵',item:'남편 가챠샵 투어',qty:'예산',plan:3000,note:''},
-  {id:'d1-itoyokado-alfort',day:'1일차',place:'이토요카도 푸드마켓',item:'BOURBON 알포트 미니초콜릿 패밀리팩',qty:'2봉',plan:800,note:'회사 나눔용'},
-  {id:'d1-itoyokado-karamucho',day:'1일차',place:'이토요카도 푸드마켓',item:'코이케야 스틱 카라무쵸 4연팩',qty:'5팩',plan:1000,note:'회사 나눔용'},
-  {id:'d1-itoyokado-moonlight',day:'1일차',place:'이토요카도 푸드마켓',item:'모리나가 미니 문라이트 대봉 129g',qty:'1봉',plan:500,note:'큰아가씨네'},
-  {id:'d1-itoyokado-other',day:'1일차',place:'이토요카도 푸드마켓',item:'2일차 아침',qty:'예산',plan:400,note:''},
-  {id:'d1-donki-alfort',day:'1일차',place:'MEGA 돈키호테 신세카이점(대체)',item:'BOURBON 알포트 미니초콜릿 패밀리팩',qty:'2봉',plan:800,note:'회사 나눔용'},
-  {id:'d1-donki-karamucho',day:'1일차',place:'MEGA 돈키호테 신세카이점(대체)',item:'코이케야 스틱 카라무쵸 4연팩',qty:'5팩',plan:1000,note:'회사 나눔용'},
-  {id:'d1-donki-moonlight',day:'1일차',place:'MEGA 돈키호테 신세카이점(대체)',item:'모리나가 미니 문라이트 대봉 129g',qty:'1봉',plan:500,note:'큰아가씨네'},
+  {id:'d1-donki-alfort',day:'1일차',place:'이토요카도 푸드마켓',item:'BOURBON 알포트 미니초콜릿 패밀리팩',qty:'2봉',plan:800,note:'회사 나눔용'},
+  {id:'d1-donki-karamucho',day:'1일차',place:'이토요카도 푸드마켓',item:'코이케야 스틱 카라무쵸 4연팩',qty:'5팩',plan:1000,note:'회사 나눔용'},
+  {id:'d1-donki-moonlight',day:'1일차',place:'이토요카도 푸드마켓',item:'모리나가 미니 문라이트 대봉 129g',qty:'1봉',plan:500,note:'큰아가씨네'},
   {id:'d1-donki-powder',day:'1일차',place:'MEGA 돈키호테 신세카이점(대체)',item:'슷핀 파우더',qty:'1개',plan:1980,note:'화장품'},
   {id:'d1-donki-breath',day:'1일차',place:'MEGA 돈키호테 신세카이점(대체)',item:'코바야시 브레스케어',qty:'1개',plan:590,note:'입냄새 제거'},
-  {id:'d1-donki-other',day:'1일차',place:'MEGA 돈키호테 신세카이점(대체)',item:'기타',qty:'예산',plan:400,note:''},
+  {id:'d1-donki-other',day:'1일차',place:'이토요카도 푸드마켓',item:'2일차 아침',qty:'예산',plan:400,note:''},
   {id:'d1-donki-family',day:'1일차',place:'MEGA 돈키호테 신세카이점(대체)',item:'아이들 및 남편 개인 쇼핑',qty:'예산',plan:4000,note:''},
   {id:'d2-liquor-dassai',day:'2일차',place:'한큐 우메다',item:'닷사이23 獺祭 純米大吟醸 磨き二割三分 720ml',qty:'1병',plan:7000,note:'기본 1순위(지하2층/없으면 리커 마운틴 우메다)'},
   {id:'d2-liquor-kubota',day:'2일차',place:'한큐 우메다',item:'쿠보타 만쥬 久保田 萬寿 純米大吟醸 720ml',qty:'1병',plan:4472,note:'닷사이23 품절 시 대체 1순위'},
@@ -5351,8 +5347,15 @@ async function loadShoppingFromSupabase(){
       if(!shopState.deletedItems)shopState.deletedItems={};
       if(!shopState.deletedGifts)shopState.deletedGifts={};
       if(!shopState.bought)shopState.bought={};
-      if(!shopState.actualYen)shopState.actualYen={};
-      if(!shopState.giftDone)shopState.giftDone={};
+      if(!shopState.actual)shopState.actual={};
+      if(!shopState.given)shopState.given={};
+      /* 구버전 온라인 필드명도 현재 구조로 흡수 */
+      if(shopState.actualYen && typeof shopState.actualYen==='object'){
+        shopState.actual={...shopState.actualYen,...shopState.actual};
+      }
+      if(shopState.giftDone && typeof shopState.giftDone==='object'){
+        shopState.given={...shopState.giftDone,...shopState.given};
+      }
 
       shopSaveLocal();
 
@@ -6090,7 +6093,7 @@ const PREP_BASE=[
   {id:'prep-foldbag',category:'쇼핑 대비',name:'접이식 보조가방',qty:1,note:'선물·쇼핑 물품 증가 대비',cost:0},
   {id:'prep-cushion',category:'쇼핑 대비',name:'완충용 지퍼백·봉투',qty:1,note:'깨지기 쉬운 물건 보호',cost:0}
 ];
-let prepState={ready:{},packed:{},cost:{},customItems:[],deleted:{}};
+let prepState={"cost":{"prep-mue2igkj-g5r5g":0,"prep-mue5kmt2-wm8h8":0,"prep-mue5kn4q-92wgx":0,"prep-mue5knfs-9qap4":25500,"prep-mue5ko0e-2vtow":0,"prep-mue5q7wp-6im4q":0,"prep-mufgmeng-06o6g":1000,"prep-mufgmuul-8t8s3":1000,"prep-mufgn5g2-p3v5d":0,"prep-mufgotf8-c6rpt":0,"prep-mufgr42w-fa4yz":0,"prep-mufgwr2m-54m15":5000,"prep-mufi7rnw-10gqz":0,"prep-mugajpj5-08bm3":37000},"ready":{"prep-cash":false,"prep-passport":true,"prep-mue2igkj-g5r5g":true,"prep-mue5kmt2-wm8h8":true,"prep-mue5kn4q-92wgx":false,"prep-mue5knfs-9qap4":true,"prep-mue5ko0e-2vtow":false,"prep-mue5q7wp-6im4q":true,"prep-mufgmeng-06o6g":true,"prep-mufgmuul-8t8s3":true,"prep-mugajpj5-08bm3":true},"packed":{"prep-cash":false,"prep-passport":true,"prep-mue2igkj-g5r5g":true,"prep-mue5kmt2-wm8h8":true,"prep-mue5kn4q-92wgx":false,"prep-mue5knfs-9qap4":true,"prep-mue5ko0e-2vtow":false,"prep-mue5q7wp-6im4q":true,"prep-mufgmeng-06o6g":true,"prep-mufgmuul-8t8s3":true,"prep-mugajpj5-08bm3":true},"deleted":{"prep-vjw":true,"prep-hotel":true,"prep-flight":true,"prep-name-tag":true,"prep-insurance":true},"customItems":[{"id":"prep-mue2igkj-g5r5g","qty":4,"cost":0,"name":"ICN Smart Pass","note":"인천공항 스마트패스 및 탑승권 저장","category":"여행 필수"},{"id":"prep-mue5kmt2-wm8h8","qty":4,"cost":0,"name":"항공권·탑승 정보","note":"제주항공 일정 및 터미널 확인","category":"여행 필수"},{"id":"prep-mue5kn4q-92wgx","qty":2,"cost":0,"name":"숙소 예약정보","note":"숙소명·주소 화면 또는 캡처","category":"여행 필수"},{"id":"prep-mue5knfs-9qap4","qty":1,"cost":0,"name":"여행자보험 정보","note":"현대해상 여행자보험 가입 완료","category":"여행 필수"},{"id":"prep-mue5ko0e-2vtow","qty":5,"cost":0,"name":"Visit Japan Web 확인","note":"필요 화면은 캡처도 준비","category":"여행 필수"},{"id":"prep-mue5q7wp-6im4q","qty":4,"cost":0,"name":"캐리어 네임택","note":"에코런 기념 매달로 대체","category":"이동·가방"},{"id":"prep-mufgmeng-06o6g","qty":1,"cost":0,"name":"신발보관 주머니","note":"신발 보관 주머니","category":"기타"},{"id":"prep-mufgmuul-8t8s3","qty":2,"cost":0,"name":"빨래집게","note":"빨래 집게","category":"기타"},{"id":"prep-mufgn5g2-p3v5d","qty":4,"cost":0,"name":"우산","note":"접이식 우산","category":"비·날씨"},{"id":"prep-mufgotf8-c6rpt","qty":4,"cost":0,"name":"비옷","note":"집에 있는 비옷 4개 준비","category":"비·날씨"},{"id":"prep-mufgr42w-fa4yz","qty":1,"cost":0,"name":"인천공항 주차","note":"인천공항 주차비","category":"기타"},{"id":"prep-mufgwr2m-54m15","qty":2,"cost":0,"name":"멀티탭(혹은 변환기)","note":"멀티 변환기 1개는 빌리고, 1개만 구입완료","category":"여행 필수"},{"id":"prep-mufi7rnw-10gqz","qty":1,"cost":0,"name":"050-3816-2787","note":"아프거나 응급실갈 때 사고 났을 때, 24시간 한국어 상담 지원 Japan visitor hotline","category":"여행 필수"},{"id":"prep-mugajpj5-08bm3","qty":1,"cost":0,"name":"잡화","note":"휴지, 물티슈, 비닐봉투, 지퍼백, 화장품 등","category":"기타"}]};
 
 function prepItems(){
   return PREP_BASE.filter(x=>!prepState.deleted[x.id]).concat(prepState.customItems||[]);
