@@ -4692,6 +4692,12 @@ function showShopping(btn){
   document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
   (btn||document.getElementById('tabShopping')).classList.add('active');
   shopRender();
+
+  /* 쇼핑 탭에 들어올 때는 항상 모든 쇼핑 항목을 접힌 상태로 시작 */
+  document.querySelectorAll('#shopping details.shop-place').forEach(d=>{
+    d.open=false;
+  });
+
   scrollTopNow();
 }
 
@@ -5573,7 +5579,7 @@ function shopRender(){
     let buyHtml=add;let lastDay='';
     groups.forEach((g,idx)=>{
       if(g.day!==lastDay){buyHtml+=`<div class="shop-day-head"><div class="shop-day-title"><b>${shopEscape(g.day)}</b><span>${shopEscape(dayDates[g.day]||'')}</span></div><span class="shop-day-total" data-shop-day-total="${shopEscape(g.day)}"></span></div>`;lastDay=g.day;}
-      buyHtml+=`<details class="shop-place" ${idx<2?'open':''}><summary><span>${shopEscape(g.place)}<small>${g.items.length}개 항목</small></span><span>›</span></summary><div class="shop-list"><div class="shop-colhead"><span>구매</span><span>품목</span><span>실구매 ¥</span><span>원화</span><span></span></div>${g.items.map(it=>`<div class="shop-row"><input class="shop-check" type="checkbox" ${shopState.bought[it.id]?'checked':''} onchange="shopToggleBought('${it.id}',this.checked)"><div class="shop-item"><strong>${shopEscape(it.item)}</strong><span>${shopEscape(it.qty)}${it.note?' · '+shopEscape(it.note):''} · 예상 ${shopFmtYen(it.plan)}</span></div><input class="yen-input" type="number" inputmode="numeric" min="0" step="1" value="${shopState.actual[it.id]!==undefined&&shopState.actual[it.id]!==''?shopState.actual[it.id]:it.plan}" onchange="shopSetActual('${it.id}',this.value)" oninput="shopSetActual('${it.id}',this.value)"><div class="krw-cell" data-shop-krw="${it.id}"></div><button type="button" class="shop-delete-item" onclick="shopDeleteItem('${it.id}')" title="삭제">×</button></div>`).join('')}</div></details>`;
+      buyHtml+=`<details class="shop-place"><summary><span>${shopEscape(g.place)}<small>${g.items.length}개 항목</small></span><span>›</span></summary><div class="shop-list"><div class="shop-colhead"><span>구매</span><span>품목</span><span>실구매 ¥</span><span>원화</span><span></span></div>${g.items.map(it=>`<div class="shop-row"><input class="shop-check" type="checkbox" ${shopState.bought[it.id]?'checked':''} onchange="shopToggleBought('${it.id}',this.checked)"><div class="shop-item"><strong>${shopEscape(it.item)}</strong><span>${shopEscape(it.qty)}${it.note?' · '+shopEscape(it.note):''} · 예상 ${shopFmtYen(it.plan)}</span></div><input class="yen-input" type="number" inputmode="numeric" min="0" step="1" value="${shopState.actual[it.id]!==undefined&&shopState.actual[it.id]!==''?shopState.actual[it.id]:it.plan}" onchange="shopSetActual('${it.id}',this.value)" oninput="shopSetActual('${it.id}',this.value)"><div class="krw-cell" data-shop-krw="${it.id}"></div><button type="button" class="shop-delete-item" onclick="shopDeleteItem('${it.id}')" title="삭제">×</button></div>`).join('')}</div></details>`;
     });
     buy.innerHTML=buyHtml;buy.dataset.rendered='1';
   }
